@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>917972085374-vai8b5s3o44prfiq38c1rnl52f4jmk1f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.917972085374-vai8b5s3o44prfiq38c1rnl52f4jmk1f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7BkFzmd8xf7mlPK28Abg3UNRXN4K6Syw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>917972085374</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.demo.WatchTogether</string>
+	<key>PROJECT_ID</key>
+	<string>watchtogetherapp-ec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>watchtogetherapp-ec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:917972085374:ios:8f189418d9405cbf30c62f</string>
+	<key>DATABASE_URL</key>
+	<string>https://watchtogetherapp-ec-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

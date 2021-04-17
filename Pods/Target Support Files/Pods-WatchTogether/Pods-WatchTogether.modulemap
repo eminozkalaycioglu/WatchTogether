@@ -1,0 +1,6 @@
+framework module Pods_WatchTogether {
+  umbrella header "Pods-WatchTogether-umbrella.h"
+
+  export *
+  module * { export * }
+}
