@@ -11,6 +11,40 @@
 		48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48075CB526242A92001B62A1 /* RegisterRequestModel.swift */; };
 		48075CBA26242AC0001B62A1 /* PresentableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48075CB926242AC0001B62A1 /* PresentableError.swift */; };
 		48075CBE26242AE1001B62A1 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48075CBD26242AE1001B62A1 /* Error+Extension.swift */; };
+		480C00AC262C8D4D00140E4F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C00AB262C8D4D00140E4F /* BaseViewController.swift */; };
+		480C00B0262C8D8B00140E4F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C00AF262C8D8B00140E4F /* BaseViewModel.swift */; };
+		480C00B4262C8E4600140E4F /* WTAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C00B3262C8E4600140E4F /* WTAlert.swift */; };
+		480C00E4262C90EB00140E4F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C00E3262C90EB00140E4F /* R.generated.swift */; };
+		480C00FB262C914900140E4F /* Kanit-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00E8262C914800140E4F /* Kanit-ExtraLight.ttf */; };
+		480C00FC262C914900140E4F /* Kanit-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00E9262C914900140E4F /* Kanit-ThinItalic.ttf */; };
+		480C00FD262C914900140E4F /* Kanit-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00EA262C914900140E4F /* Kanit-BoldItalic.ttf */; };
+		480C00FE262C914900140E4F /* Kanit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00EB262C914900140E4F /* Kanit-SemiBold.ttf */; };
+		480C00FF262C914900140E4F /* Kanit-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00EC262C914900140E4F /* Kanit-Black.ttf */; };
+		480C0100262C914900140E4F /* Kanit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00ED262C914900140E4F /* Kanit-Regular.ttf */; };
+		480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00EE262C914900140E4F /* Kanit-Italic.ttf */; };
+		480C0102262C914900140E4F /* Kanit-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00EF262C914900140E4F /* Kanit-MediumItalic.ttf */; };
+		480C0103262C914900140E4F /* Kanit-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F0262C914900140E4F /* Kanit-Thin.ttf */; };
+		480C0104262C914900140E4F /* Kanit-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F1262C914900140E4F /* Kanit-ExtraBoldItalic.ttf */; };
+		480C0105262C914900140E4F /* Kanit-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F2262C914900140E4F /* Kanit-ExtraBold.ttf */; };
+		480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F3262C914900140E4F /* Kanit-Bold.ttf */; };
+		480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F4262C914900140E4F /* Kanit-SemiBoldItalic.ttf */; };
+		480C0108262C914900140E4F /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F5262C914900140E4F /* OFL.txt */; };
+		480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F6262C914900140E4F /* Kanit-BlackItalic.ttf */; };
+		480C010A262C914900140E4F /* Kanit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F7262C914900140E4F /* Kanit-Light.ttf */; };
+		480C010B262C914900140E4F /* Kanit-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F8262C914900140E4F /* Kanit-LightItalic.ttf */; };
+		480C010C262C914900140E4F /* Kanit-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00F9262C914900140E4F /* Kanit-ExtraLightItalic.ttf */; };
+		480C010D262C914900140E4F /* Kanit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 480C00FA262C914900140E4F /* Kanit-Medium.ttf */; };
+		480C0113262C930800140E4F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C0111262C930800140E4F /* TestViewController.swift */; };
+		480C0114262C930800140E4F /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C0112262C930800140E4F /* TestViewController.xib */; };
+		480C0118262C9D4F00140E4F /* WTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C0117262C9D4F00140E4F /* WTViewController.swift */; };
+		480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C011A262C9D7E00140E4F /* SplashViewController.swift */; };
+		480C011D262C9D7E00140E4F /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C011B262C9D7E00140E4F /* SplashViewController.xib */; };
+		480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C011F262C9DB400140E4F /* SplashViewModel.swift */; };
+		480C0124262CA20300140E4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C0122262CA20300140E4F /* LoginViewController.swift */; };
+		480C0125262CA20300140E4F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C0123262CA20300140E4F /* LoginViewController.xib */; };
+		480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C0128262CA2CD00140E4F /* MainTabBarController.swift */; };
+		480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C012C262CA30D00140E4F /* RoomsViewController.swift */; };
+		480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C012D262CA30D00140E4F /* RoomsViewController.xib */; };
 		484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A2A402620E233006C14BB /* WTSessionManager.swift */; };
 		48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5A2620B0E200321ECF /* AppDelegate.swift */; };
 		48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5C2620B0E200321ECF /* SceneDelegate.swift */; };
@@ -22,10 +56,8 @@
 		48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B7D2620B3CF00321ECF /* String+Extension.swift */; };
 		48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B872620BDB500321ECF /* FirebaseManager.swift */; };
 		48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */; };
-		48B59BBB2620C57E00321ECF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59BB92620C57E00321ECF /* TestViewController.swift */; };
-		48B59BBC2620C57E00321ECF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B59BBA2620C57E00321ECF /* TestViewController.xib */; };
-		48B59BF42620C70800321ECF /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59BF22620C70700321ECF /* Test2ViewController.swift */; };
-		48B59BF52620C70800321ECF /* Test2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B59BF32620C70800321ECF /* Test2ViewController.xib */; };
+		48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832C262CA4800009F052 /* LoginViewModel.swift */; };
+		48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832F262CA5890009F052 /* RoomsViewModel.swift */; };
 		BC464B16CB4E27BE5D632052 /* Pods_WatchTogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348F2AAED0F966E53AC46CDE /* Pods_WatchTogether.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +67,40 @@
 		48075CB526242A92001B62A1 /* RegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequestModel.swift; sourceTree = "<group>"; };
 		48075CB926242AC0001B62A1 /* PresentableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableError.swift; sourceTree = "<group>"; };
 		48075CBD26242AE1001B62A1 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		480C00AB262C8D4D00140E4F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		480C00AF262C8D8B00140E4F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		480C00B3262C8E4600140E4F /* WTAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTAlert.swift; sourceTree = "<group>"; };
+		480C00E3262C90EB00140E4F /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		480C00E8262C914800140E4F /* Kanit-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-ExtraLight.ttf"; sourceTree = "<group>"; };
+		480C00E9262C914900140E4F /* Kanit-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-ThinItalic.ttf"; sourceTree = "<group>"; };
+		480C00EA262C914900140E4F /* Kanit-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-BoldItalic.ttf"; sourceTree = "<group>"; };
+		480C00EB262C914900140E4F /* Kanit-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-SemiBold.ttf"; sourceTree = "<group>"; };
+		480C00EC262C914900140E4F /* Kanit-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Black.ttf"; sourceTree = "<group>"; };
+		480C00ED262C914900140E4F /* Kanit-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Regular.ttf"; sourceTree = "<group>"; };
+		480C00EE262C914900140E4F /* Kanit-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Italic.ttf"; sourceTree = "<group>"; };
+		480C00EF262C914900140E4F /* Kanit-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-MediumItalic.ttf"; sourceTree = "<group>"; };
+		480C00F0262C914900140E4F /* Kanit-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Thin.ttf"; sourceTree = "<group>"; };
+		480C00F1262C914900140E4F /* Kanit-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		480C00F2262C914900140E4F /* Kanit-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-ExtraBold.ttf"; sourceTree = "<group>"; };
+		480C00F3262C914900140E4F /* Kanit-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Bold.ttf"; sourceTree = "<group>"; };
+		480C00F4262C914900140E4F /* Kanit-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		480C00F5262C914900140E4F /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		480C00F6262C914900140E4F /* Kanit-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-BlackItalic.ttf"; sourceTree = "<group>"; };
+		480C00F7262C914900140E4F /* Kanit-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Light.ttf"; sourceTree = "<group>"; };
+		480C00F8262C914900140E4F /* Kanit-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-LightItalic.ttf"; sourceTree = "<group>"; };
+		480C00F9262C914900140E4F /* Kanit-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		480C00FA262C914900140E4F /* Kanit-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kanit-Medium.ttf"; sourceTree = "<group>"; };
+		480C0111262C930800140E4F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		480C0112262C930800140E4F /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		480C0117262C9D4F00140E4F /* WTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTViewController.swift; sourceTree = "<group>"; };
+		480C011A262C9D7E00140E4F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		480C011B262C9D7E00140E4F /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		480C011F262C9DB400140E4F /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		480C0122262CA20300140E4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		480C0123262CA20300140E4F /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		480C0128262CA2CD00140E4F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		480C012C262CA30D00140E4F /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		480C012D262CA30D00140E4F /* RoomsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsViewController.xib; sourceTree = "<group>"; };
 		484A2A402620E233006C14BB /* WTSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTSessionManager.swift; sourceTree = "<group>"; };
 		48B59B572620B0E200321ECF /* WatchTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B59B5A2620B0E200321ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,10 +114,8 @@
 		48B59B7D2620B3CF00321ECF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		48B59B872620BDB500321ECF /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		48B59BB92620C57E00321ECF /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		48B59BBA2620C57E00321ECF /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-		48B59BF22620C70700321ECF /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
-		48B59BF32620C70800321ECF /* Test2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test2ViewController.xib; sourceTree = "<group>"; };
+		48EF832C262CA4800009F052 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		48EF832F262CA5890009F052 /* RoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
 		4FCC0EC95102519A5FE36834 /* Pods-WatchTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchTogether.release.xcconfig"; path = "Target Support Files/Pods-WatchTogether/Pods-WatchTogether.release.xcconfig"; sourceTree = "<group>"; };
 		B4A793D1CDCC2803B6EDB0C5 /* Pods-WatchTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchTogether.debug.xcconfig"; path = "Target Support Files/Pods-WatchTogether/Pods-WatchTogether.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +150,131 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		480C00A6262C8CCD00140E4F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				480C00A8262C8CD600140E4F /* Register */,
+				480C00A7262C8CD200140E4F /* Login */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		480C00A7262C8CD200140E4F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				480C0122262CA20300140E4F /* LoginViewController.swift */,
+				480C0123262CA20300140E4F /* LoginViewController.xib */,
+				48EF832C262CA4800009F052 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		480C00A8262C8CD600140E4F /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		480C00A9262C8CEB00140E4F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				480C011A262C9D7E00140E4F /* SplashViewController.swift */,
+				480C011B262C9D7E00140E4F /* SplashViewController.xib */,
+				480C011F262C9DB400140E4F /* SplashViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		480C00AA262C8D0300140E4F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				480C00AB262C8D4D00140E4F /* BaseViewController.swift */,
+				480C00AF262C8D8B00140E4F /* BaseViewModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		480C00B2262C8E3000140E4F /* UIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				480C00AA262C8D0300140E4F /* Base */,
+				480C00B3262C8E4600140E4F /* WTAlert.swift */,
+				480C0117262C9D4F00140E4F /* WTViewController.swift */,
+			);
+			path = UIHelper;
+			sourceTree = "<group>";
+		};
+		480C00E2262C90EB00140E4F /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				480C00E3262C90EB00140E4F /* R.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		480C00E6262C913D00140E4F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				480C00E7262C914800140E4F /* Kanit */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		480C00E7262C914800140E4F /* Kanit */ = {
+			isa = PBXGroup;
+			children = (
+				480C00E8262C914800140E4F /* Kanit-ExtraLight.ttf */,
+				480C00E9262C914900140E4F /* Kanit-ThinItalic.ttf */,
+				480C00EA262C914900140E4F /* Kanit-BoldItalic.ttf */,
+				480C00EB262C914900140E4F /* Kanit-SemiBold.ttf */,
+				480C00EC262C914900140E4F /* Kanit-Black.ttf */,
+				480C00ED262C914900140E4F /* Kanit-Regular.ttf */,
+				480C00EE262C914900140E4F /* Kanit-Italic.ttf */,
+				480C00EF262C914900140E4F /* Kanit-MediumItalic.ttf */,
+				480C00F0262C914900140E4F /* Kanit-Thin.ttf */,
+				480C00F1262C914900140E4F /* Kanit-ExtraBoldItalic.ttf */,
+				480C00F2262C914900140E4F /* Kanit-ExtraBold.ttf */,
+				480C00F3262C914900140E4F /* Kanit-Bold.ttf */,
+				480C00F4262C914900140E4F /* Kanit-SemiBoldItalic.ttf */,
+				480C00F5262C914900140E4F /* OFL.txt */,
+				480C00F6262C914900140E4F /* Kanit-BlackItalic.ttf */,
+				480C00F7262C914900140E4F /* Kanit-Light.ttf */,
+				480C00F8262C914900140E4F /* Kanit-LightItalic.ttf */,
+				480C00F9262C914900140E4F /* Kanit-ExtraLightItalic.ttf */,
+				480C00FA262C914900140E4F /* Kanit-Medium.ttf */,
+			);
+			path = Kanit;
+			sourceTree = "<group>";
+		};
+		480C0110262C92FD00140E4F /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				480C0111262C930800140E4F /* TestViewController.swift */,
+				480C0112262C930800140E4F /* TestViewController.xib */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		480C0127262CA27300140E4F /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				480C0131262CA31100140E4F /* Rooms */,
+				480C0128262CA2CD00140E4F /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		480C0131262CA31100140E4F /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				480C012C262CA30D00140E4F /* RoomsViewController.swift */,
+				480C012D262CA30D00140E4F /* RoomsViewController.xib */,
+				48EF832F262CA5890009F052 /* RoomsViewModel.swift */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
 		48B59B4E2620B0E200321ECF = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +296,8 @@
 		48B59B592620B0E200321ECF /* WatchTogether */ = {
 			isa = PBXGroup;
 			children = (
+				480C00E2262C90EB00140E4F /* Generated */,
+				480C00B2262C8E3000140E4F /* UIHelper */,
 				48075CAE26242A49001B62A1 /* Network */,
 				48B59B852620BD9D00321ECF /* Managers */,
 				48B59B822620BA1600321ECF /* Resources */,
@@ -142,10 +333,10 @@
 		48B59B812620B9FD00321ECF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				48B59BB92620C57E00321ECF /* TestViewController.swift */,
-				48B59BBA2620C57E00321ECF /* TestViewController.xib */,
-				48B59BF22620C70700321ECF /* Test2ViewController.swift */,
-				48B59BF32620C70800321ECF /* Test2ViewController.xib */,
+				480C0127262CA27300140E4F /* MainTabBar */,
+				480C0110262C92FD00140E4F /* Test */,
+				480C00A9262C8CEB00140E4F /* Splash */,
+				480C00A6262C8CCD00140E4F /* Auth */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -153,6 +344,7 @@
 		48B59B822620BA1600321ECF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				480C00E6262C913D00140E4F /* Font */,
 				48B59B652620B0E400321ECF /* LaunchScreen.storyboard */,
 				48B59B632620B0E400321ECF /* Assets.xcassets */,
 				48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */,
@@ -202,6 +394,7 @@
 			buildConfigurationList = 48B59B6B2620B0E400321ECF /* Build configuration list for PBXNativeTarget "WatchTogether" */;
 			buildPhases = (
 				EA3CC4239E82A7CBA2DFBFA8 /* [CP] Check Pods Manifest.lock */,
+				480C00DF262C8F5500140E4F /* R */,
 				48B59B532620B0E200321ECF /* Sources */,
 				48B59B542620B0E200321ECF /* Frameworks */,
 				48B59B552620B0E200321ECF /* Resources */,
@@ -253,10 +446,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48B59BF52620C70800321ECF /* Test2ViewController.xib in Resources */,
+				480C0108262C914900140E4F /* OFL.txt in Resources */,
+				480C010C262C914900140E4F /* Kanit-ExtraLightItalic.ttf in Resources */,
+				480C0102262C914900140E4F /* Kanit-MediumItalic.ttf in Resources */,
+				480C00FB262C914900140E4F /* Kanit-ExtraLight.ttf in Resources */,
+				480C010B262C914900140E4F /* Kanit-LightItalic.ttf in Resources */,
+				480C00FC262C914900140E4F /* Kanit-ThinItalic.ttf in Resources */,
+				480C0100262C914900140E4F /* Kanit-Regular.ttf in Resources */,
 				48B59B672620B0E400321ECF /* LaunchScreen.storyboard in Resources */,
+				480C0103262C914900140E4F /* Kanit-Thin.ttf in Resources */,
+				480C0114262C930800140E4F /* TestViewController.xib in Resources */,
+				480C010D262C914900140E4F /* Kanit-Medium.ttf in Resources */,
+				480C0105262C914900140E4F /* Kanit-ExtraBold.ttf in Resources */,
+				480C00FD262C914900140E4F /* Kanit-BoldItalic.ttf in Resources */,
+				480C0104262C914900140E4F /* Kanit-ExtraBoldItalic.ttf in Resources */,
+				480C00FF262C914900140E4F /* Kanit-Black.ttf in Resources */,
+				480C0125262CA20300140E4F /* LoginViewController.xib in Resources */,
+				480C00FE262C914900140E4F /* Kanit-SemiBold.ttf in Resources */,
+				480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */,
 				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
-				48B59BBC2620C57E00321ECF /* TestViewController.xib in Resources */,
+				480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */,
+				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
+				480C011D262C9D7E00140E4F /* SplashViewController.xib in Resources */,
+				480C010A262C914900140E4F /* Kanit-Light.ttf in Resources */,
+				480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */,
+				480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +478,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		480C00DF262C8F5500140E4F /* R */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/WatchTogether/Generated/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --generators image,color,font \"$SRCROOT/WatchTogether/Generated/R.generated.swift\"\n";
+		};
 		A477BF1E81F5ECC7EA90BC4C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,20 +544,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				480C0124262CA20300140E4F /* LoginViewController.swift in Sources */,
+				480C00AC262C8D4D00140E4F /* BaseViewController.swift in Sources */,
+				480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */,
+				480C00B4262C8E4600140E4F /* WTAlert.swift in Sources */,
+				480C0113262C930800140E4F /* TestViewController.swift in Sources */,
 				48B59B732620B27A00321ECF /* AppRouter.swift in Sources */,
 				48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */,
-				48B59BBB2620C57E00321ECF /* TestViewController.swift in Sources */,
+				480C00B0262C8D8B00140E4F /* BaseViewModel.swift in Sources */,
 				48B59B7A2620B36F00321ECF /* SceneFactory.swift in Sources */,
 				48075CBA26242AC0001B62A1 /* PresentableError.swift in Sources */,
+				480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */,
 				48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */,
+				480C0118262C9D4F00140E4F /* WTViewController.swift in Sources */,
 				48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */,
 				48075CB326242A68001B62A1 /* WTUser.swift in Sources */,
 				48B59B772620B2A400321ECF /* TopViewControllerProvider.swift in Sources */,
+				480C00E4262C90EB00140E4F /* R.generated.swift in Sources */,
+				480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */,
+				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
 				48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */,
+				48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */,
 				48075CBE26242AE1001B62A1 /* Error+Extension.swift in Sources */,
 				484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */,
-				48B59BF42620C70800321ECF /* Test2ViewController.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
+				48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

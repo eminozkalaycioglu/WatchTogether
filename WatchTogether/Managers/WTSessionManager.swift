@@ -20,7 +20,7 @@ final class WTSessionManager: SessionManager {
     
     static let shared = WTSessionManager()
     
-    let firebaseMgr = FirebaseManager.shared
+    let firebaseMgr = WTFirebaseManager.shared
         
     var user: WTUser?
     

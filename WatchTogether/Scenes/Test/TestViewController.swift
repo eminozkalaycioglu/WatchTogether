@@ -1,18 +1,25 @@
 //
-//  Test2ViewController.swift
+//  TestViewController.swift
 //  WatchTogether
 //
-//  Created by emin on 9.04.2021.
+//  Created by emin on 18.04.2021.
 //
 
 import UIKit
 
-class Test2ViewController: UIViewController {
+class TestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        WTAlert.show(self, title: "Title Test :)", message: "Message Test :((", buttons: nil)
 
-        // Do any additional setup after loading the view.
     }
 
 

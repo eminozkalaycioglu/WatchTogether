@@ -46,8 +46,8 @@
             filePath = "WatchTogether/Network/Firebase/FirebaseManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "fetchRooms(completion:)"
             landmarkType = "7">
          </BreakpointContent>

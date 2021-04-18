@@ -7,6 +7,10 @@
 
 import UIKit
 
+extension WTViewController {
+    var router: AppRouter { AppRouter.shared }
+}
+
 final class AppRouter {
     
     static let shared = AppRouter()

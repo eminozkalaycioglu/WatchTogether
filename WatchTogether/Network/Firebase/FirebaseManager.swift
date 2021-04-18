@@ -8,14 +8,45 @@
 import Foundation
 import Firebase
 
-final class FirebaseManager {
+protocol FirebaseManager {
+    
+    //MARK: - Auth
+    var dbRef: DatabaseReference { get set }
+    func saveUserInfo(_ request: RegisterRequestModel, uid: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func register(_ request: RegisterRequestModel, completion: @escaping ((Result<WTUser, PresentableError>)->Void))
+    func fetchUserInfo(uid: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void))
+    func signOut() -> Bool
+    func getCurrentAuthUser() -> User?
+    func login(email: String, password: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void))
+    
+    //MARK: - Room
+    func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
+    func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void))
+    func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func observeMessages(roomId: String, completion: @escaping (([Message]) -> Void))
+    
+    //MARK: - Utilities
+    func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
+    
+}
+
+final class WTFirebaseManager: FirebaseManager {
     
     private init() { }
     
-    static let shared = FirebaseManager()
-    private var dbRef: DatabaseReference = Database.database().reference()
+    static let shared = WTFirebaseManager()
+
+    internal var dbRef: DatabaseReference = Database.database().reference()
     
-    private func saveUserInfo(_ request: RegisterRequestModel, uid: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+}
+
+//MARK: - Auth Functions
+extension WTFirebaseManager {
+    
+    internal func saveUserInfo(_ request: RegisterRequestModel, uid: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         
         var dict: [String: Any] = [:]
         dict["userId"] = uid
@@ -101,11 +132,21 @@ final class FirebaseManager {
         Auth.auth().currentUser
     }
     
+    func login(email: String, password: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void)) {
+        Auth.auth().signIn(withEmail: email, password: password) { (firResult, firError) in
+            
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+                return
+            } else if let firResult = firResult {
+                self.fetchUserInfo(uid: firResult.user.uid, completion: completion)
+            }
+        }
+    }
 }
 
-
 //MARK: - Room Functions
-extension FirebaseManager {
+extension WTFirebaseManager {
     
     func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         
@@ -229,9 +270,9 @@ extension FirebaseManager {
 
 
 //MARK: - Utilities
-extension FirebaseManager {
+extension WTFirebaseManager {
     
-    private func fetchRoomFrom(snapshot: DataSnapshot) -> Room? {
+    internal func fetchRoomFrom(snapshot: DataSnapshot) -> Room? {
         guard let value = snapshot.value as? [String: Any] else {
             return nil
         }

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
 
-        AppRouter.configureWithWindow(window, initalViewController: TestViewController())
+        AppRouter.configureWithWindow(window, initalViewController: SF.makeSplashVC())
 
         self.window = window
         

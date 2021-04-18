@@ -20,6 +20,40 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    
+    <key>UIAppFonts</key>
+    <array>
+        <string>Kanit-ExtraLight.ttf</string>
+        <string>Kanit-ThinItalic.ttf</string>
+        <string>Kanit-BoldItalic.ttf</string>
+        <string>Kanit-SemiBold.ttf</string>
+        <string>Kanit-Black.ttf</string>
+        <string>Kanit-Regular.ttf</string>
+        <string>Kanit-Italic.ttf</string>
+        <string>Kanit-MediumItalic.ttf</string>
+        <string>Kanit-Thin.ttf</string>
+        <string>Kanit-ExtraBoldItalic.ttf</string>
+        <string>Kanit-ExtraBold.ttf</string>
+        <string>Kanit-Bold.ttf</string>
+        <string>Kanit-SemiBoldItalic.ttf</string>
+        <string>Kanit-BlackItalic.ttf</string>
+        <string>Kanit-Light.ttf</string>
+        <string>Kanit-LightItalic.ttf</string>
+        <string>Kanit-ExtraLightItalic.ttf</string>
+        <string>Kanit-Medium.ttf</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+        <string>Kanit-</string>
+    </array>
+    
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

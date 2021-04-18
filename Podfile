@@ -7,6 +7,8 @@ target 'WatchTogether' do
 
   # Pods for WatchTogether
   pod 'SVProgressHUD'
+  pod 'PopupDialog', '~> 1.1'
+  pod 'R.swift'
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

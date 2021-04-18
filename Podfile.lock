@@ -1,4 +1,5 @@
 PODS:
+  - DynamicBlurView (4.1.0)
   - Firebase (7.4.0):
     - Firebase/Core (= 7.4.0)
   - Firebase/Auth (7.4.0):
@@ -77,17 +78,25 @@ PODS:
     - nanopb/encode (= 2.30907.0)
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
+  - PopupDialog (1.1.1):
+    - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.12)
+  - R.swift (5.3.1):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - PopupDialog (~> 1.1)
+  - R.swift
   - SVProgressHUD
 
 SPEC REPOS:
   trunk:
+    - DynamicBlurView
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -101,10 +110,14 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - PopupDialog
     - PromisesObjC
+    - R.swift
+    - R.swift.Library
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
   FirebaseAnalytics: adb3c8f02f83d00661cdaac6dbb4d54e9720d1b6
   FirebaseAuth: d8dba8db90a1705ee2493857047282ca4f6e7598
@@ -118,9 +131,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
+  PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e210f2af5deedef5abfe6a8c773b970daf0f712c
+PODFILE CHECKSUM: 9cde491ba246cde9113b30fcea4f7201dff39c73
 
 COCOAPODS: 1.10.1
