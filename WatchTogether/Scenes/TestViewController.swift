@@ -16,15 +16,37 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let a = Message(messageId: "id", text: "tex", ownerId: "owid", sendTime: "sendtime")
+        
+        let testId = "D277198A-1649-433B-96E1-F9D0F0F8FA51"
+        
         if WTSessionManager.shared.isLoggedIn {
             WTSessionManager.shared.fetchUser {
-                FirebaseManager.shared.fetchRoom(roomId: "5FD2E298-B046-438C-A9BA-FDCDF2CFEDD2") { (result) in
-                    
+                
+                FirebaseManager.shared.fetchRooms { (result) in
+                    switch result {
+                    case let .success(rooms):
+                        print("")
+                    case let .failure(error):
+                        print(error.message)
+                    }
                 }
+//                FirebaseManager.shared.createRoom(ownerUser: WTSessionManager.shared.user!, roomName: "Deneme", password: nil) { (result) in
+//                    switch result {
+//                    case .success:
+//                        print("oda kuruldu")
+//                    case let .failure(error):
+//                        print(error.message)
+//                    }
+//                }
             }
+            
         }
-
+        
+        
     }
+
+    
 
 
     @IBAction func registerButtonTapAction(_ sender: Any) {
@@ -54,15 +76,17 @@ class TestViewController: UIViewController {
     @IBAction func createRoomTapAction(_ sender: Any) {
         
         if WTSessionManager.shared.isLoggedIn {
-            FirebaseManager.shared.createRoom(ownerUser: WTSessionManager.shared.user!, roomName: "Deneme", password: nil) { (result) in
-                switch result {
-                case .success:
-                    print("oda kuruldu")
-                case let .failure(error):
-                    print(error.message)
+            WTSessionManager.shared.fetchUser {
+                FirebaseManager.shared.fetchRoom(roomId: "D277198A-1649-433B-96E1-F9D0F0F8FA51") { (result) in
+                    switch result {
+                    case let .success(room):
+                        print("emintest: success!!")
+                        
+                    case let .failure(error):
+                        print("emintest: error \(error.message)")
+                    }
                 }
             }
         }
-        
     }
 }
