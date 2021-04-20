@@ -46,6 +46,11 @@
 		480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C012C262CA30D00140E4F /* RoomsViewController.swift */; };
 		480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C012D262CA30D00140E4F /* RoomsViewController.xib */; };
 		484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A2A402620E233006C14BB /* WTSessionManager.swift */; };
+		4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBA7262F394A006D0B62 /* WTTextField.swift */; };
+		4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC2262F69D2006D0B62 /* WTButton.swift */; };
+		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
+		4870CBFF262F78A5006D0B62 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */; };
+		4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */; };
 		48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5A2620B0E200321ECF /* AppDelegate.swift */; };
 		48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5C2620B0E200321ECF /* SceneDelegate.swift */; };
 		48B59B642620B0E400321ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B632620B0E400321ECF /* Assets.xcassets */; };
@@ -102,6 +107,11 @@
 		480C012C262CA30D00140E4F /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		480C012D262CA30D00140E4F /* RoomsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsViewController.xib; sourceTree = "<group>"; };
 		484A2A402620E233006C14BB /* WTSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTSessionManager.swift; sourceTree = "<group>"; };
+		4870CBA7262F394A006D0B62 /* WTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTextField.swift; sourceTree = "<group>"; };
+		4870CBC2262F69D2006D0B62 /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
+		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCollectionViewCell.xib; sourceTree = "<group>"; };
 		48B59B572620B0E200321ECF /* WatchTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B59B5A2620B0E200321ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B59B5C2620B0E200321ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +175,8 @@
 				480C0122262CA20300140E4F /* LoginViewController.swift */,
 				480C0123262CA20300140E4F /* LoginViewController.xib */,
 				48EF832C262CA4800009F052 /* LoginViewModel.swift */,
+				4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */,
+				4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -191,6 +203,7 @@
 			children = (
 				480C00AB262C8D4D00140E4F /* BaseViewController.swift */,
 				480C00AF262C8D8B00140E4F /* BaseViewModel.swift */,
+				4870CBC5262F69F9006D0B62 /* BaseButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -198,6 +211,7 @@
 		480C00B2262C8E3000140E4F /* UIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				4870CB8B262F3901006D0B62 /* Reusable */,
 				480C00AA262C8D0300140E4F /* Base */,
 				480C00B3262C8E4600140E4F /* WTAlert.swift */,
 				480C0117262C9D4F00140E4F /* WTViewController.swift */,
@@ -273,6 +287,15 @@
 				48EF832F262CA5890009F052 /* RoomsViewModel.swift */,
 			);
 			path = Rooms;
+			sourceTree = "<group>";
+		};
+		4870CB8B262F3901006D0B62 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				4870CBA7262F394A006D0B62 /* WTTextField.swift */,
+				4870CBC2262F69D2006D0B62 /* WTButton.swift */,
+			);
+			path = Reusable;
 			sourceTree = "<group>";
 		};
 		48B59B4E2620B0E200321ECF = {
@@ -472,6 +495,7 @@
 				480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */,
 				480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
+				4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,13 +570,16 @@
 			files = (
 				480C0124262CA20300140E4F /* LoginViewController.swift in Sources */,
 				480C00AC262C8D4D00140E4F /* BaseViewController.swift in Sources */,
+				4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */,
 				480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */,
 				480C00B4262C8E4600140E4F /* WTAlert.swift in Sources */,
 				480C0113262C930800140E4F /* TestViewController.swift in Sources */,
 				48B59B732620B27A00321ECF /* AppRouter.swift in Sources */,
 				48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */,
+				4870CBFF262F78A5006D0B62 /* AvatarCollectionViewCell.swift in Sources */,
 				480C00B0262C8D8B00140E4F /* BaseViewModel.swift in Sources */,
 				48B59B7A2620B36F00321ECF /* SceneFactory.swift in Sources */,
+				4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */,
 				48075CBA26242AC0001B62A1 /* PresentableError.swift in Sources */,
 				480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */,
 				48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */,
@@ -563,6 +590,7 @@
 				480C00E4262C90EB00140E4F /* R.generated.swift in Sources */,
 				480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */,
 				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
+				4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */,
 				48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */,
 				48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */,
 				48075CBE26242AE1001B62A1 /* Error+Extension.swift in Sources */,

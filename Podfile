@@ -2,13 +2,20 @@
 # platform :ios, '9.0'
 
 target 'WatchTogether' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for WatchTogether
+  
+  # UI Pods
   pod 'SVProgressHUD'
+  pod 'MaterialComponents/TextControls+OutlinedTextFields'
+  pod 'MaterialComponents/TextControls+OutlinedTextFieldsTheming'
   pod 'PopupDialog', '~> 1.1'
+  pod 'EachNavigationBar'
+  
+  #Util Pods
   pod 'R.swift'
+  pod 'IQKeyboardManagerSwift'
+
+  # Networking & Authentication Pods
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

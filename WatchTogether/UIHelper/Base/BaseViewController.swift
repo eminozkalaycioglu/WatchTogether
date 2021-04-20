@@ -53,8 +53,11 @@ class BaseViewController: UIViewController {
         
         viewModel?.onLoadDidFinishWithError = { (error) in
             DispatchQueue.main.async {
-                WTAlert.show(title: nil, message: error.message)
                 SVProgressHUD.dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    WTAlert.show(title: nil, message: error.message)
+
+                }
             }
         }
         

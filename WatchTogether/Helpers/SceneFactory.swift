@@ -6,7 +6,17 @@
 //
 
 import UIKit
-
+import EachNavigationBar
+extension UIViewController {
+    func embedInWTNavVc() -> UINavigationController {
+        
+        let nav = UINavigationController(rootViewController: self)
+        nav.navigation.configuration.isEnabled = true
+        nav.navigation.configuration.barTintColor = R.color.mainBlueColorLight()!
+        nav.navigation.configuration.statusBarStyle = .lightContent
+        return nav
+    }
+}
 final class SceneFactory {
     
     public static func makeViewController() -> TestViewController {
@@ -21,11 +31,11 @@ final class SceneFactory {
         return viewController
     }
     
-    public static func makeLoginVC() -> LoginViewController {
+    public static func makeLoginVC() -> UINavigationController {
         let viewController = LoginViewController()
         let viewModel = LoginViewModel()
         viewController.viewModel = viewModel
-        return viewController
+        return viewController.embedInWTNavVc()
     }
     
     public static func makeRoomsVC() -> RoomsViewController {
