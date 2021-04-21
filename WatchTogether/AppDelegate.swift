@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         let window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if #available(iOS 14.0, *) { } else {
+            window.tintColor = R.color.accentColor()!
+        }
+        
         AppRouter.configureWithWindow(window, initalViewController: SF.makeSplashVC())
 
         self.window = window

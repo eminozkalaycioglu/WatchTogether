@@ -20,8 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         AppRouter.configureWithWindow(window, initalViewController: SF.makeSplashVC())
 
-        self.window = window
+        if #available(iOS 14.0, *) { } else {
+            window.tintColor = R.color.accentColor()!
+        }
         
+        self.window = window
+                
         (UIApplication.shared.delegate as? AppDelegate)?.window = window
     }
 

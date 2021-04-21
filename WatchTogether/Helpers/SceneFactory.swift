@@ -14,6 +14,7 @@ extension UIViewController {
         nav.navigation.configuration.isEnabled = true
         nav.navigation.configuration.barTintColor = R.color.mainBlueColorLight()!
         nav.navigation.configuration.statusBarStyle = .lightContent
+        nav.navigation.configuration.backItem = .init(style: .image(R.image.backIcon()!))
         return nav
     }
 }
@@ -36,6 +37,13 @@ final class SceneFactory {
         let viewModel = LoginViewModel()
         viewController.viewModel = viewModel
         return viewController.embedInWTNavVc()
+    }
+    
+    public static func makeRegisterVC() -> RegisterViewController {
+        let viewController = RegisterViewController()
+        let viewModel = RegisterViewModel()
+        viewController.viewModel = viewModel
+        return viewController
     }
     
     public static func makeRoomsVC() -> RoomsViewController {

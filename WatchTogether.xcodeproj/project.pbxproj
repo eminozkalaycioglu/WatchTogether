@@ -46,6 +46,11 @@
 		480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C012C262CA30D00140E4F /* RoomsViewController.swift */; };
 		480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C012D262CA30D00140E4F /* RoomsViewController.xib */; };
 		484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A2A402620E233006C14BB /* WTSessionManager.swift */; };
+		48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673A8726309D1C0015E035 /* RegisterViewController.swift */; };
+		48673A8A26309D1C0015E035 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673A8826309D1C0015E035 /* RegisterViewController.xib */; };
+		48673A8D26309D430015E035 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673A8C26309D430015E035 /* RegisterViewModel.swift */; };
+		48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673AAC2630A3330015E035 /* PickAvatarViewController.swift */; };
+		48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673AAD2630A3330015E035 /* PickAvatarViewController.xib */; };
 		4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBA7262F394A006D0B62 /* WTTextField.swift */; };
 		4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC2262F69D2006D0B62 /* WTButton.swift */; };
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
@@ -107,6 +112,11 @@
 		480C012C262CA30D00140E4F /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		480C012D262CA30D00140E4F /* RoomsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsViewController.xib; sourceTree = "<group>"; };
 		484A2A402620E233006C14BB /* WTSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTSessionManager.swift; sourceTree = "<group>"; };
+		48673A8726309D1C0015E035 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		48673A8826309D1C0015E035 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		48673A8C26309D430015E035 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		48673AAC2630A3330015E035 /* PickAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAvatarViewController.swift; sourceTree = "<group>"; };
+		48673AAD2630A3330015E035 /* PickAvatarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickAvatarViewController.xib; sourceTree = "<group>"; };
 		4870CBA7262F394A006D0B62 /* WTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTextField.swift; sourceTree = "<group>"; };
 		4870CBC2262F69D2006D0B62 /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -163,6 +173,7 @@
 		480C00A6262C8CCD00140E4F /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				48673AAB2630A31F0015E035 /* PickAvatar */,
 				480C00A8262C8CD600140E4F /* Register */,
 				480C00A7262C8CD200140E4F /* Login */,
 			);
@@ -184,6 +195,9 @@
 		480C00A8262C8CD600140E4F /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				48673A8726309D1C0015E035 /* RegisterViewController.swift */,
+				48673A8826309D1C0015E035 /* RegisterViewController.xib */,
+				48673A8C26309D430015E035 /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -287,6 +301,15 @@
 				48EF832F262CA5890009F052 /* RoomsViewModel.swift */,
 			);
 			path = Rooms;
+			sourceTree = "<group>";
+		};
+		48673AAB2630A31F0015E035 /* PickAvatar */ = {
+			isa = PBXGroup;
+			children = (
+				48673AAC2630A3330015E035 /* PickAvatarViewController.swift */,
+				48673AAD2630A3330015E035 /* PickAvatarViewController.xib */,
+			);
+			path = PickAvatar;
 			sourceTree = "<group>";
 		};
 		4870CB8B262F3901006D0B62 /* Reusable */ = {
@@ -492,8 +515,10 @@
 				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
 				480C011D262C9D7E00140E4F /* SplashViewController.xib in Resources */,
 				480C010A262C914900140E4F /* Kanit-Light.ttf in Resources */,
+				48673A8A26309D1C0015E035 /* RegisterViewController.xib in Resources */,
 				480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */,
 				480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */,
+				48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
 				4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */,
 			);
@@ -585,10 +610,12 @@
 				48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */,
 				480C0118262C9D4F00140E4F /* WTViewController.swift in Sources */,
 				48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */,
+				48673A8D26309D430015E035 /* RegisterViewModel.swift in Sources */,
 				48075CB326242A68001B62A1 /* WTUser.swift in Sources */,
 				48B59B772620B2A400321ECF /* TopViewControllerProvider.swift in Sources */,
 				480C00E4262C90EB00140E4F /* R.generated.swift in Sources */,
 				480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */,
+				48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */,
 				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
 				4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */,
 				48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */,
@@ -596,6 +623,7 @@
 				48075CBE26242AE1001B62A1 /* Error+Extension.swift in Sources */,
 				484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
+				48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */,
 				48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
