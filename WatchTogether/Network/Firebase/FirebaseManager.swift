@@ -22,13 +22,14 @@ protocol FirebaseManager {
     func editAvatar(uid: String, newAvatarId: Int, completion: @escaping ((Result<Int, PresentableError>)->Void))
     
     //MARK: - Room
-    func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void))
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
-    func observeMessages(roomId: String, completion: @escaping (([Message]) -> Void))
+    func observeMessages(roomId: String, completion: @escaping ((Message) -> Void))
+    func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void))
     
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
@@ -118,6 +119,27 @@ extension WTFirebaseManager {
         
     }
     
+    func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void)) {
+        
+        var users: [WTUser]  = []
+        
+        for id in ids {
+            self.fetchUserInfo(uid: id) { (result) in
+                switch result {
+                case let .success(user):
+                    users.append(user)
+                    if users.count == ids.count {
+                        completion(.success(users))
+                    }
+                case let .failure(error):
+                    completion(.failure(error))
+                    return
+                }
+            }
+            
+        }
+    }
+    
     func signOut() -> Bool {
         do {
             try Auth.auth().signOut()
@@ -185,7 +207,7 @@ extension WTFirebaseManager {
 //MARK: - Room Functions
 extension WTFirebaseManager {
     
-    func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+    func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         
         var dict: [String: Any] = [:]
         let roomId = UUID().uuidString
@@ -200,7 +222,7 @@ extension WTFirebaseManager {
                 completion(.failure(PresentableError(message: error.localizedDescription)))
                 return
             } else {
-                self.addUserToRoom(roomId: roomId, user: ownerUser, completion: completion)
+                self.joinRoom(user: ownerUser, roomId: roomId, password: password, completion: completion)
             }
         }
         
@@ -267,7 +289,7 @@ extension WTFirebaseManager {
         
         guard let userId = user.userId else { return }
         
-            self.dbRef.child("Rooms").child(roomId).child("Users").child(userId).setValue(userId) { (firError, _) in
+        self.dbRef.child("Rooms").child(roomId).child("Users").child(userId).setValue(userId) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
             } else {
@@ -296,21 +318,18 @@ extension WTFirebaseManager {
 
     }
     
-    func observeMessages(roomId: String, completion: @escaping (([Message]) -> Void)) {
+    func observeMessages(roomId: String, completion: @escaping ((Message) -> Void)) {
         
-        var messages: [Message] = []
         self.dbRef.child("Rooms").child(roomId).child("Messages").observe(.childAdded) { (snapshot) in
             
-            for child in (snapshot.children.allObjects as! [DataSnapshot]) {
-                let value = child.value as? NSDictionary
-                let messageId = value?.value(forKey: "messageId") as? String
-                let text = value?.value(forKey: "text") as? String
-                let ownerId = value?.value(forKey: "ownerId") as? String
-                let sendTime = value?.value(forKey: "sendTime") as? String
-                messages.append(Message(messageId: messageId, text: text, ownerId: ownerId, sendTime: sendTime))
-            }
+            guard let value = snapshot.value as? NSDictionary else { return }
             
-            completion(messages)
+            let messageId = value.value(forKey: "messageId") as? String
+            let text = value.value(forKey: "text") as? String
+            let ownerId = value.value(forKey: "ownerId") as? String
+            let sendTime = value.value(forKey: "sendTime") as? String
+            let message = Message(messageId: messageId, text: text, ownerId: ownerId, sendTime: sendTime)
+            completion(message)
         }
     }
     

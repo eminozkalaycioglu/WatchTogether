@@ -54,6 +54,14 @@ final class SceneFactory {
         return viewController
     }
     
+    public static func makeRoomVC(room: Room) -> RoomViewController {
+        let viewController = RoomViewController()
+        let viewModel = RoomViewModel(room: room)
+        viewController.viewModel = viewModel
+        viewController.hidesBottomBarWhenPushed = true
+        return viewController
+    }
+    
     public static func makeCreateRoomVC() -> CreateRoomViewController {
         let viewController = CreateRoomViewController()
         let viewModel = CreateRoomViewModel()

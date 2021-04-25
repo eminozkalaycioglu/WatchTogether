@@ -60,6 +60,11 @@
 		48673B692635F5560015E035 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B672635F5560015E035 /* CreateRoomViewController.swift */; };
 		48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B682635F5560015E035 /* CreateRoomViewController.xib */; };
 		48673B6D2635F5630015E035 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B6C2635F5630015E035 /* CreateRoomViewModel.swift */; };
+		48673B72263616A10015E035 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B70263616A10015E035 /* RoomViewController.swift */; };
+		48673B73263616A10015E035 /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B71263616A10015E035 /* RoomViewController.xib */; };
+		48673B77263616BF0015E035 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B76263616BF0015E035 /* RoomViewModel.swift */; };
+		48673B7E26361E610015E035 /* MyMessageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B7C26361E610015E035 /* MyMessageTVC.swift */; };
+		48673B7F26361E610015E035 /* MyMessageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B7D26361E610015E035 /* MyMessageTVC.xib */; };
 		4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBA7262F394A006D0B62 /* WTTextField.swift */; };
 		4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC2262F69D2006D0B62 /* WTButton.swift */; };
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
@@ -135,6 +140,11 @@
 		48673B672635F5560015E035 /* CreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
 		48673B682635F5560015E035 /* CreateRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateRoomViewController.xib; sourceTree = "<group>"; };
 		48673B6C2635F5630015E035 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
+		48673B70263616A10015E035 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		48673B71263616A10015E035 /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
+		48673B76263616BF0015E035 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		48673B7C26361E610015E035 /* MyMessageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTVC.swift; sourceTree = "<group>"; };
+		48673B7D26361E610015E035 /* MyMessageTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageTVC.xib; sourceTree = "<group>"; };
 		4870CBA7262F394A006D0B62 /* WTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTextField.swift; sourceTree = "<group>"; };
 		4870CBC2262F69D2006D0B62 /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -360,6 +370,42 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		48673B6F263616920015E035 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				48673B7926361E350015E035 /* Cell */,
+				48673B70263616A10015E035 /* RoomViewController.swift */,
+				48673B71263616A10015E035 /* RoomViewController.xib */,
+				48673B76263616BF0015E035 /* RoomViewModel.swift */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		48673B7926361E350015E035 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				48673B7B26361E480015E035 /* ForeignMessageTVC */,
+				48673B7A26361E390015E035 /* MyMessageTVC */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		48673B7A26361E390015E035 /* MyMessageTVC */ = {
+			isa = PBXGroup;
+			children = (
+				48673B7C26361E610015E035 /* MyMessageTVC.swift */,
+				48673B7D26361E610015E035 /* MyMessageTVC.xib */,
+			);
+			path = MyMessageTVC;
+			sourceTree = "<group>";
+		};
+		48673B7B26361E480015E035 /* ForeignMessageTVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForeignMessageTVC;
+			sourceTree = "<group>";
+		};
 		4870CB8B262F3901006D0B62 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +475,7 @@
 		48B59B812620B9FD00321ECF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				48673B6F263616920015E035 /* Room */,
 				480C0127262CA27300140E4F /* MainTabBar */,
 				480C0110262C92FD00140E4F /* Test */,
 				480C00A9262C8CEB00140E4F /* Splash */,
@@ -546,11 +593,13 @@
 				480C0108262C914900140E4F /* OFL.txt in Resources */,
 				480C010C262C914900140E4F /* Kanit-ExtraLightItalic.ttf in Resources */,
 				480C0102262C914900140E4F /* Kanit-MediumItalic.ttf in Resources */,
+				48673B73263616A10015E035 /* RoomViewController.xib in Resources */,
 				480C00FB262C914900140E4F /* Kanit-ExtraLight.ttf in Resources */,
 				480C010B262C914900140E4F /* Kanit-LightItalic.ttf in Resources */,
 				480C00FC262C914900140E4F /* Kanit-ThinItalic.ttf in Resources */,
 				480C0100262C914900140E4F /* Kanit-Regular.ttf in Resources */,
 				48B59B672620B0E400321ECF /* LaunchScreen.storyboard in Resources */,
+				48673B7F26361E610015E035 /* MyMessageTVC.xib in Resources */,
 				480C0103262C914900140E4F /* Kanit-Thin.ttf in Resources */,
 				480C0114262C930800140E4F /* TestViewController.xib in Resources */,
 				480C010D262C914900140E4F /* Kanit-Medium.ttf in Resources */,
@@ -650,6 +699,7 @@
 				480C00AC262C8D4D00140E4F /* BaseViewController.swift in Sources */,
 				4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */,
 				480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */,
+				48673B77263616BF0015E035 /* RoomViewModel.swift in Sources */,
 				480C00B4262C8E4600140E4F /* WTAlert.swift in Sources */,
 				48673B692635F5560015E035 /* CreateRoomViewController.swift in Sources */,
 				480C0113262C930800140E4F /* TestViewController.swift in Sources */,
@@ -669,6 +719,7 @@
 				48075CB326242A68001B62A1 /* WTUser.swift in Sources */,
 				48B59B772620B2A400321ECF /* TopViewControllerProvider.swift in Sources */,
 				480C00E4262C90EB00140E4F /* R.generated.swift in Sources */,
+				48673B72263616A10015E035 /* RoomViewController.swift in Sources */,
 				480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */,
 				48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */,
 				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
@@ -683,6 +734,7 @@
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
 				48673B3A263318880015E035 /* UIImage+Extensions.swift in Sources */,
 				48673B4026357B9B0015E035 /* ProfileViewController.swift in Sources */,
+				48673B7E26361E610015E035 /* MyMessageTVC.swift in Sources */,
 				48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */,
 				48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */,
 			);

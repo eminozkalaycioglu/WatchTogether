@@ -19,6 +19,14 @@ class MainTabBarController: UITabBarController {
     
     private func setVCs() {
         
+        WTFirebaseManager.shared.fetchRoomUserInfos(ids: ["4IjTvoG9BBV4NThDP1FGYo70bcq1", "CmJUCdCOIIhre2xaeM6HYsydV4g2"]) { (result) in
+            switch result {
+            case let .success(users):
+                print("emintest: ", users.map({$0.email}))
+            case let .failure(error):
+                print("emintest: ", error.message)
+            }
+        }
 //        WTFirebaseManager.shared.fetchRooms { (result) in
 //            switch result {
 //            case .success(let room):
