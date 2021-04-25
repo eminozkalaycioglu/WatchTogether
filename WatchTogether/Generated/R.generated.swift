@@ -89,18 +89,22 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
 
-  /// This `R.color` struct is generated, and contains static references to 8 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
     /// Color `ButtonBlueColor`.
     static let buttonBlueColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "ButtonBlueColor")
+    /// Color `CardBackgroundColor`.
+    static let cardBackgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "CardBackgroundColor")
     /// Color `MainBlueColorDark`.
     static let mainBlueColorDark = Rswift.ColorResource(bundle: R.hostingBundle, name: "MainBlueColorDark")
     /// Color `MainBlueColorLight`.
     static let mainBlueColorLight = Rswift.ColorResource(bundle: R.hostingBundle, name: "MainBlueColorLight")
     /// Color `RegisterGreenColor`.
     static let registerGreenColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "RegisterGreenColor")
+    /// Color `TabBarTintColor`.
+    static let tabBarTintColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "TabBarTintColor")
     /// Color `TextFieldBorderColor`.
     static let textFieldBorderColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "TextFieldBorderColor")
     /// Color `TextFieldTextColor`.
@@ -123,6 +127,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func buttonBlueColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.buttonBlueColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "CardBackgroundColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func cardBackgroundColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.cardBackgroundColor, compatibleWith: traitCollection)
     }
     #endif
 
@@ -150,6 +163,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func registerGreenColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.registerGreenColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "TabBarTintColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func tabBarTintColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.tabBarTintColor, compatibleWith: traitCollection)
     }
     #endif
 
@@ -197,6 +219,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
+    /// `UIColor(named: "CardBackgroundColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func cardBackgroundColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.cardBackgroundColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
     /// `UIColor(named: "MainBlueColorDark", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func mainBlueColorDark(_: Void = ()) -> UIKit.UIColor? {
@@ -217,6 +247,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func registerGreenColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.registerGreenColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "TabBarTintColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func tabBarTintColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.tabBarTintColor.name)
     }
     #endif
 
@@ -400,22 +438,78 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 49 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
-    /// Image `avatar_0`.
-    static let avatar_0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_0")
     /// Image `avatar_10`.
     static let avatar_10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_10")
     /// Image `avatar_11`.
     static let avatar_11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_11")
+    /// Image `avatar_12`.
+    static let avatar_12 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_12")
+    /// Image `avatar_13`.
+    static let avatar_13 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_13")
+    /// Image `avatar_14`.
+    static let avatar_14 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_14")
+    /// Image `avatar_15`.
+    static let avatar_15 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_15")
+    /// Image `avatar_16`.
+    static let avatar_16 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_16")
+    /// Image `avatar_17`.
+    static let avatar_17 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_17")
+    /// Image `avatar_18`.
+    static let avatar_18 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_18")
+    /// Image `avatar_19`.
+    static let avatar_19 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_19")
     /// Image `avatar_1`.
     static let avatar_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_1")
+    /// Image `avatar_20`.
+    static let avatar_20 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_20")
+    /// Image `avatar_21`.
+    static let avatar_21 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_21")
+    /// Image `avatar_22`.
+    static let avatar_22 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_22")
+    /// Image `avatar_23`.
+    static let avatar_23 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_23")
+    /// Image `avatar_24`.
+    static let avatar_24 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_24")
+    /// Image `avatar_25`.
+    static let avatar_25 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_25")
+    /// Image `avatar_26`.
+    static let avatar_26 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_26")
+    /// Image `avatar_27`.
+    static let avatar_27 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_27")
+    /// Image `avatar_28`.
+    static let avatar_28 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_28")
+    /// Image `avatar_29`.
+    static let avatar_29 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_29")
     /// Image `avatar_2`.
     static let avatar_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_2")
+    /// Image `avatar_30`.
+    static let avatar_30 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_30")
+    /// Image `avatar_31`.
+    static let avatar_31 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_31")
+    /// Image `avatar_32`.
+    static let avatar_32 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_32")
+    /// Image `avatar_33`.
+    static let avatar_33 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_33")
+    /// Image `avatar_34`.
+    static let avatar_34 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_34")
+    /// Image `avatar_35`.
+    static let avatar_35 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_35")
+    /// Image `avatar_36`.
+    static let avatar_36 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_36")
+    /// Image `avatar_37`.
+    static let avatar_37 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_37")
+    /// Image `avatar_38`.
+    static let avatar_38 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_38")
+    /// Image `avatar_39`.
+    static let avatar_39 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_39")
     /// Image `avatar_3`.
     static let avatar_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_3")
+    /// Image `avatar_40`.
+    static let avatar_40 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_40")
     /// Image `avatar_4`.
     static let avatar_4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "avatar_4")
     /// Image `avatar_5`.
@@ -432,12 +526,16 @@ struct R: Rswift.Validatable {
     static let backIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "backIcon")
     /// Image `crossIcon`.
     static let crossIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "crossIcon")
+    /// Image `editIcon`.
+    static let editIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "editIcon")
     /// Image `emailIcon`.
     static let emailIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "emailIcon")
     /// Image `hideIcon`.
     static let hideIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "hideIcon")
     /// Image `passwordIcon`.
     static let passwordIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "passwordIcon")
+    /// Image `personIcon`.
+    static let personIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "personIcon")
     /// Image `showIcon`.
     static let showIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "showIcon")
 
@@ -445,13 +543,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Logo", bundle: ..., traitCollection: ...)`
     static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "avatar_0", bundle: ..., traitCollection: ...)`
-    static func avatar_0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.avatar_0, compatibleWith: traitCollection)
     }
     #endif
 
@@ -477,9 +568,135 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_12", bundle: ..., traitCollection: ...)`
+    static func avatar_12(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_12, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_13", bundle: ..., traitCollection: ...)`
+    static func avatar_13(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_13, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_14", bundle: ..., traitCollection: ...)`
+    static func avatar_14(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_14, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_15", bundle: ..., traitCollection: ...)`
+    static func avatar_15(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_15, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_16", bundle: ..., traitCollection: ...)`
+    static func avatar_16(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_16, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_17", bundle: ..., traitCollection: ...)`
+    static func avatar_17(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_17, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_18", bundle: ..., traitCollection: ...)`
+    static func avatar_18(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_18, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_19", bundle: ..., traitCollection: ...)`
+    static func avatar_19(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_19, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "avatar_2", bundle: ..., traitCollection: ...)`
     static func avatar_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.avatar_2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_20", bundle: ..., traitCollection: ...)`
+    static func avatar_20(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_20, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_21", bundle: ..., traitCollection: ...)`
+    static func avatar_21(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_21, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_22", bundle: ..., traitCollection: ...)`
+    static func avatar_22(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_22, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_23", bundle: ..., traitCollection: ...)`
+    static func avatar_23(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_23, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_24", bundle: ..., traitCollection: ...)`
+    static func avatar_24(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_24, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_25", bundle: ..., traitCollection: ...)`
+    static func avatar_25(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_25, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_26", bundle: ..., traitCollection: ...)`
+    static func avatar_26(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_26, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_27", bundle: ..., traitCollection: ...)`
+    static func avatar_27(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_27, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_28", bundle: ..., traitCollection: ...)`
+    static func avatar_28(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_28, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_29", bundle: ..., traitCollection: ...)`
+    static func avatar_29(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_29, compatibleWith: traitCollection)
     }
     #endif
 
@@ -491,9 +708,86 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_30", bundle: ..., traitCollection: ...)`
+    static func avatar_30(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_30, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_31", bundle: ..., traitCollection: ...)`
+    static func avatar_31(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_31, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_32", bundle: ..., traitCollection: ...)`
+    static func avatar_32(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_32, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_33", bundle: ..., traitCollection: ...)`
+    static func avatar_33(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_33, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_34", bundle: ..., traitCollection: ...)`
+    static func avatar_34(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_34, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_35", bundle: ..., traitCollection: ...)`
+    static func avatar_35(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_35, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_36", bundle: ..., traitCollection: ...)`
+    static func avatar_36(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_36, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_37", bundle: ..., traitCollection: ...)`
+    static func avatar_37(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_37, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_38", bundle: ..., traitCollection: ...)`
+    static func avatar_38(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_38, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_39", bundle: ..., traitCollection: ...)`
+    static func avatar_39(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_39, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "avatar_4", bundle: ..., traitCollection: ...)`
     static func avatar_4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.avatar_4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "avatar_40", bundle: ..., traitCollection: ...)`
+    static func avatar_40(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.avatar_40, compatibleWith: traitCollection)
     }
     #endif
 
@@ -547,6 +841,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "editIcon", bundle: ..., traitCollection: ...)`
+    static func editIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.editIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "emailIcon", bundle: ..., traitCollection: ...)`
     static func emailIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.emailIcon, compatibleWith: traitCollection)
@@ -564,6 +865,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "passwordIcon", bundle: ..., traitCollection: ...)`
     static func passwordIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.passwordIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "personIcon", bundle: ..., traitCollection: ...)`
+    static func personIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.personIcon, compatibleWith: traitCollection)
     }
     #endif
 

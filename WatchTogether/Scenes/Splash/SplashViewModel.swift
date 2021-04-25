@@ -11,6 +11,7 @@ final class SplashViewModel: BaseViewModel {
     
     private var sessionMgr: SessionManager
     private var firebaseMgr: FirebaseManager
+    
     init(sessionMgr: SessionManager = WTSessionManager.shared,
          firebaseMgr: FirebaseManager = WTFirebaseManager.shared) {
         self.sessionMgr = sessionMgr

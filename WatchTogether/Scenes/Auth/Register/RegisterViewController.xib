@@ -8,9 +8,23 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Kanit-Light.ttf">
+            <string>Kanit-Light</string>
+        </array>
+        <array key="Kanit-Regular.ttf">
+            <string>Kanit-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="WatchTogether" customModuleProvider="target">
             <connections>
+                <outlet property="avatarImageView" destination="Lx7-0Z-Woa" id="l3a-CG-Zo8"/>
+                <outlet property="confirmPasswordField" destination="K0T-I9-azT" id="4Sz-Xi-WKU"/>
+                <outlet property="emailField" destination="9Un-xb-eZG" id="zBR-TK-phs"/>
+                <outlet property="fullNameField" destination="1fe-bM-5E5" id="RJF-SR-tRn"/>
+                <outlet property="passwordField" destination="vbs-pL-ZTx" id="BGp-EN-YVa"/>
+                <outlet property="registerButton" destination="TuN-T7-Jrw" id="llb-cu-vCi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,14 +32,137 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GgJ-7e-SeD">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-OV-XY8">
+                            <rect key="frame" x="32" y="32" width="350" height="567"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kaydol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-jw-L9M">
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="42"/>
+                                    <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="36"/>
+                                    <color key="textColor" name="WhiteAlpha0,75"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cy-aq-dOe">
+                                    <rect key="frame" x="0.0" y="58" width="350" height="216"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_11" translatesAutoresizingMaskIntoConstraints="NO" id="Lx7-0Z-Woa">
+                                            <rect key="frame" x="75" y="0.0" width="200" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="f2x-Xm-PY9"/>
+                                                <constraint firstAttribute="width" constant="200" id="pbx-N4-UHY"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-UD-r9M">
+                                            <rect key="frame" x="215" y="140" width="48" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="X76-Qv-Opq"/>
+                                                <constraint firstAttribute="height" constant="48" id="xNb-Ve-PXx"/>
+                                            </constraints>
+                                            <state key="normal" image="editIcon"/>
+                                            <connections>
+                                                <action selector="editButtonTapAction:" destination="-1" eventType="touchUpInside" id="hj9-U3-Q6h"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="8dn-UD-r9M" firstAttribute="bottom" secondItem="Lx7-0Z-Woa" secondAttribute="bottom" constant="-12" id="VfT-k1-oy1"/>
+                                        <constraint firstItem="Lx7-0Z-Woa" firstAttribute="centerX" secondItem="2cy-aq-dOe" secondAttribute="centerX" id="aST-M7-FjE"/>
+                                        <constraint firstAttribute="bottom" secondItem="Lx7-0Z-Woa" secondAttribute="bottom" constant="16" id="rHF-AW-9xK"/>
+                                        <constraint firstItem="8dn-UD-r9M" firstAttribute="trailing" secondItem="Lx7-0Z-Woa" secondAttribute="trailing" constant="-12" id="ts9-fh-HRb"/>
+                                        <constraint firstItem="Lx7-0Z-Woa" firstAttribute="top" secondItem="2cy-aq-dOe" secondAttribute="top" id="yH4-jd-Zf6"/>
+                                    </constraints>
+                                </view>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fe-bM-5E5" customClass="MDCOutlinedTextField">
+                                    <rect key="frame" x="0.0" y="290" width="350" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Un-xb-eZG" customClass="MDCOutlinedTextField">
+                                    <rect key="frame" x="0.0" y="340" width="350" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vbs-pL-ZTx" customClass="MDCOutlinedTextField">
+                                    <rect key="frame" x="0.0" y="390" width="350" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K0T-I9-azT" customClass="MDCOutlinedTextField">
+                                    <rect key="frame" x="0.0" y="440" width="350" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Bq-z4I">
+                                    <rect key="frame" x="0.0" y="490" width="350" height="77"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuN-T7-Jrw" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
+                                            <rect key="frame" x="151.5" y="0.0" width="47" height="30"/>
+                                            <state key="normal" title="Kaydol"/>
+                                            <connections>
+                                                <action selector="registerButtonTapAction:" destination="-1" eventType="touchUpInside" id="hkJ-rr-YKa"/>
+                                            </connections>
+                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VMl-YD-NMQ">
+                                            <rect key="frame" x="37" y="46" width="276.5" height="31"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zaten bir hesabınız var mı?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdA-0B-KGN">
+                                                    <rect key="frame" x="0.0" y="6" width="192.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="16"/>
+                                                    <color key="textColor" name="WhiteAlpha0,75"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPA-Wu-bu4">
+                                                    <rect key="frame" x="198.5" y="0.0" width="78" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="16"/>
+                                                    <state key="normal" title="Oturum Aç">
+                                                        <color key="titleColor" name="RegisterGreenColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="loginButtonTapAction:" destination="-1" eventType="touchUpInside" id="wiR-5H-qD8"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Wo0-OV-XY8" firstAttribute="top" secondItem="GgJ-7e-SeD" secondAttribute="top" constant="32" id="78R-KY-fTi"/>
+                        <constraint firstAttribute="trailing" secondItem="Wo0-OV-XY8" secondAttribute="trailing" constant="-32" id="NWm-Kp-TUy"/>
+                        <constraint firstItem="Wo0-OV-XY8" firstAttribute="leading" secondItem="GgJ-7e-SeD" secondAttribute="leading" constant="32" id="TV6-C5-Z5N"/>
+                        <constraint firstAttribute="bottom" secondItem="Wo0-OV-XY8" secondAttribute="bottom" constant="16" id="fZ4-j4-WKR"/>
+                        <constraint firstItem="Wo0-OV-XY8" firstAttribute="width" secondItem="GgJ-7e-SeD" secondAttribute="width" constant="-64" id="mVi-Ia-St8"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="MainBlueColorDark"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GgJ-7e-SeD" secondAttribute="trailing" id="1Ag-Yf-EpK"/>
+                <constraint firstItem="GgJ-7e-SeD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="P3Y-fS-UOx"/>
+                <constraint firstItem="GgJ-7e-SeD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rwj-BI-s3l"/>
+                <constraint firstAttribute="bottom" secondItem="GgJ-7e-SeD" secondAttribute="bottom" id="TKZ-fK-mc1"/>
+            </constraints>
             <point key="canvasLocation" x="141" y="72"/>
         </view>
     </objects>
     <resources>
+        <image name="avatar_11" width="450" height="479"/>
+        <image name="editIcon" width="48" height="48"/>
         <namedColor name="MainBlueColorDark">
             <color red="0.039215686274509803" green="0.070588235294117646" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RegisterGreenColor">
+            <color red="0.30980392156862746" green="0.72941176470588232" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteAlpha0,75">
+            <color red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

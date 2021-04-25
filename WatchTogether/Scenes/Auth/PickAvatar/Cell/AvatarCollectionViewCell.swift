@@ -12,11 +12,10 @@ class AvatarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configure(avatarId: Int) {
-        self.avatarImageView.image = UIImage(named: "avatar_\(avatarId)")
+        self.avatarImageView.image = UIImage.avatar(id: avatarId)
     }
 
 }

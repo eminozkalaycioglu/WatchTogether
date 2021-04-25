@@ -11,6 +11,5 @@ struct RegisterRequestModel {
     let email: String
     let password: String
     let fullName: String
-    let birthdate: String
     let avatarId: Int
 }

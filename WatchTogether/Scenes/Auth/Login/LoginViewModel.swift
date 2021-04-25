@@ -11,6 +11,7 @@ final class LoginViewModel: BaseViewModel {
     
     var firebaseMgr: FirebaseManager
     var sessionMgr: SessionManager
+    
     var onUserLoggedIn: (() -> Void)?
     
     init(firebaseMgr: FirebaseManager = WTFirebaseManager.shared,

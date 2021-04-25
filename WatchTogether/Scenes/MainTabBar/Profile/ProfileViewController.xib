@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Kanit-Light.ttf">
+            <string>Kanit-Light</string>
+        </array>
+        <array key="Kanit-Regular.ttf">
+            <string>Kanit-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="WatchTogether" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarImageView" destination="taT-HW-jaL" id="TDe-1V-jug"/>
+                <outlet property="confirmNewPasswordField" destination="GSH-xM-tfj" id="AnL-dt-4kl"/>
+                <outlet property="currentPasswordField" destination="tpd-Tv-kup" id="Xft-pi-SiA"/>
+                <outlet property="emailLabel" destination="GQQ-mK-JsN" id="Uqa-hI-GFS"/>
+                <outlet property="fullNameLabel" destination="JUq-EX-zeh" id="ond-kT-l4f"/>
+                <outlet property="logoutButton" destination="H46-Z5-dOe" id="j2j-SY-idR"/>
+                <outlet property="newPasswordField" destination="wkH-M3-fc7" id="7a7-bo-DBh"/>
+                <outlet property="updatePasswordStackView" destination="Mb1-jU-ReA" id="MCn-Wk-8JY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hs2-gq-c8y">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="a3t-24-4g9" customClass="WTCardStackView" customModule="WatchTogether" customModuleProvider="target">
+                            <rect key="frame" x="10" y="10" width="394" height="817"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ij-4u-flr">
+                                    <rect key="frame" x="8" y="52" width="378" height="216"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_11" translatesAutoresizingMaskIntoConstraints="NO" id="taT-HW-jaL">
+                                            <rect key="frame" x="89" y="0.0" width="200" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="Oc1-co-Ovt"/>
+                                                <constraint firstAttribute="width" constant="200" id="ZLb-4T-MFq"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qw-Zb-rDc">
+                                            <rect key="frame" x="229" y="140" width="48" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="PVa-ML-GWH"/>
+                                                <constraint firstAttribute="height" constant="48" id="phg-ah-8Ew"/>
+                                            </constraints>
+                                            <state key="normal" image="editIcon"/>
+                                            <connections>
+                                                <action selector="pickAvatarButtonTapAction:" destination="-1" eventType="touchUpInside" id="bH1-NN-72k"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="taT-HW-jaL" firstAttribute="centerX" secondItem="9Ij-4u-flr" secondAttribute="centerX" id="UJF-8q-YeF"/>
+                                        <constraint firstItem="taT-HW-jaL" firstAttribute="top" secondItem="9Ij-4u-flr" secondAttribute="top" id="Uza-Fl-Vs6"/>
+                                        <constraint firstAttribute="bottom" secondItem="taT-HW-jaL" secondAttribute="bottom" constant="16" id="hsj-Fc-efG"/>
+                                        <constraint firstItem="7Qw-Zb-rDc" firstAttribute="bottom" secondItem="taT-HW-jaL" secondAttribute="bottom" constant="-12" id="qIE-SB-q2v"/>
+                                        <constraint firstItem="7Qw-Zb-rDc" firstAttribute="trailing" secondItem="taT-HW-jaL" secondAttribute="trailing" constant="-12" id="xve-oE-k4G"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUq-EX-zeh">
+                                    <rect key="frame" x="8" y="286" width="378" height="45"/>
+                                    <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="30"/>
+                                    <color key="textColor" name="WhiteAlpha0,75"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQQ-mK-JsN">
+                                    <rect key="frame" x="8" y="349" width="378" height="30"/>
+                                    <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="20"/>
+                                    <color key="textColor" name="WhiteAlpha0,75"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-6a-TQK">
+                                    <rect key="frame" x="8" y="397" width="378" height="70"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahI-47-RUQ" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
+                                            <rect key="frame" x="141" y="0.0" width="96" height="70"/>
+                                            <state key="normal" title="Şifre Güncelle"/>
+                                            <connections>
+                                                <action selector="showUpdatePasswordButtonTapAction:" destination="-1" eventType="touchUpInside" id="320-tf-knD"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="ahI-47-RUQ" firstAttribute="centerX" secondItem="qf1-6a-TQK" secondAttribute="centerX" id="QCV-Qq-jSh"/>
+                                        <constraint firstAttribute="bottom" secondItem="ahI-47-RUQ" secondAttribute="bottom" id="dHp-fn-hiY"/>
+                                        <constraint firstItem="ahI-47-RUQ" firstAttribute="top" secondItem="qf1-6a-TQK" secondAttribute="top" id="zlF-YR-iKs"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-jU-ReA">
+                                    <rect key="frame" x="8" y="485" width="378" height="220"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tpd-Tv-kup" customClass="MDCOutlinedTextField">
+                                            <rect key="frame" x="0.0" y="0.0" width="378" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wkH-M3-fc7" customClass="MDCOutlinedTextField">
+                                            <rect key="frame" x="0.0" y="50" width="378" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GSH-xM-tfj" customClass="MDCOutlinedTextField">
+                                            <rect key="frame" x="0.0" y="100" width="378" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AX9-TS-WkZ">
+                                            <rect key="frame" x="0.0" y="150" width="378" height="70"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ww-fV-rSD" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
+                                                    <rect key="frame" x="159" y="0.0" width="60" height="70"/>
+                                                    <state key="normal" title="Güncelle"/>
+                                                    <connections>
+                                                        <action selector="updatePasswordButtonTapAction:" destination="-1" eventType="touchUpInside" id="ibp-Sc-FC6"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="1ww-fV-rSD" secondAttribute="bottom" id="7XG-M9-a3e"/>
+                                                <constraint firstItem="1ww-fV-rSD" firstAttribute="centerX" secondItem="AX9-TS-WkZ" secondAttribute="centerX" id="HOD-ul-5Eu"/>
+                                                <constraint firstItem="1ww-fV-rSD" firstAttribute="top" secondItem="AX9-TS-WkZ" secondAttribute="top" id="oy4-gf-nX2"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-Bw-bDH">
+                                    <rect key="frame" x="8" y="723" width="378" height="70"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H46-Z5-dOe" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
+                                            <rect key="frame" x="157.5" y="0.0" width="63" height="70"/>
+                                            <state key="normal" title="Çıkış Yap"/>
+                                            <connections>
+                                                <action selector="logoutButtonTapAction:" destination="-1" eventType="touchUpInside" id="RdN-ud-Awx"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="H46-Z5-dOe" secondAttribute="bottom" id="5dN-Rf-bFq"/>
+                                        <constraint firstItem="H46-Z5-dOe" firstAttribute="top" secondItem="Usl-Bw-bDH" secondAttribute="top" id="6Cp-EF-FYO"/>
+                                        <constraint firstItem="H46-Z5-dOe" firstAttribute="centerX" secondItem="Usl-Bw-bDH" secondAttribute="centerX" id="8D5-4F-phP"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="18" left="8" bottom="24" right="8"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="a3t-24-4g9" firstAttribute="width" secondItem="Hs2-gq-c8y" secondAttribute="width" constant="-20" id="AwA-Qt-kcc"/>
+                        <constraint firstItem="a3t-24-4g9" firstAttribute="leading" secondItem="Hs2-gq-c8y" secondAttribute="leading" constant="10" id="IwY-wm-y0c"/>
+                        <constraint firstAttribute="bottom" secondItem="a3t-24-4g9" secondAttribute="bottom" constant="10" id="dNJ-ZB-yTY"/>
+                        <constraint firstItem="a3t-24-4g9" firstAttribute="top" secondItem="Hs2-gq-c8y" secondAttribute="top" constant="10" id="hhc-bv-1rU"/>
+                        <constraint firstAttribute="trailing" secondItem="a3t-24-4g9" secondAttribute="trailing" constant="-10" id="uuM-Dn-V1G"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="MainBlueColorDark"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hs2-gq-c8y" secondAttribute="trailing" id="1sG-PC-48V"/>
+                <constraint firstItem="Hs2-gq-c8y" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8b0-I0-Iid"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Hs2-gq-c8y" secondAttribute="bottom" id="ELW-VW-vFa"/>
+                <constraint firstItem="Hs2-gq-c8y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IXx-1T-2mc"/>
+            </constraints>
+            <point key="canvasLocation" x="-207" y="109"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="avatar_11" width="450" height="479"/>
+        <image name="editIcon" width="48" height="48"/>
+        <namedColor name="MainBlueColorDark">
+            <color red="0.039215686274509803" green="0.070588235294117646" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteAlpha0,75">
+            <color red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

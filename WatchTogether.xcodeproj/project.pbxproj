@@ -51,6 +51,12 @@
 		48673A8D26309D430015E035 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673A8C26309D430015E035 /* RegisterViewModel.swift */; };
 		48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673AAC2630A3330015E035 /* PickAvatarViewController.swift */; };
 		48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673AAD2630A3330015E035 /* PickAvatarViewController.xib */; };
+		48673B36263317DD0015E035 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B35263317DD0015E035 /* AppConstants.swift */; };
+		48673B3A263318880015E035 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B39263318880015E035 /* UIImage+Extensions.swift */; };
+		48673B4026357B9B0015E035 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B3E26357B9B0015E035 /* ProfileViewController.swift */; };
+		48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B3F26357B9B0015E035 /* ProfileViewController.xib */; };
+		48673B4526357BBC0015E035 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B4426357BBC0015E035 /* ProfileViewModel.swift */; };
+		48673B4826357F730015E035 /* WTCardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B4726357F730015E035 /* WTCardStackView.swift */; };
 		4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBA7262F394A006D0B62 /* WTTextField.swift */; };
 		4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC2262F69D2006D0B62 /* WTButton.swift */; };
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
@@ -117,6 +123,12 @@
 		48673A8C26309D430015E035 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		48673AAC2630A3330015E035 /* PickAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAvatarViewController.swift; sourceTree = "<group>"; };
 		48673AAD2630A3330015E035 /* PickAvatarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickAvatarViewController.xib; sourceTree = "<group>"; };
+		48673B35263317DD0015E035 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		48673B39263318880015E035 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		48673B3E26357B9B0015E035 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		48673B3F26357B9B0015E035 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		48673B4426357BBC0015E035 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		48673B4726357F730015E035 /* WTCardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTCardStackView.swift; sourceTree = "<group>"; };
 		4870CBA7262F394A006D0B62 /* WTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTextField.swift; sourceTree = "<group>"; };
 		4870CBC2262F69D2006D0B62 /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -186,8 +198,6 @@
 				480C0122262CA20300140E4F /* LoginViewController.swift */,
 				480C0123262CA20300140E4F /* LoginViewController.xib */,
 				48EF832C262CA4800009F052 /* LoginViewModel.swift */,
-				4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */,
-				4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 		480C0127262CA27300140E4F /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				48673B3D26357B8B0015E035 /* Profile */,
+				48673B3C26357B840015E035 /* CreateRoom */,
 				480C0131262CA31100140E4F /* Rooms */,
 				480C0128262CA2CD00140E4F /* MainTabBarController.swift */,
 			);
@@ -306,10 +318,37 @@
 		48673AAB2630A31F0015E035 /* PickAvatar */ = {
 			isa = PBXGroup;
 			children = (
+				48673B4A2635A6CD0015E035 /* Cell */,
 				48673AAC2630A3330015E035 /* PickAvatarViewController.swift */,
 				48673AAD2630A3330015E035 /* PickAvatarViewController.xib */,
 			);
 			path = PickAvatar;
+			sourceTree = "<group>";
+		};
+		48673B3C26357B840015E035 /* CreateRoom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CreateRoom;
+			sourceTree = "<group>";
+		};
+		48673B3D26357B8B0015E035 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				48673B3E26357B9B0015E035 /* ProfileViewController.swift */,
+				48673B3F26357B9B0015E035 /* ProfileViewController.xib */,
+				48673B4426357BBC0015E035 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		48673B4A2635A6CD0015E035 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */,
+				4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4870CB8B262F3901006D0B62 /* Reusable */ = {
@@ -317,6 +356,7 @@
 			children = (
 				4870CBA7262F394A006D0B62 /* WTTextField.swift */,
 				4870CBC2262F69D2006D0B62 /* WTButton.swift */,
+				48673B4726357F730015E035 /* WTCardStackView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -372,6 +412,7 @@
 			children = (
 				48B59B7D2620B3CF00321ECF /* String+Extension.swift */,
 				48075CBD26242AE1001B62A1 /* Error+Extension.swift */,
+				48673B39263318880015E035 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -395,6 +436,7 @@
 				48B59B632620B0E400321ECF /* Assets.xcassets */,
 				48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */,
 				48B59B682620B0E400321ECF /* Info.plist */,
+				48673B35263317DD0015E035 /* AppConstants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -510,6 +552,7 @@
 				480C0125262CA20300140E4F /* LoginViewController.xib in Resources */,
 				480C00FE262C914900140E4F /* Kanit-SemiBold.ttf in Resources */,
 				480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */,
+				48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */,
 				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
 				480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */,
 				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
@@ -618,11 +661,16 @@
 				48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */,
 				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
 				4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */,
+				48673B36263317DD0015E035 /* AppConstants.swift in Sources */,
 				48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */,
 				48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */,
 				48075CBE26242AE1001B62A1 /* Error+Extension.swift in Sources */,
 				484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */,
+				48673B4526357BBC0015E035 /* ProfileViewModel.swift in Sources */,
+				48673B4826357F730015E035 /* WTCardStackView.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
+				48673B3A263318880015E035 /* UIImage+Extensions.swift in Sources */,
+				48673B4026357B9B0015E035 /* ProfileViewController.swift in Sources */,
 				48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */,
 				48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */,
 			);

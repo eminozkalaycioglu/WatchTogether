@@ -18,6 +18,7 @@ extension UIViewController {
         return nav
     }
 }
+
 final class SceneFactory {
     
     public static func makeViewController() -> TestViewController {
@@ -49,6 +50,13 @@ final class SceneFactory {
     public static func makeRoomsVC() -> RoomsViewController {
         let viewController = RoomsViewController()
         let viewModel = RoomsViewModel()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
+    public static func makeProfileVC() -> ProfileViewController {
+        let viewController = ProfileViewController()
+        let viewModel = ProfileViewModel()
         viewController.viewModel = viewModel
         return viewController
     }

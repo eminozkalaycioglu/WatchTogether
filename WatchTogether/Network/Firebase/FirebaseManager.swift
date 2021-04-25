@@ -18,6 +18,8 @@ protocol FirebaseManager {
     func signOut() -> Bool
     func getCurrentAuthUser() -> User?
     func login(email: String, password: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void))
+    func updatePassword(currentPassword: String, newPassword: String, completion: @escaping ((Result<Bool, PresentableError>)->Void))
+    func editAvatar(uid: String, newAvatarId: Int, completion: @escaping ((Result<Int, PresentableError>)->Void))
     
     //MARK: - Room
     func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
@@ -53,7 +55,6 @@ extension WTFirebaseManager {
         dict["avatarId"] = request.avatarId
         dict["fullName"] = request.fullName
         dict["email"] = request.email
-        dict["birthdate"] = request.birthdate
         
         self.dbRef.child("Users").child(uid).setValue(dict) { (error, _) in
             if let error = error {
@@ -80,8 +81,7 @@ extension WTFirebaseManager {
                             userId: firResult.user.uid,
                             avatarId: request.avatarId,
                             fullName: request.fullName,
-                            email: request.email,
-                            birthdate: request.birthdate)
+                            email: request.email)
                         completion(.success(user))
                     case let .failure(presentableError):
                         completion(.failure(presentableError))
@@ -94,7 +94,8 @@ extension WTFirebaseManager {
     
     func fetchUserInfo(uid: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void)) {
         
-        self.dbRef.child("Users").child(uid).observe(.value) { (snapshot) in
+        
+        self.dbRef.child("Users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {
                 completion(.failure(.init(message: "Parse Error")))
                 return
@@ -104,14 +105,12 @@ extension WTFirebaseManager {
             let avatarId = value["avatarId"] as? Int
             let fullName = value["fullName"] as? String
             let email = value["email"] as? String
-            let birthdate = value["birthdate"] as? String
             
             let user = WTUser(
                 userId: userId,
                 avatarId: avatarId,
                 fullName: fullName,
-                email: email,
-                birthdate: birthdate)
+                email: email)
             
             completion(.success(user))
             
@@ -133,13 +132,51 @@ extension WTFirebaseManager {
     }
     
     func login(email: String, password: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void)) {
+        
         Auth.auth().signIn(withEmail: email, password: password) { (firResult, firError) in
-            
             if let firError = firError {
                 completion(.failure(firError.presentableError))
                 return
             } else if let firResult = firResult {
                 self.fetchUserInfo(uid: firResult.user.uid, completion: completion)
+            }
+        }
+        
+    }
+    
+    func updatePassword(currentPassword: String, newPassword: String, completion: @escaping ((Result<Bool, PresentableError>)->Void)) {
+        
+        guard let email = self.getCurrentAuthUser()?.email else { return }
+        
+        let authCredential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+        
+        self.getCurrentAuthUser()?.reauthenticate(with: authCredential, completion: { (_, reAuthError) in
+            if let reAuthError = reAuthError {
+                completion(.failure(reAuthError.presentableError))
+                return
+            } else {
+                self.getCurrentAuthUser()?.updatePassword(to: newPassword, completion: { (firError) in
+                    if let firError = firError {
+                        completion(.failure(firError.presentableError))
+                        return
+                    } else {
+                        completion(.success(true))
+                    }
+                })
+            }
+        })
+        
+        
+    }
+    
+    func editAvatar(uid: String, newAvatarId: Int, completion: @escaping ((Result<Int, PresentableError>)->Void)) {
+        
+        self.dbRef.child("Users").child(uid).updateChildValues(
+            ["avatarId": newAvatarId]) { (firError, _) in
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+            } else {
+                completion(.success(newAvatarId))
             }
         }
     }
@@ -171,7 +208,7 @@ extension WTFirebaseManager {
 
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         
-        self.dbRef.child("Rooms").child(roomId).observe(.value) { (snapshot) in
+        self.dbRef.child("Rooms").child(roomId).observeSingleEvent(of: .value) { (snapshot) in
             
             guard let room = self.fetchRoomFrom(snapshot: snapshot) else {
                 completion(.failure(.init(message: "Parse Error")))
@@ -197,7 +234,7 @@ extension WTFirebaseManager {
     }
     
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void)) {
-        self.dbRef.child("Rooms").observe(.value) { (snapshot) in
+        self.dbRef.child("Rooms").observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {
                 completion(.failure(.init(message: "Parse Error")))
                 return
@@ -294,11 +331,14 @@ extension WTFirebaseManager {
         for child in (snapshot.childSnapshot(forPath: "Users").children.allObjects as! [DataSnapshot]) {
             let value = child.value as? NSDictionary
             let avatarId = value?.value(forKey: "avatarId") as? Int
-            let birthdate = value?.value(forKey: "birthdate") as? String
             let email = value?.value(forKey: "email") as? String
             let fullName = value?.value(forKey: "fullName") as? String
             let userId = value?.value(forKey: "userId") as? String
-            users.append(WTUser(userId: userId, avatarId: avatarId, fullName: fullName, email: email, birthdate: birthdate))
+            users.append(WTUser(
+                            userId: userId,
+                            avatarId: avatarId,
+                            fullName: fullName,
+                            email: email))
         }
         
         //MARK: - Content

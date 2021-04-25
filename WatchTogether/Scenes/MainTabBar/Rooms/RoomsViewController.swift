@@ -19,7 +19,7 @@ class RoomsViewController: WTViewController {
         let user = self.viewModel.getUser()
         
         self.emailLabel.text = user?.email
-        self.birthdateLabel.text = user?.birthdate
+        self.birthdateLabel.text = ""
         self.nameLabel.text = user?.fullName
         
     }

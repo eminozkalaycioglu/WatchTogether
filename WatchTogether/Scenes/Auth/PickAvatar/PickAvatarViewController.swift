@@ -25,13 +25,11 @@ class PickAvatarViewController: WTViewController {
             avatarsCollectionView.register(UINib(nibName: "AvatarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AvatarCollectionViewCell")
         }
     }
-    
-    private let avatarCount = 12
-    
+        
     var selectedAvatarId: Int? {
         didSet {
             if let id = self.selectedAvatarId, self.selectedImageView != nil {
-                self.selectedImageView.image = UIImage(named: "avatar_\(id)")
+                self.selectedImageView.image = UIImage.avatar(id: id)
             }
         }
     }
@@ -40,9 +38,9 @@ class PickAvatarViewController: WTViewController {
         super.setup()
         
         if let id = self.selectedAvatarId {
-            self.selectedImageView.image = UIImage(named: "avatar_\(id)")
+            self.selectedImageView.image =  UIImage.avatar(id: id)
         } else {
-            self.selectedAvatarId = Int.random(in: 0..<12)
+            self.selectedAvatarId = Int.random(in: 1..<(AppConstants.avatarCount+1))
         }
         
     }
@@ -61,18 +59,18 @@ class PickAvatarViewController: WTViewController {
 
 extension PickAvatarViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.avatarCount
+        AppConstants.avatarCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AvatarCollectionViewCell", for: indexPath) as! AvatarCollectionViewCell
-        cell.configure(avatarId: indexPath.row)
+        cell.configure(avatarId: indexPath.row + 1)
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedAvatarId = indexPath.row
+        self.selectedAvatarId = indexPath.row + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -82,18 +80,24 @@ extension PickAvatarViewController: UICollectionViewDelegate, UICollectionViewDa
 }
 
 extension PickAvatarViewController {
-    static func showOverCurrentContent(context: UIViewController, delegate: PickAvatarViewControllerDelegate) {
+    static func showOverCurrentContent(context: UIViewController, delegate: PickAvatarViewControllerDelegate, selectedAvatarId: Int) {
+        
         let grayview = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         grayview.tag = 3646
         grayview.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         context.view.addSubview(grayview)
         
         let vc = PickAvatarViewController()
+        vc.selectedAvatarId = selectedAvatarId
         vc.delegate = delegate
         
-        let height: CGFloat = UIScreen.main.bounds.height * 0.7
+        let navHeight = context.navigationController?.navigationBar.frame.height ?? 0
+        let screenHeight = context.view.bounds.height
         
-        vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: height)
+        
+        let height: CGFloat = (screenHeight - navHeight) * 0.8
+        
+        vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: min(600.0, height))
         
         vc.view.center.x = context.view.center.x
         
@@ -102,21 +106,17 @@ extension PickAvatarViewController {
         
         
         DispatchQueue.main.async {
-            vc.view.center.y = UIScreen.main.bounds.height + vc.view.bounds.height * 0.5
-
+            vc.view.center.y = screenHeight * 1.5
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
 
             UIView.animate(withDuration: 0.75, delay: 0, options: .layoutSubviews, animations: {
-                vc.view.center.y = context.view.center.y
+                vc.view.center.y = context.view.center.y + (navHeight / 1.5)
                 vc.view.layoutIfNeeded()
             }, completion: nil)
         }
        
-
-        
-        
         vc.didMove(toParent: context)
     }
     
