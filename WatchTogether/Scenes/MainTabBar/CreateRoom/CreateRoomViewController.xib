@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Kanit-Regular.ttf">
+            <string>Kanit-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateRoomViewController" customModule="WatchTogether" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmPasswordField" destination="0al-Ur-SyK" id="6Jm-Mv-02p"/>
+                <outlet property="passwordField" destination="kYQ-vv-M09" id="WxT-F6-xAE"/>
+                <outlet property="passwordStackView" destination="GFM-E7-mR9" id="r6z-bp-1pr"/>
+                <outlet property="publicRoomSwitch" destination="wT3-U7-8fl" id="zsw-7j-Acn"/>
+                <outlet property="roomNameField" destination="Ocy-s0-VeN" id="1Kw-7M-aK0"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Q4Y-p1-jc7" customClass="WTCardStackView" customModule="WatchTogether" customModuleProvider="target">
+                    <rect key="frame" x="10" y="54" width="394" height="329"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ako-zV-XpE">
+                            <rect key="frame" x="20" y="30" width="354" height="179"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ocy-s0-VeN" customClass="MDCOutlinedTextField">
+                                    <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RLM-0T-J1T">
+                                    <rect key="frame" x="0.0" y="49" width="354" height="31"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Va5-my-UFV">
+                                            <rect key="frame" x="41" y="0.0" width="272" height="31"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yayın herkese açık olsun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GK8-V8-zAu" userLabel="cwwetcrtevrtv  ertger ert">
+                                                    <rect key="frame" x="0.0" y="4" width="219" height="23.5"/>
+                                                    <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="20"/>
+                                                    <color key="textColor" name="WhiteAlpha0,75"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-U7-8fl">
+                                                    <rect key="frame" x="223" y="0.0" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="publicRoomSwitchValueChanged:" destination="-1" eventType="valueChanged" id="Oy0-EA-nBq"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GFM-E7-mR9">
+                                    <rect key="frame" x="0.0" y="95" width="354" height="84"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kYQ-vv-M09" customClass="MDCOutlinedTextField">
+                                            <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0al-Ur-SyK" customClass="MDCOutlinedTextField">
+                                            <rect key="frame" x="0.0" y="50" width="354" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfo-SO-b9D">
+                            <rect key="frame" x="20" y="239" width="354" height="70"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T92-b7-Wt9" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
+                                    <rect key="frame" x="151.5" y="0.0" width="51" height="70"/>
+                                    <state key="normal" title="Oluştur"/>
+                                    <connections>
+                                        <action selector="createRoomButtonTapAction:" destination="-1" eventType="touchUpInside" id="Kkz-mD-ptI"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="T92-b7-Wt9" firstAttribute="centerX" secondItem="Kfo-SO-b9D" secondAttribute="centerX" id="L1w-s6-lAw"/>
+                                <constraint firstAttribute="bottom" secondItem="T92-b7-Wt9" secondAttribute="bottom" id="e0K-U0-SYG"/>
+                                <constraint firstItem="T92-b7-Wt9" firstAttribute="top" secondItem="Kfo-SO-b9D" secondAttribute="top" id="fxx-2f-A94"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="20" bottom="20" trailing="20"/>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="MainBlueColorDark"/>
+            <constraints>
+                <constraint firstItem="Q4Y-p1-jc7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="MFI-zp-01l"/>
+                <constraint firstItem="Q4Y-p1-jc7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="cpS-5p-D7v"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q4Y-p1-jc7" secondAttribute="trailing" constant="10" id="nma-mO-ima"/>
+            </constraints>
+            <point key="canvasLocation" x="141" y="76"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="MainBlueColorDark">
+            <color red="0.039215686274509803" green="0.070588235294117646" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteAlpha0,75">
+            <color red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

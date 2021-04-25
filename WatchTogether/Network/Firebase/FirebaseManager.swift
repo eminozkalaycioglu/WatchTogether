@@ -254,7 +254,7 @@ extension WTFirebaseManager {
     }
     
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
-        self.dbRef.child(roomId).child("Playlist").childByAutoId().setValue(video.toDict()) { (firError, _) in
+        self.dbRef.child("Rooms").child(roomId).child("Playlist").childByAutoId().setValue(video.toDict()) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
             } else {
@@ -264,13 +264,24 @@ extension WTFirebaseManager {
     }
     
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
-        self.dbRef.child("Rooms").child(roomId).child("Users").child(user.userId ?? "").setValue(user.toDict()) { (firError, _) in
+        
+        guard let userId = user.userId else { return }
+        
+            self.dbRef.child("Rooms").child(roomId).child("Users").child(userId).setValue(userId) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
             } else {
                 completion(.success(true))
             }
         }
+        
+//        self.dbRef.child("Rooms").child(roomId).child("Users").child(user.userId ?? "").setValue(user.toDict()) { (firError, _) in
+//            if let firError = firError {
+//                completion(.failure(firError.presentableError))
+//            } else {
+//                completion(.success(true))
+//            }
+//        }
 
     }
     
@@ -322,23 +333,17 @@ extension WTFirebaseManager {
         room.ownerId = value["ownerId"] as? String
 
         
-        var users: [WTUser] = []
+        var users: [String] = []
         let content: Content = Content()
         var playlist: [Video] = []
         var messages: [Message] = []
         
        //MARK: - Users
         for child in (snapshot.childSnapshot(forPath: "Users").children.allObjects as! [DataSnapshot]) {
-            let value = child.value as? NSDictionary
-            let avatarId = value?.value(forKey: "avatarId") as? Int
-            let email = value?.value(forKey: "email") as? String
-            let fullName = value?.value(forKey: "fullName") as? String
-            let userId = value?.value(forKey: "userId") as? String
-            users.append(WTUser(
-                            userId: userId,
-                            avatarId: avatarId,
-                            fullName: fullName,
-                            email: email))
+            if let userId = child.value as? String {
+                users.append(userId)
+            }
+            
         }
         
         //MARK: - Content
@@ -414,10 +419,10 @@ class Room {
     var ownerId: String?
     var content: Content?
     var playlist: [Video]?
-    var users: [WTUser]?
+    var users: [String]?
     var message: [Message]?
     
-    init(roomId: String? = nil, password: String? = nil, roomName: String? = nil, ownerId: String? = nil, content: Content? = nil, playlist: [Video]? = nil, users: [WTUser]? = nil, message: [Message]? = nil) {
+    init(roomId: String? = nil, password: String? = nil, roomName: String? = nil, ownerId: String? = nil, content: Content? = nil, playlist: [Video]? = nil, users: [String]? = nil, message: [Message]? = nil) {
         self.roomId = roomId
         self.password = password
         self.roomName = roomName

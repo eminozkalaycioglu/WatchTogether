@@ -19,6 +19,14 @@ class MainTabBarController: UITabBarController {
     
     private func setVCs() {
         
+//        WTFirebaseManager.shared.fetchRooms { (result) in
+//            switch result {
+//            case .success(let room):
+//                print("emintest: ",room.map({$0.users}))
+//            default: break
+//            }
+//        }
+        
         let roomsVC = SF.makeRoomsVC().embedInWTNavVc()
         roomsVC.tabBarItem = UITabBarItem(title: "Odalar",
                                           image: R.image.emailIcon()!,
@@ -30,7 +38,12 @@ class MainTabBarController: UITabBarController {
                                           image: R.image.passwordIcon()!,
                                           selectedImage: R.image.passwordIcon()!)
         
-        self.setViewControllers([roomsVC, profileVC], animated: true)
+        let createRoomVC = SF.makeCreateRoomVC().embedInWTNavVc()
+        createRoomVC.tabBarItem = UITabBarItem(title: "Profil",
+                                          image: R.image.passwordIcon()!,
+                                          selectedImage: R.image.passwordIcon()!)
+        
+        self.setViewControllers([roomsVC, profileVC, createRoomVC], animated: true)
     }
 
 }

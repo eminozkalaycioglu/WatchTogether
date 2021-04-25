@@ -39,7 +39,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="a3t-24-4g9" customClass="WTCardStackView" customModule="WatchTogether" customModuleProvider="target">
-                            <rect key="frame" x="10" y="10" width="394" height="817"/>
+                            <rect key="frame" x="10" y="10" width="394" height="800.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ij-4u-flr">
                                     <rect key="frame" x="8" y="52" width="378" height="216"/>
@@ -73,19 +73,19 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUq-EX-zeh">
-                                    <rect key="frame" x="8" y="286" width="378" height="45"/>
+                                    <rect key="frame" x="8" y="286" width="378" height="35"/>
                                     <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="30"/>
                                     <color key="textColor" name="WhiteAlpha0,75"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQQ-mK-JsN">
-                                    <rect key="frame" x="8" y="349" width="378" height="30"/>
+                                    <rect key="frame" x="8" y="339" width="378" height="23.5"/>
                                     <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="20"/>
                                     <color key="textColor" name="WhiteAlpha0,75"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qf1-6a-TQK">
-                                    <rect key="frame" x="8" y="397" width="378" height="70"/>
+                                    <rect key="frame" x="8" y="380.5" width="378" height="70"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahI-47-RUQ" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
                                             <rect key="frame" x="141" y="0.0" width="96" height="70"/>
@@ -103,7 +103,7 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-jU-ReA">
-                                    <rect key="frame" x="8" y="485" width="378" height="220"/>
+                                    <rect key="frame" x="8" y="468.5" width="378" height="220"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tpd-Tv-kup" customClass="MDCOutlinedTextField">
                                             <rect key="frame" x="0.0" y="0.0" width="378" height="34"/>
@@ -141,7 +141,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-Bw-bDH">
-                                    <rect key="frame" x="8" y="723" width="378" height="70"/>
+                                    <rect key="frame" x="8" y="706.5" width="378" height="70"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H46-Z5-dOe" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
                                             <rect key="frame" x="157.5" y="0.0" width="63" height="70"/>

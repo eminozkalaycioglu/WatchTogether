@@ -54,6 +54,14 @@ final class SceneFactory {
         return viewController
     }
     
+    public static func makeCreateRoomVC() -> CreateRoomViewController {
+        let viewController = CreateRoomViewController()
+        let viewModel = CreateRoomViewModel()
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
+    
     public static func makeProfileVC() -> ProfileViewController {
         let viewController = ProfileViewController()
         let viewModel = ProfileViewModel()

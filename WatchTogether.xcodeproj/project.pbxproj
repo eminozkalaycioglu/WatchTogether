@@ -57,6 +57,9 @@
 		48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B3F26357B9B0015E035 /* ProfileViewController.xib */; };
 		48673B4526357BBC0015E035 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B4426357BBC0015E035 /* ProfileViewModel.swift */; };
 		48673B4826357F730015E035 /* WTCardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B4726357F730015E035 /* WTCardStackView.swift */; };
+		48673B692635F5560015E035 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B672635F5560015E035 /* CreateRoomViewController.swift */; };
+		48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673B682635F5560015E035 /* CreateRoomViewController.xib */; };
+		48673B6D2635F5630015E035 /* CreateRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673B6C2635F5630015E035 /* CreateRoomViewModel.swift */; };
 		4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBA7262F394A006D0B62 /* WTTextField.swift */; };
 		4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC2262F69D2006D0B62 /* WTButton.swift */; };
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
@@ -129,6 +132,9 @@
 		48673B3F26357B9B0015E035 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		48673B4426357BBC0015E035 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		48673B4726357F730015E035 /* WTCardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTCardStackView.swift; sourceTree = "<group>"; };
+		48673B672635F5560015E035 /* CreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
+		48673B682635F5560015E035 /* CreateRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateRoomViewController.xib; sourceTree = "<group>"; };
+		48673B6C2635F5630015E035 /* CreateRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewModel.swift; sourceTree = "<group>"; };
 		4870CBA7262F394A006D0B62 /* WTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTextField.swift; sourceTree = "<group>"; };
 		4870CBC2262F69D2006D0B62 /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -328,6 +334,9 @@
 		48673B3C26357B840015E035 /* CreateRoom */ = {
 			isa = PBXGroup;
 			children = (
+				48673B672635F5560015E035 /* CreateRoomViewController.swift */,
+				48673B682635F5560015E035 /* CreateRoomViewController.xib */,
+				48673B6C2635F5630015E035 /* CreateRoomViewModel.swift */,
 			);
 			path = CreateRoom;
 			sourceTree = "<group>";
@@ -552,6 +561,7 @@
 				480C0125262CA20300140E4F /* LoginViewController.xib in Resources */,
 				480C00FE262C914900140E4F /* Kanit-SemiBold.ttf in Resources */,
 				480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */,
+				48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */,
 				48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */,
 				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
 				480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */,
@@ -641,6 +651,7 @@
 				4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */,
 				480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */,
 				480C00B4262C8E4600140E4F /* WTAlert.swift in Sources */,
+				48673B692635F5560015E035 /* CreateRoomViewController.swift in Sources */,
 				480C0113262C930800140E4F /* TestViewController.swift in Sources */,
 				48B59B732620B27A00321ECF /* AppRouter.swift in Sources */,
 				48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */,
@@ -653,6 +664,7 @@
 				48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */,
 				480C0118262C9D4F00140E4F /* WTViewController.swift in Sources */,
 				48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */,
+				48673B6D2635F5630015E035 /* CreateRoomViewModel.swift in Sources */,
 				48673A8D26309D430015E035 /* RegisterViewModel.swift in Sources */,
 				48075CB326242A68001B62A1 /* WTUser.swift in Sources */,
 				48B59B772620B2A400321ECF /* TopViewControllerProvider.swift in Sources */,
