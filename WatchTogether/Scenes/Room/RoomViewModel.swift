@@ -10,11 +10,13 @@ import Foundation
 final class RoomViewModel: BaseViewModel {
     
     var room: Room
+    var users: [WTUser] = []
     
     private var firebaseMgr: FirebaseManager
     private var sessionMgr: SessionManager
     
     var onNewMessagesReceived: (() -> Void)?
+    var onShouldBackToTabBar: (() -> Void)?
     var messages: [Message] = []
     
     init(room: Room,
@@ -23,6 +25,7 @@ final class RoomViewModel: BaseViewModel {
         self.room = room
         self.firebaseMgr = firebaseMgr
         self.sessionMgr = sessionMgr
+       
     }
     
     func sendMessage(text: String) {
@@ -55,6 +58,73 @@ final class RoomViewModel: BaseViewModel {
             self.messages.append(message)
             self.onNewMessagesReceived?()
         }
+    }
+    
+    func observeRoomDeleting() {
+        
+        guard let uid = self.sessionMgr.user?.userId,
+              let roomOwnerId = self.room.ownerId,
+              uid != roomOwnerId else { return }
+        
+        self.firebaseMgr.observeRoomDeleting { (room) in
+            if room?.roomId == self.room.roomId {
+                self.onShouldBackToTabBar?()
+            }
+        }
+    }
+    
+    func fetchUserInfos() {
+        let ids = (self.room.users ?? []) + (self.room.oldUsers ?? [])
+        self.loadDidStart()
+        self.firebaseMgr.fetchRoomUserInfos(ids: ids) { (result) in
+            switch result {
+            case let .success(users):
+                self.loadDidFinish()
+                self.users = users
+            case let .failure(error):
+                self.loadDidFinishWithError(error: error)
+            }
+        }
+    }
+    
+    func exitRoom(completion: @escaping (() -> Void)) {
+        guard let uid = self.sessionMgr.user?.userId,
+              let roomId = self.room.roomId,
+              let roomOwnerId = self.room.ownerId else { return }
+        
+        if roomOwnerId == uid {
+            self.loadDidStart()
+            self.firebaseMgr.deleteRoom(roomId: roomId) { (result) in
+                switch result {
+                case .success:
+                    self.loadDidFinish()
+                    completion()
+                case let .failure(error):
+                    self.loadDidFinishWithError(error: error)
+                }
+            }
+        } else {
+            self.loadDidStart()
+            self.firebaseMgr.exitRoom(uid: uid, roomId: roomId) { (result) in
+                switch result {
+                case .success:
+                    self.loadDidFinish()
+                    completion()
+                case let .failure(error):
+                    self.loadDidFinishWithError(error: error)
+                }
+            }
+        }
+        
+        
+    }
+    
+    func isMyMessage(_ message: Message) -> Bool {
+        self.sessionMgr.user?.userId == message.ownerId
+    }
+    
+    func getAvatarIdFrom(ownerId: String) -> Int {
+        self.users.filter({$0.userId == ownerId}).first?.avatarId ?? 1
     }
 }
 

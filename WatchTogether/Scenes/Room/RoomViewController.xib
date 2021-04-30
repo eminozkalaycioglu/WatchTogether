@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o0I-MK-PeS">
-                    <rect key="frame" x="16" y="244" width="382" height="536"/>
+                    <rect key="frame" x="12" y="244" width="390" height="536"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ihH-tZ-pPE">
@@ -45,8 +45,8 @@
             <color key="backgroundColor" name="MainBlueColorDark"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yyc-ct-5wY" secondAttribute="trailing" constant="16" id="4Os-Hi-Dsr"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="o0I-MK-PeS" secondAttribute="trailing" constant="16" id="5J0-dv-KM5"/>
-                <constraint firstItem="o0I-MK-PeS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="EX5-nr-We4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="o0I-MK-PeS" secondAttribute="trailing" constant="12" id="5J0-dv-KM5"/>
+                <constraint firstItem="o0I-MK-PeS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="EX5-nr-We4"/>
                 <constraint firstItem="Yyc-ct-5wY" firstAttribute="leading" secondItem="ihH-tZ-pPE" secondAttribute="trailing" constant="16" id="Fu4-zD-jZ7"/>
                 <constraint firstItem="o0I-MK-PeS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="IfU-ip-bL0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ihH-tZ-pPE" secondAttribute="bottom" constant="16" id="aO5-ra-XHl"/>

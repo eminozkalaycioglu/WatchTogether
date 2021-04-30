@@ -80,6 +80,8 @@
 		48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B7D2620B3CF00321ECF /* String+Extension.swift */; };
 		48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B872620BDB500321ECF /* FirebaseManager.swift */; };
 		48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */; };
+		48E07931263CA3E30095C976 /* ForeignMessageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E0792F263CA3E30095C976 /* ForeignMessageTVC.swift */; };
+		48E07932263CA3E30095C976 /* ForeignMessageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */; };
 		48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832C262CA4800009F052 /* LoginViewModel.swift */; };
 		48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832F262CA5890009F052 /* RoomsViewModel.swift */; };
 		BC464B16CB4E27BE5D632052 /* Pods_WatchTogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348F2AAED0F966E53AC46CDE /* Pods_WatchTogether.framework */; };
@@ -162,6 +164,8 @@
 		48B59B7D2620B3CF00321ECF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		48B59B872620BDB500321ECF /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48E0792F263CA3E30095C976 /* ForeignMessageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignMessageTVC.swift; sourceTree = "<group>"; };
+		48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForeignMessageTVC.xib; sourceTree = "<group>"; };
 		48EF832C262CA4800009F052 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		48EF832F262CA5890009F052 /* RoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
 		4FCC0EC95102519A5FE36834 /* Pods-WatchTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchTogether.release.xcconfig"; path = "Target Support Files/Pods-WatchTogether/Pods-WatchTogether.release.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 		48673B7B26361E480015E035 /* ForeignMessageTVC */ = {
 			isa = PBXGroup;
 			children = (
+				48E0792F263CA3E30095C976 /* ForeignMessageTVC.swift */,
+				48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */,
 			);
 			path = ForeignMessageTVC;
 			sourceTree = "<group>";
@@ -620,6 +626,7 @@
 				48673A8A26309D1C0015E035 /* RegisterViewController.xib in Resources */,
 				480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */,
 				480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */,
+				48E07932263CA3E30095C976 /* ForeignMessageTVC.xib in Resources */,
 				48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
 				4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */,
@@ -695,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E07931263CA3E30095C976 /* ForeignMessageTVC.swift in Sources */,
 				480C0124262CA20300140E4F /* LoginViewController.swift in Sources */,
 				480C00AC262C8D4D00140E4F /* BaseViewController.swift in Sources */,
 				4870CBA8262F394A006D0B62 /* WTTextField.swift in Sources */,

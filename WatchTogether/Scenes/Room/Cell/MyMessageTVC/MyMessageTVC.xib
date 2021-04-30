@@ -23,32 +23,50 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="2tZ-jl-pXK">
-                        <rect key="frame" x="76" y="4" width="240" height="62"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3x-f5-PDS">
+                        <rect key="frame" x="80" y="0.0" width="240" height="70"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDx-Tt-8xb">
-                                <rect key="frame" x="4" y="4" width="208" height="16.5"/>
-                                <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="14"/>
-                                <color key="textColor" name="WhiteAlpha0,75"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stc-33-9hM">
-                                <rect key="frame" x="212" y="4" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="0PH-ub-bSB"/>
-                                    <constraint firstAttribute="width" constant="24" id="k94-YU-2x1"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="q8k-8J-rsg">
+                                <rect key="frame" x="77" y="0.0" width="163" height="62"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tZ-jl-pXK">
+                                        <rect key="frame" x="8" y="8" width="118" height="16.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDx-Tt-8xb">
+                                                <rect key="frame" x="0.0" y="0.0" width="118" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="14"/>
+                                                <color key="textColor" name="WhiteAlpha0,75"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stc-33-9hM">
+                                        <rect key="frame" x="131" y="8" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="Crf-mY-LN5"/>
+                                            <constraint firstAttribute="width" constant="24" id="a0U-M0-yZG"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="RegisterGreenColor"/>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="RegisterGreenColor"/>
-                        <directionalEdgeInsets key="directionalLayoutMargins" top="4" leading="4" bottom="4" trailing="4"/>
-                    </stackView>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="q8k-8J-rsg" secondAttribute="trailing" id="ClZ-B4-4Hs"/>
+                            <constraint firstItem="q8k-8J-rsg" firstAttribute="top" secondItem="B3x-f5-PDS" secondAttribute="top" id="a27-x3-yaw"/>
+                            <constraint firstAttribute="bottom" secondItem="q8k-8J-rsg" secondAttribute="bottom" constant="8" id="mp9-gO-vDK"/>
+                            <constraint firstItem="q8k-8J-rsg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B3x-f5-PDS" secondAttribute="leading" id="ybr-Tv-cQR"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2tZ-jl-pXK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.75" id="841-PX-EgR"/>
-                    <constraint firstItem="2tZ-jl-pXK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="nd9-no-BBt"/>
-                    <constraint firstAttribute="trailing" secondItem="2tZ-jl-pXK" secondAttribute="trailing" constant="4" id="rq6-7q-imN"/>
-                    <constraint firstAttribute="bottom" secondItem="2tZ-jl-pXK" secondAttribute="bottom" constant="4" id="tdc-G7-3PK"/>
+                    <constraint firstAttribute="trailing" secondItem="B3x-f5-PDS" secondAttribute="trailing" id="QAC-Pf-2fn"/>
+                    <constraint firstItem="B3x-f5-PDS" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.75" id="Xbd-Cc-oFK"/>
+                    <constraint firstAttribute="bottom" secondItem="B3x-f5-PDS" secondAttribute="bottom" id="muv-j6-aCU"/>
+                    <constraint firstItem="B3x-f5-PDS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="twp-hC-wMR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -56,7 +74,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="stc-33-9hM" id="J8R-SK-96K"/>
                 <outlet property="messageText" destination="XDx-Tt-8xb" id="7Bb-NX-jyy"/>
-                <outlet property="stackView" destination="2tZ-jl-pXK" id="Yyg-Cj-J0f"/>
+                <outlet property="stackView" destination="q8k-8J-rsg" id="KsB-0z-3ch"/>
             </connections>
             <point key="canvasLocation" x="141" y="77"/>
         </tableViewCell>

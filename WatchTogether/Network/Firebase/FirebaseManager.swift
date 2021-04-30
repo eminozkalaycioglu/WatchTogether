@@ -29,7 +29,10 @@ protocol FirebaseManager {
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func observeMessages(roomId: String, completion: @escaping ((Message) -> Void))
+    func observeRoomDeleting(completion: @escaping ((Room?) -> Void))
     func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void))
+    func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func deleteRoom(roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
@@ -94,7 +97,6 @@ extension WTFirebaseManager {
     }
     
     func fetchUserInfo(uid: String, completion: @escaping ((Result<WTUser, PresentableError>)->Void)) {
-        
         
         self.dbRef.child("Users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {
@@ -227,6 +229,31 @@ extension WTFirebaseManager {
         }
         
     }
+    
+    func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Users").child(uid).removeValue()
+        
+        self.dbRef.child("Rooms").child(roomId).child("OldUsers").child(uid).setValue(uid) { (firError, _) in
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+            } else {
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    func deleteRoom(roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).removeValue { (firError, _) in
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
 
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         
@@ -289,6 +316,8 @@ extension WTFirebaseManager {
         
         guard let userId = user.userId else { return }
         
+        self.dbRef.child("Rooms").child(roomId).child("OldUsers").child(userId).removeValue()
+        
         self.dbRef.child("Rooms").child(roomId).child("Users").child(userId).setValue(userId) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
@@ -333,6 +362,14 @@ extension WTFirebaseManager {
         }
     }
     
+    func observeRoomDeleting(completion: @escaping ((Room?) -> Void)) {
+        
+        self.dbRef.child("Rooms").observe(.childRemoved, with: { (snapshot) in
+            
+            completion(self.fetchRoomFrom(snapshot: snapshot))
+        })
+    }
+    
 }
 
 
@@ -353,6 +390,7 @@ extension WTFirebaseManager {
 
         
         var users: [String] = []
+        var oldUsers: [String] = []
         let content: Content = Content()
         var playlist: [Video] = []
         var messages: [Message] = []
@@ -362,7 +400,13 @@ extension WTFirebaseManager {
             if let userId = child.value as? String {
                 users.append(userId)
             }
-            
+        }
+        
+        //MARK: - OldUsers
+        for child in (snapshot.childSnapshot(forPath: "OldUsers").children.allObjects as! [DataSnapshot]) {
+            if let userId = child.value as? String {
+                oldUsers.append(userId)
+            }
         }
         
         //MARK: - Content
@@ -411,6 +455,7 @@ extension WTFirebaseManager {
         room.playlist = playlist
         room.users = users
         room.message = messages
+        room.oldUsers = oldUsers
         
         return room
         
@@ -439,9 +484,10 @@ class Room {
     var content: Content?
     var playlist: [Video]?
     var users: [String]?
+    var oldUsers: [String]?
     var message: [Message]?
     
-    init(roomId: String? = nil, password: String? = nil, roomName: String? = nil, ownerId: String? = nil, content: Content? = nil, playlist: [Video]? = nil, users: [String]? = nil, message: [Message]? = nil) {
+    init(roomId: String? = nil, password: String? = nil, roomName: String? = nil, ownerId: String? = nil, content: Content? = nil, playlist: [Video]? = nil, users: [String]? = nil, oldUsers: [String]? = nil, message: [Message]? = nil) {
         self.roomId = roomId
         self.password = password
         self.roomName = roomName
@@ -449,6 +495,7 @@ class Room {
         self.content = content
         self.playlist = playlist
         self.users = users
+        self.oldUsers = oldUsers
         self.message = message
     }
 }

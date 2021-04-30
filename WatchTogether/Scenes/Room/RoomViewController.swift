@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PopupDialog
 
 class RoomViewController: WTViewController {
     
@@ -16,9 +17,10 @@ class RoomViewController: WTViewController {
             testTable.delegate = self
             testTable.dataSource = self
             testTable.register(UINib(nibName: "MyMessageTVC", bundle: nil), forCellReuseIdentifier: "MyMessageTVC")
-           
+            testTable.register(UINib(nibName: "ForeignMessageTVC", bundle: nil), forCellReuseIdentifier: "ForeignMessageTVC")
         }
     }
+    
     @IBOutlet weak var testField: UITextField!
     override func setup() {
         super.setup()
@@ -26,12 +28,36 @@ class RoomViewController: WTViewController {
         navigation.bar.barTintColor = R.color.mainBlueColorDark()!
         
         
+        navigation.item.leftBarButtonItem = UIBarButtonItem(
+            image: R.image.backIcon()!,
+            style: .plain,
+            target: self,
+            action: #selector(self.onTapBack))
+        
     }
-
+    
+    @objc
+    private func onTapBack() {
+        let cancel = CancelButton(title: "Hayır", action: nil)
+        let ok = DefaultButton(title: "Evet") {
+            self.viewModel.exitRoom { [weak self] in
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+            }
+        }
+        WTAlert.show(self, title: "Uyarı", message: "Odadan Çıkmak İstiyor musunuz?", buttons: [cancel, ok])
+        
+    }
     
     override func registerEvents() {
         super.registerEvents()
+        
         self.viewModel.observeMessages()
+        self.viewModel.observeRoomDeleting()
+        self.viewModel.fetchUserInfos()
+        
         self.viewModel.onNewMessagesReceived = { [weak self] in
             DispatchQueue.main.async {
                 self?.testTable.reloadData()
@@ -40,6 +66,12 @@ class RoomViewController: WTViewController {
                     at: IndexPath(row: max(count - 1, 0), section: 0),
                     at: .bottom,
                     animated: true)
+            }
+        }
+        
+        self.viewModel.onShouldBackToTabBar = { [weak self] in
+            DispatchQueue.main.async {
+                self?.router.setRootViewController(SF.makeMainTabBar())
             }
         }
     }
@@ -56,10 +88,20 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageTVC", for: indexPath) as! MyMessageTVC
+        
         let data = self.viewModel.messages[indexPath.row]
-        cell.configureCell(avatarId: 1, text: data.text)
-        return cell
+        let avatarId = self.viewModel.getAvatarIdFrom(ownerId: data.ownerId ?? "")
+        if self.viewModel.isMyMessage(data) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageTVC", for: indexPath) as! MyMessageTVC
+            cell.configureCell(avatarId: avatarId, text: data.text)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ForeignMessageTVC", for: indexPath) as! ForeignMessageTVC
+            cell.configureCell(avatarId: avatarId, text: data.text)
+            return cell
+        }
+        
+        
     }
     
     
