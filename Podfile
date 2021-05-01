@@ -10,6 +10,7 @@ target 'WatchTogether' do
   pod 'MaterialComponents/TextControls+OutlinedTextFieldsTheming'
   pod 'PopupDialog', '~> 1.1'
   pod 'EachNavigationBar'
+  pod 'MarqueeLabel'
   
   #Util Pods
   pod 'R.swift'
@@ -19,5 +20,6 @@ target 'WatchTogether' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Bagel', '~>  1.4.0'
 
 end

@@ -44,9 +44,10 @@ class CreateRoomViewController: WTViewController {
     override func registerEvents() {
         super.registerEvents()
         
-        self.viewModel.onRoomCreated = { [weak self] room in
+        self.viewModel.onRoomCreated = { [weak self] roomId in
             DispatchQueue.main.async {
-                let roomVC = SF.makeRoomVC(room: room)
+                guard let roomId = roomId else { return }
+                let roomVC = SF.makeRoomVC(roomId: roomId)
                 self?.navigationController?.pushViewController(roomVC, animated: true)
             }
         }

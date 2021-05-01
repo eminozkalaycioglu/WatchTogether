@@ -12,7 +12,7 @@ final class CreateRoomViewModel: BaseViewModel {
     private var firebaseMgr: FirebaseManager
     private var sessionMgr: SessionManager
 
-    var onRoomCreated: ((Room) -> Void)?
+    var onRoomCreated: ((String?) -> Void)?
     
     init(firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
          sessionMgr: SessionManager = WTSessionManager.shared) {
@@ -27,7 +27,7 @@ final class CreateRoomViewModel: BaseViewModel {
             switch result {
             case let .success(room):
                 self.loadDidFinish()
-                self.onRoomCreated?(room)
+                self.onRoomCreated?(room.roomId)
             case let .failure(error):
                 self.loadDidFinishWithError(error: error)
             }

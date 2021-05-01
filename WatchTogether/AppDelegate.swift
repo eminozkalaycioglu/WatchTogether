@@ -9,6 +9,10 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 
+#if DEBUG && targetEnvironment(simulator)
+import Bagel
+#endif
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WTAlert.setApperance()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarTintColor = R.color.mainBlueColorDark()!
+        
+        #if DEBUG && targetEnvironment(simulator)
+        Bagel.start()
+        #endif
         
         if #available(iOS 13.0, *) {
             return true

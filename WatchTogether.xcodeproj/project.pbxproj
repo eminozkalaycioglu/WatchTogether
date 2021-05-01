@@ -84,6 +84,8 @@
 		48E07932263CA3E30095C976 /* ForeignMessageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */; };
 		48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832C262CA4800009F052 /* LoginViewModel.swift */; };
 		48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832F262CA5890009F052 /* RoomsViewModel.swift */; };
+		48FB0015263D573600343986 /* RoomTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FB0013263D573600343986 /* RoomTVC.swift */; };
+		48FB0016263D573600343986 /* RoomTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FB0014263D573600343986 /* RoomTVC.xib */; };
 		BC464B16CB4E27BE5D632052 /* Pods_WatchTogether.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348F2AAED0F966E53AC46CDE /* Pods_WatchTogether.framework */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForeignMessageTVC.xib; sourceTree = "<group>"; };
 		48EF832C262CA4800009F052 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		48EF832F262CA5890009F052 /* RoomsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewModel.swift; sourceTree = "<group>"; };
+		48FB0013263D573600343986 /* RoomTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTVC.swift; sourceTree = "<group>"; };
+		48FB0014263D573600343986 /* RoomTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTVC.xib; sourceTree = "<group>"; };
 		4FCC0EC95102519A5FE36834 /* Pods-WatchTogether.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchTogether.release.xcconfig"; path = "Target Support Files/Pods-WatchTogether/Pods-WatchTogether.release.xcconfig"; sourceTree = "<group>"; };
 		B4A793D1CDCC2803B6EDB0C5 /* Pods-WatchTogether.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchTogether.debug.xcconfig"; path = "Target Support Files/Pods-WatchTogether/Pods-WatchTogether.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,6 +332,7 @@
 		480C0131262CA31100140E4F /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				48FB0012263D572000343986 /* Cell */,
 				480C012C262CA30D00140E4F /* RoomsViewController.swift */,
 				480C012D262CA30D00140E4F /* RoomsViewController.xib */,
 				48EF832F262CA5890009F052 /* RoomsViewModel.swift */,
@@ -519,6 +524,15 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		48FB0012263D572000343986 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				48FB0013263D573600343986 /* RoomTVC.swift */,
+				48FB0014263D573600343986 /* RoomTVC.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B981D424C52B77E3604E9CBA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +633,7 @@
 				48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */,
 				48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */,
 				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
+				48FB0016263D573600343986 /* RoomTVC.xib in Resources */,
 				480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */,
 				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
 				480C011D262C9D7E00140E4F /* SplashViewController.xib in Resources */,
@@ -740,6 +755,7 @@
 				48673B4526357BBC0015E035 /* ProfileViewModel.swift in Sources */,
 				48673B4826357F730015E035 /* WTCardStackView.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
+				48FB0015263D573600343986 /* RoomTVC.swift in Sources */,
 				48673B3A263318880015E035 /* UIImage+Extensions.swift in Sources */,
 				48673B4026357B9B0015E035 /* ProfileViewController.swift in Sources */,
 				48673B7E26361E610015E035 /* MyMessageTVC.swift in Sources */,

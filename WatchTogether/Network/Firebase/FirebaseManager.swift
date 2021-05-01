@@ -25,6 +25,7 @@ protocol FirebaseManager {
     func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void))
+    func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
@@ -33,6 +34,9 @@ protocol FirebaseManager {
     func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void))
     func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func deleteRoom(roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func observeRoomAdding(completion: @escaping ((Room?) -> Void))
+    func removeRoomObservers()
+    func observeRoomUsers(roomId: String, completion: @escaping (() -> Void))
     
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
@@ -285,7 +289,7 @@ extension WTFirebaseManager {
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void)) {
         self.dbRef.child("Rooms").observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {
-                completion(.failure(.init(message: "Parse Error")))
+                completion(.success([]))
                 return
             }
             
@@ -302,6 +306,19 @@ extension WTFirebaseManager {
         }
     }
     
+    func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
+        self.dbRef.child("Rooms").child(roomId).observeSingleEvent(of: .value) { (snapshot) in
+            print("fetchroom")
+            guard let room = self.fetchRoomFrom(snapshot: snapshot) else {
+                completion(.failure(.init(message: "Parse Error")))
+                return
+            }
+            
+            completion(.success(room))
+
+        }
+    }
+    
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         self.dbRef.child("Rooms").child(roomId).child("Playlist").childByAutoId().setValue(video.toDict()) { (firError, _) in
             if let firError = firError {
@@ -310,6 +327,31 @@ extension WTFirebaseManager {
                 completion(.success(true))
             }
         }
+    }
+    
+    func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+        
+        let dict: [String: Any] = [
+            "currentTime": 0,
+            "isPlaying": false
+        ]
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").setValue(dict) { (firError, _) in
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+                return
+            } else {
+                self.dbRef.child("Rooms").child(roomId).child("Content").child("Video").setValue(video.toDict()) { (videoError, _ )in
+                    if let videoError = videoError {
+                        completion(.failure(videoError.presentableError))
+                    } else {
+                        completion(.success(true))
+                    }
+                }
+            }
+            
+        }
+        
     }
     
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
@@ -325,15 +367,6 @@ extension WTFirebaseManager {
                 completion(.success(true))
             }
         }
-        
-//        self.dbRef.child("Rooms").child(roomId).child("Users").child(user.userId ?? "").setValue(user.toDict()) { (firError, _) in
-//            if let firError = firError {
-//                completion(.failure(firError.presentableError))
-//            } else {
-//                completion(.success(true))
-//            }
-//        }
-
     }
     
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
@@ -362,12 +395,32 @@ extension WTFirebaseManager {
         }
     }
     
-    func observeRoomDeleting(completion: @escaping ((Room?) -> Void)) {
+    func observeRoomUsers(roomId: String, completion: @escaping (() -> Void)) {
         
+        self.dbRef.child("Rooms").child(roomId).child("Users").observe(.value) { (_) in
+            completion()
+        }
+
+    }
+    
+    func observeRoomDeleting(completion: @escaping ((Room?) -> Void)) {
         self.dbRef.child("Rooms").observe(.childRemoved, with: { (snapshot) in
-            
             completion(self.fetchRoomFrom(snapshot: snapshot))
         })
+    }
+    
+    func observeRoomAdding(completion: @escaping ((Room?) -> Void)) {
+        
+        self.dbRef.child("Rooms").observe(.childAdded, with: { (snapshot) in
+            print("oberve action room add")
+            completion(self.fetchRoomFrom(snapshot: snapshot))
+        })
+    }
+    
+    
+
+    func removeRoomObservers() {
+        self.dbRef.child("Rooms").removeAllObservers()
     }
     
 }

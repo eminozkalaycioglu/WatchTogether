@@ -21,7 +21,7 @@ class RoomViewController: WTViewController {
         }
     }
     
-    @IBOutlet weak var testField: UITextField!
+    @IBOutlet weak var testField: MessageTextField!
     override func setup() {
         super.setup()
         navigation.item.titleView = nil
@@ -54,9 +54,9 @@ class RoomViewController: WTViewController {
     override func registerEvents() {
         super.registerEvents()
         
+        self.viewModel.fetchRoom()
         self.viewModel.observeMessages()
-        self.viewModel.observeRoomDeleting()
-        self.viewModel.fetchUserInfos()
+        self.viewModel.observeRoomUsers()
         
         self.viewModel.onNewMessagesReceived = { [weak self] in
             DispatchQueue.main.async {
@@ -74,11 +74,30 @@ class RoomViewController: WTViewController {
                 self?.router.setRootViewController(SF.makeMainTabBar())
             }
         }
+        
+        self.viewModel.onFetchedUserInfos = { [weak self] in
+            DispatchQueue.main.async {
+                self?.testTable.reloadData()
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.observeRoomDeleting()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.viewModel.removeRoomObservers()
+        
     }
     
     @IBAction func testbuttontap(_ sender: Any) {
-        guard let messageText = self.testField.text else { return }
+        guard let messageText = self.testField.text,
+              messageText.count > 0 else { return }
         self.viewModel.sendMessage(text: messageText)
+        self.testField.text?.removeAll()
     }
 }
 
@@ -101,8 +120,35 @@ extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        
     }
     
     
+}
+
+class MessageTextField: UITextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+    
+    private lazy var paddingView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.bounds.height))
+        return view
+    }()
+    
+    func commonInit() {
+        self.leftView = self.paddingView
+        self.leftViewMode = .always
+        self.textColor = R.color.whiteAlpha075()!
+        self.font = R.font.kanitRegular(size: 14)
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 20
+        self.backgroundColor = R.color.mainBlueColorDark()!
+        self.placeholder = ""
+    }
 }

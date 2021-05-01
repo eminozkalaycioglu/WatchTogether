@@ -1,4 +1,7 @@
 PODS:
+  - Bagel (1.4.0):
+    - CocoaAsyncSocket
+  - CocoaAsyncSocket (7.6.5)
   - DynamicBlurView (4.1.0)
   - EachNavigationBar (1.15.0)
   - Firebase (7.4.0):
@@ -75,6 +78,7 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22)
+  - MarqueeLabel (4.0.5)
   - MaterialComponents/AnimationTiming (124.1.1)
   - MaterialComponents/Availability (124.1.1)
   - MaterialComponents/private/Application (124.1.1)
@@ -156,11 +160,13 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Bagel (~> 1.4.0)
   - EachNavigationBar
   - Firebase
   - Firebase/Auth
   - Firebase/Database
   - IQKeyboardManagerSwift
+  - MarqueeLabel
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - "MaterialComponents/TextControls+OutlinedTextFieldsTheming"
   - PopupDialog (~> 1.1)
@@ -169,6 +175,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Bagel
+    - CocoaAsyncSocket
     - DynamicBlurView
     - EachNavigationBar
     - Firebase
@@ -184,6 +192,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - leveldb-library
+    - MarqueeLabel
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -195,6 +204,8 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   EachNavigationBar: 486c740d81579489da10186446e16f16543dd980
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
@@ -210,6 +221,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   MaterialComponents: b9f58f24bf74588a83b2dce05802a11aaed5257d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
@@ -220,6 +232,6 @@ SPEC CHECKSUMS:
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 185c9b18550787aaff2e0c36b245088b9a7e48f4
+PODFILE CHECKSUM: c5ed5da86fa42a3af49638b7a02e6693e4b8f6c0
 
 COCOAPODS: 1.10.1
