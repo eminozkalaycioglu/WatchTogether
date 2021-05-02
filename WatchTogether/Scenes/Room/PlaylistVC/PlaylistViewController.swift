@@ -9,6 +9,7 @@ import UIKit
 
 protocol PlaylistViewControllerDelegate: class {
     func playlistViewControllerShouldClose(_ controller: PlaylistViewController?)
+    func playlistViewControllerDidSelectVideo(_ controller: PlaylistViewController?, id: String)
 }
 
 class PlaylistViewController: WTViewController {
@@ -35,25 +36,7 @@ class PlaylistViewController: WTViewController {
 extension PlaylistViewController: SearchWebViewViewControllerDelegate {
     func searchWebViewViewControllerDidSelectVideo(_ controller: SearchWebViewViewController?, id: String) {
         controller?.navigationController?.popViewController(animated: true)
-        WTAlert.show(self, title: "Video ID", message: id, buttons: nil)
-        YoutubeServices().getVideoDetail(id) { (result) in
-            switch result {
-            case let .success(videoDetail):
-                let item = videoDetail.items.first
-                let video = Video(
-                    videoId: id,
-                    title: item?.snippet.title,
-                    thumbnail: item?.snippet.thumbnails.defaultField.url,
-                    channel: item?.snippet.channelTitle,
-                    duration: 0)
-                
-//                WTFirebaseManager.shared.addVideoToRoomPlaylist(roomId: "9E4F43BC-791C-4D64-9048-3104C9F7F7E2", video: video) { (_) in
-//
-//                }
-            case .failure:
-                break
-            }
-        }
+        self.delegate?.playlistViewControllerDidSelectVideo(self, id: id)
     }
 }
 
@@ -126,5 +109,24 @@ class PlaylistViewModel: BaseViewModel {
     }
 }
 
+
+//YoutubeServices().getVideoDetail(id) { (result) in
+//            switch result {
+//            case let .success(videoDetail):
+//                let item = videoDetail.items.first
+//                let video = Video(
+//                    videoId: id,
+//                    title: item?.snippet.title,
+//                    thumbnail: item?.snippet.thumbnails.defaultField.url,
+//                    channel: item?.snippet.channelTitle,
+//                    duration: 0)
+//
+////                WTFirebaseManager.shared.addVideoToRoomPlaylist(roomId: "9E4F43BC-791C-4D64-9048-3104C9F7F7E2", video: video) { (_) in
+////
+////                }
+//            case .failure:
+//                break
+//            }
+//        }
 
 

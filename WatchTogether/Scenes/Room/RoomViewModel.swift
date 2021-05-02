@@ -18,21 +18,24 @@ final class RoomViewModel: BaseViewModel {
 
     private var firebaseMgr: FirebaseManager
     private var sessionMgr: SessionManager
+    private var youtubeService: YoutubeServicing
     
     var onNewMessagesReceived: (() -> Void)?
     var onFetchedUserInfos: (() -> Void)?
     var onShouldBackToTabBar: (() -> Void)?
-    
+    var onUsersChanged: (() -> Void)?
+
     init(roomId: String,
          firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
-         sessionMgr: SessionManager = WTSessionManager.shared) {
+         sessionMgr: SessionManager = WTSessionManager.shared,
+         youtubeService: YoutubeServicing = YoutubeServices()) {
         self.roomId = roomId
         self.firebaseMgr = firebaseMgr
         self.sessionMgr = sessionMgr
-        
+        self.youtubeService = youtubeService
     }
     
-    func fetchRoom() {
+    func fetchRoom(completion: (() -> Void)? = nil) {
         self.loadDidStart()
         self.firebaseMgr.fetchRoom(roomId: self.roomId) { (result) in
             switch result {
@@ -40,6 +43,7 @@ final class RoomViewModel: BaseViewModel {
                 self.loadDidFinish()
                 if room.roomId != nil {
                     self.room = room
+                    completion?()
                     self.fetchTotalUserInfos()
                 }
             case let .failure(error):
@@ -95,6 +99,7 @@ final class RoomViewModel: BaseViewModel {
     func observeRoomUsers() {
         self.firebaseMgr.observeRoomUsers(roomId: self.roomId) {
             self.fetchRoom()
+            self.onUsersChanged?()
         }
     }
     
@@ -110,9 +115,7 @@ final class RoomViewModel: BaseViewModel {
            !(userIDs.contains(uid)) {
             self.onShouldBackToTabBar?()
         }
-        
-        print("fetchTotalUserInfos -> currentUserCount: ", userIDs.count)
-        
+                
         self.loadDidStart()
         self.firebaseMgr.fetchRoomUserInfos(ids: userIDs) { (result) in
             switch result {
@@ -163,6 +166,43 @@ final class RoomViewModel: BaseViewModel {
             }
         }
     }
+    var onShouldStartVideo: ((String) -> Void)?
+    func addVideoToPlaylist(id: String) {
+        self.youtubeService.getVideoDetail(id) { (result) in
+            switch result {
+            case let .success(videoDetail):
+                let item = videoDetail.items.first
+                let video = Video(
+                    videoId: id,
+                    title: item?.snippet.title,
+                    thumbnail: item?.snippet.thumbnails.defaultField.url,
+                    channel: item?.snippet.channelTitle,
+                    duration: 0)
+                
+                self.firebaseMgr.addVideoToRoomPlaylist(roomId: self.roomId, video: video) { (result) in
+                    switch result {
+                    case .success:
+                        self.loadDidFinish()
+                        self.fetchRoom {
+                            if self.room?.content?.video?.title == nil {
+                                self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { _ in
+                                    self.onShouldStartVideo?(id)
+                                }
+                            }
+                        }
+                    case let .failure(error):
+                        self.loadDidFinishWithError(error: error)
+                    }
+                }
+                
+                
+            case let.failure(error):
+                self.loadDidFinishWithError(error: error)
+            }
+        }
+    }
+    
+    
     
     func isMyMessage(_ message: Message) -> Bool {
         self.sessionMgr.user?.userId == message.ownerId
@@ -176,7 +216,7 @@ final class RoomViewModel: BaseViewModel {
         String(self.totalUsers.filter({$0.userId == ownerId}).first?.fullName?.split(separator: " ").first ?? "")
     }
     
-    func canDelete() -> Bool {
+    func currentUserIsOwner() -> Bool {
         self.sessionMgr.user?.userId ?? "X" == self.room?.ownerId ?? "XX"
     }
     

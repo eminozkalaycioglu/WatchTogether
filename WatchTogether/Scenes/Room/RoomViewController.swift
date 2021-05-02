@@ -12,6 +12,14 @@ import youtube_ios_player_helper
 class RoomViewController: WTViewController {
     
     var viewModel: RoomViewModel!
+    private let playerVars = [
+        "modestbranding": "1", //
+        "playsinline": "1", //
+        "fs": "1", //
+        "controls": "0", //
+        "rel": "0",
+        "enablejsapi": "1"
+    ]
     
     @IBOutlet weak var playerView: YTPlayerView! {
         didSet {
@@ -67,18 +75,7 @@ class RoomViewController: WTViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onUsersCollectionViewTapAction))
         self.usersCollectionView.addGestureRecognizer(gesture)
-        
-        let playerVars = [
-            "modestbranding": "1", //
-            "playsinline": "1", //
-            "fs": "1", //
-            
-            "controls": "0", //
-            "rel": "0",
-            "enablejsapi": "1"
-        ]
-        self.playerView.load(withVideoId: "3z0IT3bXm_E", playerVars: playerVars)
-        
+                
     }
     
     @objc
@@ -90,7 +87,7 @@ class RoomViewController: WTViewController {
             users: self.viewModel.currentUsers,
             roomId: self.viewModel.roomId,
             userId: self.viewModel.getUserID(),
-            canDelete: self.viewModel.canDelete())
+            canDelete: self.viewModel.currentUserIsOwner())
         
     }
     
@@ -137,6 +134,17 @@ class RoomViewController: WTViewController {
             DispatchQueue.main.async {
                 self?.testTable.reloadData()
                 self?.usersCollectionView.reloadData()
+                self?.controlView.isHidden = !(self?.viewModel.currentUserIsOwner() ?? false)
+            }
+        }
+        
+        self.viewModel.onUsersChanged = { [weak self] in
+            
+        }
+        
+        self.viewModel.onShouldStartVideo = { [weak self] videoId in
+            DispatchQueue.main.async {
+                self?.playerView.load(withVideoId: videoId, playerVars: self?.playerVars)
             }
         }
     }
@@ -266,5 +274,10 @@ extension RoomViewController: UsersViewControllerDelegate {
 extension RoomViewController: PlaylistViewControllerDelegate {
     func playlistViewControllerShouldClose(_ controller: PlaylistViewController?) {
         PlaylistViewController.hide(context: self, playlistVC: controller)
+    }
+    
+    func playlistViewControllerDidSelectVideo(_ controller: PlaylistViewController?, id: String) {
+        PlaylistViewController.hide(context: self, playlistVC: controller)
+        self.viewModel.addVideoToPlaylist(id: id)
     }
 }
