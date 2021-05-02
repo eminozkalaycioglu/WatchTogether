@@ -11,7 +11,9 @@ final class RoomViewModel: BaseViewModel {
     
     var roomId: String
     var room: Room?
-    var users: [WTUser] = []
+    var totalUsers: [WTUser] = []
+    var currentUsers: [WTUser] = []
+
     var messages: [Message] = []
 
     private var firebaseMgr: FirebaseManager
@@ -38,9 +40,8 @@ final class RoomViewModel: BaseViewModel {
                 self.loadDidFinish()
                 if room.roomId != nil {
                     self.room = room
+                    self.fetchTotalUserInfos()
                 }
-                
-                self.fetchUserInfos()
             case let .failure(error):
                 self.loadDidFinishWithError(error: error)
             }
@@ -93,7 +94,6 @@ final class RoomViewModel: BaseViewModel {
     
     func observeRoomUsers() {
         self.firebaseMgr.observeRoomUsers(roomId: self.roomId) {
-            print("observe action")
             self.fetchRoom()
         }
     }
@@ -102,15 +102,32 @@ final class RoomViewModel: BaseViewModel {
         self.firebaseMgr.removeRoomObservers()
     }
     
-    private func fetchUserInfos() {
-        let ids = (self.room?.users ?? []) + (self.room?.oldUsers ?? [])
+    private func fetchTotalUserInfos() {
+        let userIDs = self.room?.users ?? []
+        let oldUserIDs = self.room?.oldUsers ?? []
+        
+        if let uid = self.sessionMgr.user?.userId,
+           !(userIDs.contains(uid)) {
+            self.onShouldBackToTabBar?()
+        }
+        
+        print("fetchTotalUserInfos -> currentUserCount: ", userIDs.count)
+        
         self.loadDidStart()
-        self.firebaseMgr.fetchRoomUserInfos(ids: ids) { (result) in
+        self.firebaseMgr.fetchRoomUserInfos(ids: userIDs) { (result) in
             switch result {
-            case let .success(users):
-                self.loadDidFinish()
-                self.users = users
-                self.onFetchedUserInfos?()
+            case let .success(currentUsers):
+                self.currentUsers = currentUsers
+                self.firebaseMgr.fetchRoomUserInfos(ids: oldUserIDs) { (result) in
+                    switch result {
+                    case let .success(oldUsers):
+                        self.loadDidFinish()
+                        self.totalUsers = currentUsers + oldUsers
+                        self.onFetchedUserInfos?()
+                    case let .failure(error):
+                        self.loadDidFinishWithError(error: error)
+                    }
+                }
             case let .failure(error):
                 self.loadDidFinishWithError(error: error)
             }
@@ -152,7 +169,19 @@ final class RoomViewModel: BaseViewModel {
     }
     
     func getAvatarIdFrom(ownerId: String) -> Int {
-        self.users.filter({$0.userId == ownerId}).first?.avatarId ?? 999
+        self.totalUsers.filter({$0.userId == ownerId}).first?.avatarId ?? 999
+    }
+    
+    func getNameFrom(ownerId: String) -> String {
+        String(self.totalUsers.filter({$0.userId == ownerId}).first?.fullName?.split(separator: " ").first ?? "")
+    }
+    
+    func canDelete() -> Bool {
+        self.sessionMgr.user?.userId ?? "X" == self.room?.ownerId ?? "XX"
+    }
+    
+    func getUserID() -> String {
+        self.sessionMgr.user?.userId ?? ""
     }
 }
 

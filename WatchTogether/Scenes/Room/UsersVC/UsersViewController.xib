@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsersViewController" customModule="WatchTogether" customModuleProvider="target">
+            <connections>
+                <outlet property="usersTableView" destination="p4x-g5-3qm" id="Chv-EA-eJK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8ko-bh-ly6">
+                    <rect key="frame" x="20" y="58" width="374" height="788"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh1-1E-Wia">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bM-6v-T7u">
+                                    <rect key="frame" x="350" y="0.0" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Lom-N2-WUe"/>
+                                        <constraint firstAttribute="width" constant="24" id="jC9-Ii-ecK"/>
+                                    </constraints>
+                                    <state key="normal" image="crossIcon"/>
+                                    <connections>
+                                        <action selector="closeButtonTapAction:" destination="-1" eventType="touchUpInside" id="mab-Mq-nv9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2bM-6v-T7u" secondAttribute="trailing" id="66Z-7R-ltI"/>
+                                <constraint firstItem="2bM-6v-T7u" firstAttribute="top" secondItem="yh1-1E-Wia" secondAttribute="top" id="YI4-Ef-G0y"/>
+                                <constraint firstAttribute="bottom" secondItem="2bM-6v-T7u" secondAttribute="bottom" id="st4-IQ-9He"/>
+                            </constraints>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p4x-g5-3qm">
+                            <rect key="frame" x="0.0" y="44" width="374" height="744"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="MainBlueColorLight"/>
+            <constraints>
+                <constraint firstItem="8ko-bh-ly6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="6fb-Rs-Hts"/>
+                <constraint firstItem="8ko-bh-ly6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="14" id="7KH-62-bqK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8ko-bh-ly6" secondAttribute="bottom" constant="16" id="Vjy-kI-ytq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8ko-bh-ly6" secondAttribute="trailing" constant="20" id="dyH-3M-GL7"/>
+            </constraints>
+            <point key="canvasLocation" x="-71" y="76"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="crossIcon" width="24" height="24"/>
+        <namedColor name="MainBlueColorLight">
+            <color red="0.070588235294117646" green="0.11372549019607843" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

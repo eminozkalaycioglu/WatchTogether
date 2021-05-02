@@ -62,6 +62,26 @@ final class SceneFactory {
         return viewController
     }
     
+    public static func makeUsersVC(users: [WTUser], roomId: String, userId: String, canDelete: Bool) -> UsersViewController {
+        let viewController = UsersViewController()
+        
+        let viewModel = UsersViewModel(
+            users: users,
+            roomId: roomId,
+            userId: userId,
+            canDelete: canDelete)
+        
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
+    public static func makePlaylistVC(playlist: [Video]) -> PlaylistViewController {
+        let viewController = PlaylistViewController()
+        let viewModel = PlaylistViewModel(playlist: playlist)
+        viewController.viewModel = viewModel
+        return viewController
+    }
+    
     public static func makeCreateRoomVC() -> CreateRoomViewController {
         let viewController = CreateRoomViewController()
         let viewModel = CreateRoomViewModel()

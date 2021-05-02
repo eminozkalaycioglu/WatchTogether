@@ -18,9 +18,15 @@ class ForeignMessageTVC: UITableViewCell {
         self.stackView.layer.cornerRadius = 20
     }
     
-    func configureCell(avatarId: Int, text: String?) {
+    func configureCell(avatarId: Int, text: String?, name: String?) {
+        
         self.avatarView.image = UIImage.avatar(id: avatarId)
-        self.messageLabel.text = text
+        let name = NSMutableAttributedString(string: (name ?? "") + ": ", attributes: [NSAttributedString.Key.font: R.font.kanitBold(size: 14)!])
+        let text = NSMutableAttributedString(string: (text ?? ""), attributes: [NSAttributedString.Key.font: R.font.kanitLight(size: 14)!])
+        name.append(text)
+        
+        self.messageLabel.attributedText = name
+        
     }
 
 }

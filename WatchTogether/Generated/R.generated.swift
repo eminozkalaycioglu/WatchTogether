@@ -89,7 +89,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
 
-  /// This `R.color` struct is generated, and contains static references to 14 colors.
+  /// This `R.color` struct is generated, and contains static references to 15 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -101,6 +101,8 @@ struct R: Rswift.Validatable {
     static let mainBlueColorDark = Rswift.ColorResource(bundle: R.hostingBundle, name: "MainBlueColorDark")
     /// Color `MainBlueColorLight`.
     static let mainBlueColorLight = Rswift.ColorResource(bundle: R.hostingBundle, name: "MainBlueColorLight")
+    /// Color `MoreUserBackgroundColor`.
+    static let moreUserBackgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "MoreUserBackgroundColor")
     /// Color `RegisterGreenColor`.
     static let registerGreenColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "RegisterGreenColor")
     /// Color `TabBarTintColor`.
@@ -162,6 +164,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func mainBlueColorLight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mainBlueColorLight, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "MoreUserBackgroundColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func moreUserBackgroundColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.moreUserBackgroundColor, compatibleWith: traitCollection)
     }
     #endif
 
@@ -283,6 +294,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func mainBlueColorLight(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.mainBlueColorLight.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "MoreUserBackgroundColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func moreUserBackgroundColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.moreUserBackgroundColor.name)
     }
     #endif
 
@@ -514,7 +533,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 52 images.
+  /// This `R.image` struct is generated, and contains static references to 55 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -602,6 +621,8 @@ struct R: Rswift.Validatable {
     static let backIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "backIcon")
     /// Image `crossIcon`.
     static let crossIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "crossIcon")
+    /// Image `deleteUserIcon`.
+    static let deleteUserIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "deleteUserIcon")
     /// Image `dummythumbnail2`.
     static let dummythumbnail2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "dummythumbnail2")
     /// Image `dummythumbnail`.
@@ -616,8 +637,12 @@ struct R: Rswift.Validatable {
     static let passwordIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "passwordIcon")
     /// Image `personIcon`.
     static let personIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "personIcon")
+    /// Image `playlistIcon`.
+    static let playlistIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "playlistIcon")
     /// Image `sendMessage`.
     static let sendMessage = Rswift.ImageResource(bundle: R.hostingBundle, name: "sendMessage")
+    /// Image `shareIcon`.
+    static let shareIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "shareIcon")
     /// Image `showIcon`.
     static let showIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "showIcon")
 
@@ -923,6 +948,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "deleteUserIcon", bundle: ..., traitCollection: ...)`
+    static func deleteUserIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.deleteUserIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "dummythumbnail", bundle: ..., traitCollection: ...)`
     static func dummythumbnail(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.dummythumbnail, compatibleWith: traitCollection)
@@ -972,9 +1004,23 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "playlistIcon", bundle: ..., traitCollection: ...)`
+    static func playlistIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.playlistIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "sendMessage", bundle: ..., traitCollection: ...)`
     static func sendMessage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.sendMessage, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "shareIcon", bundle: ..., traitCollection: ...)`
+    static func shareIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.shareIcon, compatibleWith: traitCollection)
     }
     #endif
 

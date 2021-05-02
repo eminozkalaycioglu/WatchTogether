@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.1)
   - Bagel (1.4.0):
     - CocoaAsyncSocket
   - CocoaAsyncSocket (7.6.5)
@@ -146,6 +147,10 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.1)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - nanopb (2.30907.0):
     - nanopb/decode (= 2.30907.0)
     - nanopb/encode (= 2.30907.0)
@@ -158,6 +163,7 @@ PODS:
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - SVProgressHUD (2.2.5)
+  - youtube-ios-player-helper (1.0.3)
 
 DEPENDENCIES:
   - Bagel (~> 1.4.0)
@@ -169,12 +175,15 @@ DEPENDENCIES:
   - MarqueeLabel
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - "MaterialComponents/TextControls+OutlinedTextFieldsTheming"
+  - Moya (~> 14.0)
   - PopupDialog (~> 1.1)
   - R.swift
   - SVProgressHUD
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Bagel
     - CocoaAsyncSocket
     - DynamicBlurView
@@ -196,14 +205,17 @@ SPEC REPOS:
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - Moya
     - nanopb
     - PopupDialog
     - PromisesObjC
     - R.swift
     - R.swift.Library
     - SVProgressHUD
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
@@ -225,13 +237,15 @@ SPEC CHECKSUMS:
   MaterialComponents: b9f58f24bf74588a83b2dce05802a11aaed5257d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  youtube-ios-player-helper: 0185c57db23c80d63d6ca11251d110abb8a4ca61
 
-PODFILE CHECKSUM: c5ed5da86fa42a3af49638b7a02e6693e4b8f6c0
+PODFILE CHECKSUM: 9641dc120d0a5339b6b7885ee39dff84d408cb15
 
 COCOAPODS: 1.10.1

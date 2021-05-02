@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaylistViewController" customModule="WatchTogether" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ysy-nk-Yme">
+                    <rect key="frame" x="20" y="58" width="374" height="822"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiC-mq-iJx">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="265-fo-Blb" customClass="CircleButton" customModule="WatchTogether" customModuleProvider="target">
+                                    <rect key="frame" x="167" y="5" width="40" height="40"/>
+                                    <color key="backgroundColor" name="CardBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="2w1-K7-VcY"/>
+                                        <constraint firstAttribute="width" constant="40" id="mYe-XN-aUh"/>
+                                    </constraints>
+                                    <state key="normal" image="plus" catalog="system"/>
+                                    <connections>
+                                        <action selector="addButtonTapAction:" destination="-1" eventType="touchUpInside" id="Y9Y-qC-da3"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wot-wW-3wU">
+                                    <rect key="frame" x="350" y="0.0" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Hg2-ZN-CmR"/>
+                                        <constraint firstAttribute="width" constant="24" id="YcL-v3-72a"/>
+                                    </constraints>
+                                    <state key="normal" image="crossIcon"/>
+                                    <connections>
+                                        <action selector="closeButtonTapAction:" destination="-1" eventType="touchUpInside" id="1V6-Pw-gwh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="265-fo-Blb" secondAttribute="bottom" constant="-5" id="7Ll-Uc-VYg"/>
+                                <constraint firstItem="Wot-wW-3wU" firstAttribute="top" secondItem="hiC-mq-iJx" secondAttribute="top" id="7kC-D8-Bi3"/>
+                                <constraint firstAttribute="trailing" secondItem="Wot-wW-3wU" secondAttribute="trailing" id="Q3F-qs-LZ5"/>
+                                <constraint firstItem="265-fo-Blb" firstAttribute="top" secondItem="hiC-mq-iJx" secondAttribute="top" constant="5" id="kpr-d7-thm"/>
+                                <constraint firstItem="265-fo-Blb" firstAttribute="centerX" secondItem="hiC-mq-iJx" secondAttribute="centerX" id="zYf-Cj-5EA"/>
+                            </constraints>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="95e-5j-dmu">
+                            <rect key="frame" x="0.0" y="60" width="374" height="762"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="MainBlueColorDark"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysy-nk-Yme" secondAttribute="trailing" constant="20" id="3ep-LP-Rzq"/>
+                <constraint firstItem="ysy-nk-Yme" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="14" id="6hp-d1-yJy"/>
+                <constraint firstAttribute="bottom" secondItem="ysy-nk-Yme" secondAttribute="bottom" constant="16" id="8CX-0T-qcc"/>
+                <constraint firstItem="ysy-nk-Yme" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="aBC-4r-ByM"/>
+            </constraints>
+            <point key="canvasLocation" x="141" y="76"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="crossIcon" width="24" height="24"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="CardBackgroundColor">
+            <color red="0.18823529411764706" green="0.25490196078431371" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainBlueColorDark">
+            <color red="0.039215686274509803" green="0.070588235294117646" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

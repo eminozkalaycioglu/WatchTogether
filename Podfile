@@ -11,6 +11,7 @@ target 'WatchTogether' do
   pod 'PopupDialog', '~> 1.1'
   pod 'EachNavigationBar'
   pod 'MarqueeLabel'
+  pod 'youtube-ios-player-helper'
   
   #Util Pods
   pod 'R.swift'
@@ -21,5 +22,6 @@ target 'WatchTogether' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Bagel', '~>  1.4.0'
+  pod 'Moya', '~> 14.0'
 
 end

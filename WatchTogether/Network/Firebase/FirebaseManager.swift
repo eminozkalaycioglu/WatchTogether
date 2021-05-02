@@ -129,6 +129,9 @@ extension WTFirebaseManager {
         
         var users: [WTUser]  = []
         
+        if ids.count == 0 {
+            completion(.success([]))
+        }
         for id in ids {
             self.fetchUserInfo(uid: id) { (result) in
                 switch result {
@@ -235,13 +238,12 @@ extension WTFirebaseManager {
     }
     
     func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
-        
-        self.dbRef.child("Rooms").child(roomId).child("Users").child(uid).removeValue()
-        
+                
         self.dbRef.child("Rooms").child(roomId).child("OldUsers").child(uid).setValue(uid) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
             } else {
+                self.dbRef.child("Rooms").child(roomId).child("Users").child(uid).removeValue()
                 completion(.success(true))
             }
         }
@@ -308,7 +310,6 @@ extension WTFirebaseManager {
     
     func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         self.dbRef.child("Rooms").child(roomId).observeSingleEvent(of: .value) { (snapshot) in
-            print("fetchroom")
             guard let room = self.fetchRoomFrom(snapshot: snapshot) else {
                 completion(.failure(.init(message: "Parse Error")))
                 return
@@ -320,7 +321,7 @@ extension WTFirebaseManager {
     }
     
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
-        self.dbRef.child("Rooms").child(roomId).child("Playlist").childByAutoId().setValue(video.toDict()) { (firError, _) in
+        self.dbRef.child("Rooms").child(roomId).child("Playlist").child(video.videoId ?? "").setValue(video.toDict()) { (firError, _) in
             if let firError = firError {
                 completion(.failure(firError.presentableError))
             } else {
@@ -398,6 +399,7 @@ extension WTFirebaseManager {
     func observeRoomUsers(roomId: String, completion: @escaping (() -> Void)) {
         
         self.dbRef.child("Rooms").child(roomId).child("Users").observe(.value) { (_) in
+            print("emintest observe room users changed")
             completion()
         }
 

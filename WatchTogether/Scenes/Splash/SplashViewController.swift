@@ -18,6 +18,7 @@ class SplashViewController: WTViewController {
             if isLoggedIn {
                 self.router.setRootViewController(SF.makeMainTabBar())
                 
+               
 //                WTFirebaseManager.shared.fetchRoom(roomId: "F94EBF53-8B07-43F7-9366-4A7D3FD33B08") { (result) in
 //                    switch result {
 //                    case let .success(room):
