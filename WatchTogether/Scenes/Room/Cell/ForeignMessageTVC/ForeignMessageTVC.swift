@@ -16,6 +16,7 @@ class ForeignMessageTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.stackView.layer.cornerRadius = 20
+        self.selectionStyle = .none
     }
     
     func configureCell(avatarId: Int, text: String?, name: String?) {

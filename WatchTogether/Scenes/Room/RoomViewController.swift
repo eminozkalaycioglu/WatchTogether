@@ -13,12 +13,12 @@ class RoomViewController: WTViewController {
     
     var viewModel: RoomViewModel!
     private let playerVars = [
-        "modestbranding": "1", //
+        "modestbranding": "0", //
         "playsinline": "1", //
         "fs": "1", //
         "controls": "0", //
         "rel": "0",
-        "enablejsapi": "1"
+        "enablejsapi": "0"
     ]
     
     @IBOutlet weak var playerView: YTPlayerView! {
