@@ -63,9 +63,18 @@ class RoomViewController: WTViewController {
     
     override func setup() {
         super.setup()
+        self.registerLoadableViewModel(viewModel: self.viewModel)
         navigation.item.titleView = nil
         navigation.bar.barTintColor = R.color.mainBlueColorDark()!
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.viewModel.addVideoToPlaylist(id: "mL2bHLXrjLQ")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                self.viewModel.addVideoToPlaylist(id: "-bu07lgylek")
+            }
+            
+        }
         
         navigation.item.leftBarButtonItem = UIBarButtonItem(
             image: R.image.backIcon()!,
@@ -113,6 +122,8 @@ class RoomViewController: WTViewController {
         self.viewModel.observeMessages()
         self.viewModel.observeRoomUsers()
         
+        self.viewModel.observeContent()
+        
         self.viewModel.onNewMessagesReceived = { [weak self] in
             DispatchQueue.main.async {
                 self?.testTable.reloadData()
@@ -130,6 +141,15 @@ class RoomViewController: WTViewController {
             }
         }
         
+        self.viewModel.onContentChanged = { [weak self] content in
+            guard let videoID = content.video?.videoId else { return }
+            if self?.lastVideoID != videoID {
+                self?.playVideo(id: videoID)
+            } else {
+                
+            }
+        }
+        
         self.viewModel.onFetchedUserInfos = { [weak self] in
             DispatchQueue.main.async {
                 self?.testTable.reloadData()
@@ -144,9 +164,18 @@ class RoomViewController: WTViewController {
         
         self.viewModel.onShouldStartVideo = { [weak self] videoId in
             DispatchQueue.main.async {
-                self?.playerView.load(withVideoId: videoId, playerVars: self?.playerVars)
+                self?.playVideo(id: videoId)
             }
         }
+    }
+    
+    
+    var lastVideoID: String = ""
+    func playVideo(id: String) {
+        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
+        self.lastVideoID = id
+        //TODO content dğeiştirme fonksiyonu
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,10 +194,11 @@ class RoomViewController: WTViewController {
         self.viewModel.sendMessage(text: messageText)
         self.testField.text?.removeAll()
     }
+    
     @IBAction func playlistButtonTapAction(_ sender: Any) {
-        // Todo playlist
-        PlaylistViewController.showOverCurrentContent(context: self, delegate: self, playlist: [])
+        PlaylistViewController.showOverCurrentContent(context: self, delegate: self, roomId: self.viewModel.roomId)
     }
+    
     @IBAction func playPauseButtonTapAction(_ sender: Any) {
         self.playerView.playerState { (state, _) in
             switch state {
@@ -190,7 +220,13 @@ extension RoomViewController: YTPlayerViewDelegate {
         case .paused:
             self.playPauseButton.setTitle("Başlat", for: .normal)
         case .ended:
-            break
+            print("emintest ended")
+            self.viewModel.manageNextVideo { [weak self] (video) in
+                guard let video = video else { return }
+                print("emintest addContent")
+
+                self?.viewModel.addContentToRoom(video: video)
+            }
         default: break
         }
     }
@@ -277,7 +313,7 @@ extension RoomViewController: PlaylistViewControllerDelegate {
     }
     
     func playlistViewControllerDidSelectVideo(_ controller: PlaylistViewController?, id: String) {
-        PlaylistViewController.hide(context: self, playlistVC: controller)
+//        PlaylistViewController.hide(context: self, playlistVC: controller)
         self.viewModel.addVideoToPlaylist(id: id)
     }
 }

@@ -27,6 +27,8 @@ protocol FirebaseManager {
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void))
     func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func fetchPlaylist(roomId: String, completion: @escaping ((Result<[Video], PresentableError>) -> Void))
+    func fetchContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void))
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
@@ -36,9 +38,11 @@ protocol FirebaseManager {
     func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func deleteRoom(roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func observeRoomAdding(completion: @escaping ((Room?) -> Void))
+    func observePlaylist(roomId: String, completion: @escaping (() -> Void))
     func removeRoomObservers()
     func observeRoomUsers(roomId: String, completion: @escaping (() -> Void))
-    
+    func observeContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void))
+    func observeContentVideo(roomId: String, completion: @escaping (() -> Void))
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
     
@@ -331,6 +335,36 @@ extension WTFirebaseManager {
         }
     }
     
+    func fetchPlaylist(roomId: String, completion: @escaping ((Result<[Video], PresentableError>) -> Void)) {
+        self.dbRef.child("Rooms").child(roomId).child("Playlist").observeSingleEvent(of: .value) { (snapshot) in
+            
+            var playlist: [Video] = []
+            for child in (snapshot.children.allObjects as! [DataSnapshot]) {
+                let value = child.value as? NSDictionary
+                let videoId = value?.value(forKey: "videoId") as? String
+                let title = value?.value(forKey: "title") as? String
+                let thumbnail = value?.value(forKey: "thumbnail") as? String
+                let channel = value?.value(forKey: "channel") as? String
+                let sendTime = value?.value(forKey: "sendTime") as? String
+                playlist.append(
+                    Video(videoId: videoId,
+                        title: title,
+                        thumbnail: thumbnail,
+                        channel: channel,
+                        sendTime: sendTime))
+            }
+            
+            completion(.success(playlist))
+        }
+    }
+    
+    func fetchContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void)) {
+        self.dbRef.child("Rooms").child(roomId).child("Content").observeSingleEvent(of: .value) { (snapshot) in
+            
+            self.getContentFrom(snapshot: snapshot, completion: completion)
+        }
+    }
+
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         
         let dict: [String: Any] = [
@@ -420,8 +454,38 @@ extension WTFirebaseManager {
         })
     }
     
+    func observePlaylist(roomId: String, completion: @escaping (() -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Playlist").observe(.value, with: { (_) in
+            completion()
+        })
+    }
     
+    func observeContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").observe(.value, with: { (snapshot) in
+            self.getContentFrom(snapshot: snapshot) { (result) in
+                switch result {
+                case let .success(content):
+                    if content.video?.videoId != nil {
+                        completion(.success(content))
+                    }
+                case let .failure(error):
+                    completion(.failure(error))
+                }
+            }
+            self.getContentFrom(snapshot: snapshot, completion: completion)
+        })
+    }
 
+    func observeContentVideo(roomId: String, completion: @escaping (() -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").child("Video").observe(.value, with: { (_) in
+            completion()
+        })
+    }
+
+    
     func removeRoomObservers() {
         self.dbRef.child("Rooms").removeAllObservers()
     }
@@ -477,7 +541,7 @@ extension WTFirebaseManager {
             title: videoDict?["title"] as? String,
             thumbnail: videoDict?["thumbnail"] as? String,
             channel: videoDict?["channel"] as? String,
-            duration: videoDict?["duration"] as? Int)
+            sendTime: videoDict?["sendTime"] as? String)
         
         //MARK: - Playlist
         let playlistSnapshot = snapshot.childSnapshot(forPath: "Playlist")
@@ -487,13 +551,13 @@ extension WTFirebaseManager {
             let title = value?.value(forKey: "title") as? String
             let thumbnail = value?.value(forKey: "thumbnail") as? String
             let channel = value?.value(forKey: "channel") as? String
-            let duration = value?.value(forKey: "duration") as? Int
+            let sendTime = value?.value(forKey: "sendTime") as? String
             playlist.append(
                 Video(videoId: videoId,
                     title: title,
                     thumbnail: thumbnail,
                     channel: channel,
-                    duration: duration))
+                    sendTime: sendTime))
         }
         
         //MARK: - Messages
@@ -515,6 +579,26 @@ extension WTFirebaseManager {
         
         return room
         
+    }
+    
+    func getContentFrom(snapshot: DataSnapshot, completion: @escaping ((Result<Content, PresentableError>) -> Void)) {
+        let content = Content()
+        guard let contentDict = snapshot.value as? [String: Any] else {
+            completion(.failure(.init(message: "Parse Error")))
+            return
+        }
+        
+        content.currentTime = contentDict["currentTime"] as? Int
+        content.isPlaying = contentDict["isPlaying"] as? Bool
+        
+        let videoDict = snapshot.childSnapshot(forPath: "Video").value as? [String: Any]
+        content.video = Video(
+            videoId: videoDict?["videoId"] as? String,
+            title: videoDict?["title"] as? String,
+            thumbnail: videoDict?["thumbnail"] as? String,
+            channel: videoDict?["channel"] as? String,
+            sendTime: videoDict?["sendTime"] as? String)
+        completion(.success(content))
     }
 
 }
@@ -562,14 +646,14 @@ class Video: NSObject {
     var title: String?
     var thumbnail: String?
     var channel: String?
-    var duration: Int?
+    var sendTime: String?
     
-    init(videoId: String? = nil, title: String? = nil, thumbnail: String? = nil, channel: String? = nil, duration: Int? = nil) {
+    init(videoId: String? = nil, title: String? = nil, thumbnail: String? = nil, channel: String? = nil, sendTime: String? = nil) {
         self.videoId = videoId
         self.title = title
         self.thumbnail = thumbnail
         self.channel = channel
-        self.duration = duration
+        self.sendTime = sendTime
     }
 }
 

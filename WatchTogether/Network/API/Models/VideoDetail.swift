@@ -33,7 +33,7 @@ struct Thumbnail: Codable {
     let defaultField: Default
 
     enum CodingKeys: String, CodingKey {
-        case defaultField = "default"
+        case defaultField = "medium"
     }
 
 }

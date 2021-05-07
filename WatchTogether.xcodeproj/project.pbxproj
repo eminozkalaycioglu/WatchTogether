@@ -70,6 +70,7 @@
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
 		4870CBFF262F78A5006D0B62 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */; };
 		4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */; };
+		48867E182645E295003F7139 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48867E172645E295003F7139 /* DateFormatter+Extension.swift */; };
 		48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5A2620B0E200321ECF /* AppDelegate.swift */; };
 		48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5C2620B0E200321ECF /* SceneDelegate.swift */; };
 		48B59B642620B0E400321ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B632620B0E400321ECF /* Assets.xcassets */; };
@@ -174,6 +175,7 @@
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCollectionViewCell.xib; sourceTree = "<group>"; };
+		48867E172645E295003F7139 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		48B59B572620B0E200321ECF /* WatchTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B59B5A2620B0E200321ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B59B5C2620B0E200321ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				48B59B7D2620B3CF00321ECF /* String+Extension.swift */,
 				48075CBD26242AE1001B62A1 /* Error+Extension.swift */,
 				48673B39263318880015E035 /* UIImage+Extensions.swift */,
+				48867E172645E295003F7139 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				48673B4826357F730015E035 /* WTCardStackView.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
 				48FB0085263F158100343986 /* UsersViewController.swift in Sources */,
+				48867E182645E295003F7139 /* DateFormatter+Extension.swift in Sources */,
 				48FB0015263D573600343986 /* RoomTVC.swift in Sources */,
 				48FB007F263EC64A00343986 /* MoreUserCVC.swift in Sources */,
 				48FB00B4263F1AB700343986 /* UsersViewModel.swift in Sources */,

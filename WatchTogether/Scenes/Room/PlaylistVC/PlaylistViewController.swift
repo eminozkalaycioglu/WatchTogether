@@ -14,12 +14,30 @@ protocol PlaylistViewControllerDelegate: class {
 
 class PlaylistViewController: WTViewController {
 
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     weak var delegate: PlaylistViewControllerDelegate?
     
     var viewModel: PlaylistViewModel!
     
     override func setup() {
         super.setup()
+        self.viewModel.getPlaylist()
+    }
+    
+    override func registerEvents() {
+        super.registerEvents()
+        
+        self.viewModel.observePlaylist()
+        self.viewModel.onFetchedPlaylist = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     @IBAction func closeButtonTapAction(_ sender: Any) {
@@ -33,6 +51,25 @@ class PlaylistViewController: WTViewController {
     
 }
 
+extension PlaylistViewController: UITableViewDelegate {
+    
+}
+
+extension PlaylistViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.viewModel.playlist.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        let data = self.viewModel.playlist[indexPath.row]
+        cell.textLabel?.text = data.title
+        cell.detailTextLabel?.text = data.channel
+        return cell
+    }
+}
+
 extension PlaylistViewController: SearchWebViewViewControllerDelegate {
     func searchWebViewViewControllerDidSelectVideo(_ controller: SearchWebViewViewController?, id: String) {
         controller?.navigationController?.popViewController(animated: true)
@@ -41,14 +78,14 @@ extension PlaylistViewController: SearchWebViewViewControllerDelegate {
 }
 
 extension PlaylistViewController {
-    static func showOverCurrentContent(context: UIViewController, delegate: PlaylistViewControllerDelegate, playlist: [Video]) {
+    static func showOverCurrentContent(context: UIViewController, delegate: PlaylistViewControllerDelegate, roomId: String) {
         
         let grayview = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         grayview.tag = 364636
         grayview.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         context.view.addSubview(grayview)
         
-        let vc = SF.makePlaylistVC(playlist: playlist)
+        let vc = SF.makePlaylistVC(roomId: roomId)
         vc.delegate = delegate
         
         let navHeight = context.navigationController?.navigationBar.frame.height ?? 0
@@ -102,10 +139,37 @@ extension PlaylistViewController {
 }
 
 class PlaylistViewModel: BaseViewModel {
-    private var playlist: [Video]
+    private var firebaseMgr: FirebaseManager
+    private var roomId: String
     
-    init(playlist: [Video]) {
-        self.playlist = playlist
+    var onFetchedPlaylist: (() -> Void)?
+    var playlist: [Video] = []
+    
+    init(firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
+         roomId: String) {
+        self.firebaseMgr = firebaseMgr
+        self.roomId = roomId
+    }
+    
+    func observePlaylist() {
+        self.firebaseMgr.observePlaylist(roomId: self.roomId) { [weak self] in
+            self?.getPlaylist()
+        }
+    }
+    
+    func getPlaylist() {
+        self.loadDidStart()
+        self.firebaseMgr.fetchPlaylist(roomId: roomId) { (result) in
+            switch result {
+            case let .success(playlist):
+                self.loadDidFinish()
+                self.playlist = playlist.sorted(by: { DateFormatter.wtDateFormatter.date(from: $0.sendTime ?? "") ?? Date() < DateFormatter.wtDateFormatter.date(from: $1.sendTime ?? "") ?? Date() })
+               
+                self.onFetchedPlaylist?()
+            case let .failure(error):
+                self.loadDidFinishWithError(error: error)
+            }
+        }
     }
 }
 

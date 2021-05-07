@@ -75,9 +75,9 @@ final class SceneFactory {
         return viewController
     }
     
-    public static func makePlaylistVC(playlist: [Video]) -> PlaylistViewController {
+    public static func makePlaylistVC(roomId: String) -> PlaylistViewController {
         let viewController = PlaylistViewController()
-        let viewModel = PlaylistViewModel(playlist: playlist)
+        let viewModel = PlaylistViewModel(roomId: roomId)
         viewController.viewModel = viewModel
         return viewController
     }

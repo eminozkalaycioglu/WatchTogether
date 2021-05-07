@@ -166,8 +166,11 @@ final class RoomViewModel: BaseViewModel {
             }
         }
     }
+    
     var onShouldStartVideo: ((String) -> Void)?
+    
     func addVideoToPlaylist(id: String) {
+        guard self.currentUserIsOwner() else { return }
         self.youtubeService.getVideoDetail(id) { (result) in
             switch result {
             case let .success(videoDetail):
@@ -177,7 +180,7 @@ final class RoomViewModel: BaseViewModel {
                     title: item?.snippet.title,
                     thumbnail: item?.snippet.thumbnails.defaultField.url,
                     channel: item?.snippet.channelTitle,
-                    duration: 0)
+                    sendTime: DateFormatter.wtDateFormatter.string(from: Date()))
                 
                 self.firebaseMgr.addVideoToRoomPlaylist(roomId: self.roomId, video: video) { (result) in
                     switch result {
@@ -185,11 +188,11 @@ final class RoomViewModel: BaseViewModel {
                         self.loadDidFinish()
                         self.fetchRoom {
                             if self.room?.content?.video?.title == nil {
-                                self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { _ in
-                                    self.onShouldStartVideo?(id)
-                                }
+                                self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in }
                             }
+                            
                         }
+                        
                     case let .failure(error):
                         self.loadDidFinishWithError(error: error)
                     }
@@ -202,7 +205,50 @@ final class RoomViewModel: BaseViewModel {
         }
     }
     
+    func addContentToRoom(video: Video) {
+        self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in }
+    }
     
+    var onContentChanged: ((Content) -> Void)?
+    
+    func observeContent() {
+        self.firebaseMgr.observeContent(roomId: self.roomId) { (result) in
+            switch result {
+            case let .success(content):
+                self.onContentChanged?(content)
+            case .failure: break
+                
+            }
+        }
+    }
+    
+    func manageNextVideo(completion: @escaping ((Video?) -> Void)) {
+        guard self.currentUserIsOwner() else { return }
+        self.firebaseMgr.fetchPlaylist(roomId: self.roomId) { (result) in
+            switch result {
+            case let .success(playlist):
+                var sortedPlaylist = playlist
+                sortedPlaylist.sort(by: { DateFormatter.wtDateFormatter.date(from: $0.sendTime ?? "") ?? Date() < DateFormatter.wtDateFormatter.date(from: $1.sendTime ?? "") ?? Date() })
+                self.firebaseMgr.fetchContent(roomId: self.roomId) { (result) in
+                    switch result {
+                    case let .success(content):
+                        let videoId = content.video?.videoId ?? ""
+                        let currentIndex = sortedPlaylist.firstIndex(where: {$0.videoId == videoId}) ?? 0
+                        if currentIndex + 1 == playlist.count {
+                            completion(sortedPlaylist.first)
+                        } else {
+                            completion(sortedPlaylist[currentIndex + 1])
+                        }
+                    case .failure: break
+                    }
+                }
+                
+                
+            case let .failure(error):
+                self.loadDidFinishWithError(error: error)
+            }
+        }
+    }
     
     func isMyMessage(_ message: Message) -> Bool {
         self.sessionMgr.user?.userId == message.ownerId
@@ -224,12 +270,3 @@ final class RoomViewModel: BaseViewModel {
         self.sessionMgr.user?.userId ?? ""
     }
 }
-
-extension DateFormatter {
-    static var wtDateFormatter: DateFormatter {
-        let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        return df
-    }
-}
-
