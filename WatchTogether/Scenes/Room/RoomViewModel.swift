@@ -24,6 +24,9 @@ final class RoomViewModel: BaseViewModel {
     var onFetchedUserInfos: (() -> Void)?
     var onShouldBackToTabBar: (() -> Void)?
     var onUsersChanged: (() -> Void)?
+    var onJoinedNewUser: (() -> Void)?
+    var onShouldStartVideo: ((String) -> Void)?
+    var onContentChanged: ((Content) -> Void)?
 
     init(roomId: String,
          firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
@@ -72,39 +75,6 @@ final class RoomViewModel: BaseViewModel {
                 self.loadDidFinishWithError(error: error)
             }
         }
-    }
-    
-    func observeMessages() {
-
-        self.firebaseMgr.observeMessages(roomId: self.roomId) { (message) in
-            self.messages.append(message)
-            self.onNewMessagesReceived?()
-        }
-    }
-    
-    func observeRoomDeleting() {
-        
-//        guard let uid = self.sessionMgr.user?.userId,
-//              let roomOwnerId = self.room.ownerId,
-//              uid != roomOwnerId else { return }
-        
-        self.firebaseMgr.observeRoomDeleting { [weak self] (room) in
-
-            if room?.roomId == self?.roomId {
-                self?.onShouldBackToTabBar?()
-            }
-        }
-    }
-    
-    func observeRoomUsers() {
-        self.firebaseMgr.observeRoomUsers(roomId: self.roomId) {
-            self.fetchRoom()
-            self.onUsersChanged?()
-        }
-    }
-    
-    func removeRoomObservers() {
-        self.firebaseMgr.removeRoomObservers()
     }
     
     private func fetchTotalUserInfos() {
@@ -166,9 +136,7 @@ final class RoomViewModel: BaseViewModel {
             }
         }
     }
-    
-    var onShouldStartVideo: ((String) -> Void)?
-    
+        
     func addVideoToPlaylist(id: String) {
         guard self.currentUserIsOwner() else { return }
         self.youtubeService.getVideoDetail(id) { (result) in
@@ -206,20 +174,20 @@ final class RoomViewModel: BaseViewModel {
     }
     
     func addContentToRoom(video: Video) {
+        guard self.currentUserIsOwner() else { return }
         self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in }
     }
     
-    var onContentChanged: ((Content) -> Void)?
+    func setIsPlaying(_ status: Bool) {
+        guard self.currentUserIsOwner() else { return }
+
+        self.firebaseMgr.setPlaying(roomId: self.roomId, state: status)
+    }
     
-    func observeContent() {
-        self.firebaseMgr.observeContent(roomId: self.roomId) { (result) in
-            switch result {
-            case let .success(content):
-                self.onContentChanged?(content)
-            case .failure: break
-                
-            }
-        }
+    func setCurrentTime(_ second: Float) {
+        guard self.currentUserIsOwner() else { return }
+
+        self.firebaseMgr.setCurrentTime(roomId: self.roomId, second: second)
     }
     
     func manageNextVideo(completion: @escaping ((Video?) -> Void)) {
@@ -250,6 +218,13 @@ final class RoomViewModel: BaseViewModel {
         }
     }
     
+    
+}
+
+
+//MARK: - Util Functions
+extension RoomViewModel {
+    
     func isMyMessage(_ message: Message) -> Bool {
         self.sessionMgr.user?.userId == message.ownerId
     }
@@ -269,4 +244,60 @@ final class RoomViewModel: BaseViewModel {
     func getUserID() -> String {
         self.sessionMgr.user?.userId ?? ""
     }
+}
+
+
+//MARK: - Observe Functions
+extension RoomViewModel {
+    
+    func observeContent() {
+        self.firebaseMgr.observeContent(roomId: self.roomId) { [weak self] (result) in
+            switch result {
+            case let .success(content):
+                self?.onContentChanged?(content)
+            case .failure: break
+                
+            }
+        }
+    }
+    
+    func observeMessages() {
+
+        self.firebaseMgr.observeMessages(roomId: self.roomId) { [weak self] (message) in
+            self?.messages.append(message)
+            self?.onNewMessagesReceived?()
+        }
+    }
+    
+    func observeRoomDeleting() {
+        
+//        guard let uid = self.sessionMgr.user?.userId,
+//              let roomOwnerId = self.room.ownerId,
+//              uid != roomOwnerId else { return }
+        
+        self.firebaseMgr.observeRoomDeleting { [weak self] (room) in
+
+            if room?.roomId == self?.roomId {
+                self?.onShouldBackToTabBar?()
+            }
+        }
+    }
+    
+    func observeRoomUsers() {
+        self.firebaseMgr.observeRoomUsers(roomId: self.roomId) { [weak self] in
+            self?.fetchRoom()
+            self?.onUsersChanged?()
+        }
+    }
+    
+    func observeNewRoomUsers() {
+        self.firebaseMgr.observeNewRoomUsers(roomId: self.roomId) { [weak self] in
+            self?.onJoinedNewUser?()
+        }
+    }
+    
+    func removeRoomObservers() {
+        self.firebaseMgr.removeRoomObservers()
+    }
+    
 }

@@ -12,6 +12,7 @@ target 'WatchTogether' do
   pod 'EachNavigationBar'
   pod 'MarqueeLabel'
   pod 'youtube-ios-player-helper'
+  pod 'Kingfisher', '~> 6.0'
   
   #Util Pods
   pod 'R.swift'

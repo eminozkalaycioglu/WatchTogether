@@ -67,15 +67,15 @@ class RoomViewController: WTViewController {
         navigation.item.titleView = nil
         navigation.bar.barTintColor = R.color.mainBlueColorDark()!
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.viewModel.addVideoToPlaylist(id: "mL2bHLXrjLQ")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-                self.viewModel.addVideoToPlaylist(id: "-bu07lgylek")
-            }
-            
-        }
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.viewModel.addVideoToPlaylist(id: "mL2bHLXrjLQ")
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+//                self.viewModel.addVideoToPlaylist(id: "-bu07lgylek")
+//            }
+//            
+//        }
+//        
         navigation.item.leftBarButtonItem = UIBarButtonItem(
             image: R.image.backIcon()!,
             style: .plain,
@@ -118,10 +118,20 @@ class RoomViewController: WTViewController {
     override func registerEvents() {
         super.registerEvents()
         
-        self.viewModel.fetchRoom()
+        self.viewModel.fetchRoom { [weak self] in
+//            DispatchQueue.main.async {
+//                print("emintest fetchedRoom: currentTime:", self?.viewModel.room?.content?.currentTime)
+//
+//                if let videoId = self?.viewModel.room?.content?.video?.videoId,
+//                   let currentTime = self?.viewModel.room?.content?.currentTime {
+//                    self?.loadVideoFrom(id: videoId, currentTime: currentTime)
+//                }
+//            }
+            
+        }
         self.viewModel.observeMessages()
         self.viewModel.observeRoomUsers()
-        
+        self.viewModel.observeNewRoomUsers()
         self.viewModel.observeContent()
         
         self.viewModel.onNewMessagesReceived = { [weak self] in
@@ -142,12 +152,40 @@ class RoomViewController: WTViewController {
         }
         
         self.viewModel.onContentChanged = { [weak self] content in
+            print("emintest contentChanged: currentTime:", content.currentTime)
             guard let videoID = content.video?.videoId else { return }
-            if self?.lastVideoID != videoID {
-                self?.playVideo(id: videoID)
+            if let lastVideoID = self?.lastVideoID {
+                if self?.lastVideoID != videoID {
+//                    self?.loadVideo(id: videoID)
+                    self?.loadVideoFrom(id: videoID, currentTime: content.currentTime ?? 0)
+                } else {
+                    if content.isPlaying == true {
+                        self?.playerView.playVideo()
+                    } else {
+                        self?.playerView.pauseVideo()
+                    }
+                    if let currentTime = content.currentTime {
+                        self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
+
+                    }
+                }
             } else {
-                
+                self?.loadVideo(id: videoID)
             }
+//            if self?.lastVideoID != videoID {
+//                self?.loadVideo(id: videoID)
+////                self?.loadVideoFrom(id: videoID, currentTime: content.currentTime ?? 0)
+//            } else {
+//                if content.isPlaying == true {
+//                    self?.playerView.playVideo()
+//                } else {
+//                    self?.playerView.pauseVideo()
+//                }
+//                if let currentTime = content.currentTime {
+//                    self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
+//
+//                }
+//            }
         }
         
         self.viewModel.onFetchedUserInfos = { [weak self] in
@@ -158,24 +196,26 @@ class RoomViewController: WTViewController {
             }
         }
         
-        self.viewModel.onUsersChanged = { [weak self] in
-            
+        self.viewModel.onJoinedNewUser = { [weak self] in
+            self?.playerView.currentTime({ (second, error) in
+                if error == nil {
+                    self?.viewModel.setCurrentTime(second)
+                }
+            })
         }
-        
-        self.viewModel.onShouldStartVideo = { [weak self] videoId in
-            DispatchQueue.main.async {
-                self?.playVideo(id: videoId)
-            }
-        }
+
     }
     
     
-    var lastVideoID: String = ""
-    func playVideo(id: String) {
+    var lastVideoID: String? = nil
+    func loadVideo(id: String) {
         self.playerView.load(withVideoId: id, playerVars: self.playerVars)
         self.lastVideoID = id
-        //TODO content dğeiştirme fonksiyonu
-        
+    }
+    
+    func loadVideoFrom(id: String, currentTime: Float) {
+        self.playerView.loadVideo(byId: id, startSeconds: currentTime)
+        self.lastVideoID = id
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,6 +229,10 @@ class RoomViewController: WTViewController {
     }
     
     @IBAction func testbuttontap(_ sender: Any) {
+        self.playerView.currentTime { (fl, _) in
+            WTAlert.show(self, title: "Current", message: fl.description, buttons: nil)
+
+        }
         guard let messageText = self.testField.text,
               messageText.count > 0 else { return }
         self.viewModel.sendMessage(text: messageText)
@@ -204,8 +248,16 @@ class RoomViewController: WTViewController {
             switch state {
             case .playing:
                 self.playerView.pauseVideo()
+                self.viewModel.setIsPlaying(false)
+                self.playerView.currentTime { (currentTime, _) in
+                    self.viewModel.setCurrentTime(currentTime)
+                }
             case .paused:
                 self.playerView.playVideo()
+                self.viewModel.setIsPlaying(true)
+                self.playerView.currentTime { (currentTime, _) in
+                    self.viewModel.setCurrentTime(currentTime)
+                }
             default: break
             }
         }
@@ -220,11 +272,8 @@ extension RoomViewController: YTPlayerViewDelegate {
         case .paused:
             self.playPauseButton.setTitle("Başlat", for: .normal)
         case .ended:
-            print("emintest ended")
             self.viewModel.manageNextVideo { [weak self] (video) in
                 guard let video = video else { return }
-                print("emintest addContent")
-
                 self?.viewModel.addContentToRoom(video: video)
             }
         default: break
@@ -233,6 +282,7 @@ extension RoomViewController: YTPlayerViewDelegate {
     
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         playerView.playVideo()
+        self.viewModel.setIsPlaying(true)
     }
     
 }

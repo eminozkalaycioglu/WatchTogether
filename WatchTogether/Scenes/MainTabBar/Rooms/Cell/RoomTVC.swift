@@ -7,6 +7,7 @@
 
 import UIKit
 import MarqueeLabel
+import Kingfisher
 
 class RoomTVC: UITableViewCell {
     
@@ -42,6 +43,10 @@ class RoomTVC: UITableViewCell {
     }
     
     func configureCell(room: Room?) {
+        if let thumbnail = room?.content?.video?.thumbnail {
+            self.thumbnailImageView.kf.setImage(with: URL(string: thumbnail))
+        }
+        
         self.roomNameLabel.text = room?.roomName
         self.videoTitleLabel.text = room?.content?.video?.title
         self.userCountLabel.text = "\(room?.users?.count ?? 0)"

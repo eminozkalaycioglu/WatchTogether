@@ -32,12 +32,15 @@ protocol FirebaseManager {
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func setPlaying(roomId: String, state: Bool)
+    func setCurrentTime(roomId: String, second: Float)
     func observeMessages(roomId: String, completion: @escaping ((Message) -> Void))
     func observeRoomDeleting(completion: @escaping ((Room?) -> Void))
     func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void))
     func exitRoom(uid: String, roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func deleteRoom(roomId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func observeRoomAdding(completion: @escaping ((Room?) -> Void))
+    func observeNewRoomUsers(roomId: String, completion: @escaping (() -> Void))
     func observePlaylist(roomId: String, completion: @escaping (() -> Void))
     func removeRoomObservers()
     func observeRoomUsers(roomId: String, completion: @escaping (() -> Void))
@@ -368,7 +371,7 @@ extension WTFirebaseManager {
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         
         let dict: [String: Any] = [
-            "currentTime": 0,
+            "currentTime": Float(0.0),
             "isPlaying": false
         ]
         
@@ -388,6 +391,14 @@ extension WTFirebaseManager {
             
         }
         
+    }
+    
+    func setPlaying(roomId: String, state: Bool) {
+        self.dbRef.child("Rooms").child(roomId).child("Content").updateChildValues(["isPlaying": state])
+    }
+
+    func setCurrentTime(roomId: String, second: Float) {
+        self.dbRef.child("Rooms").child(roomId).child("Content").updateChildValues(["currentTime": second])
     }
     
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
@@ -435,6 +446,14 @@ extension WTFirebaseManager {
         
         self.dbRef.child("Rooms").child(roomId).child("Users").observe(.value) { (_) in
             print("emintest observe room users changed")
+            completion()
+        }
+
+    }
+    
+    func observeNewRoomUsers(roomId: String, completion: @escaping (() -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Users").observe(.childAdded) { (_) in
             completion()
         }
 
@@ -532,7 +551,7 @@ extension WTFirebaseManager {
         //MARK: - Content
         let contentSnapshot = snapshot.childSnapshot(forPath: "Content")
         let contentDict = contentSnapshot.value as? [String: Any]
-        content.currentTime = contentDict?["currentTime"] as? Int
+        content.currentTime = contentDict?["currentTime"] as? Float
         content.isPlaying = contentDict?["isPlaying"] as? Bool
         
         let videoDict = contentSnapshot.childSnapshot(forPath: "Video").value as? [String: Any]
@@ -588,7 +607,7 @@ extension WTFirebaseManager {
             return
         }
         
-        content.currentTime = contentDict["currentTime"] as? Int
+        content.currentTime = contentDict["currentTime"] as? Float
         content.isPlaying = contentDict["isPlaying"] as? Bool
         
         let videoDict = snapshot.childSnapshot(forPath: "Video").value as? [String: Any]
@@ -660,10 +679,10 @@ class Video: NSObject {
 class Content {
     
     var video: Video?
-    var currentTime: Int?
+    var currentTime: Float?
     var isPlaying: Bool?
     
-    init(video: Video? = nil, currentTime: Int? = nil, isPlaying: Bool? = nil) {
+    init(video: Video? = nil, currentTime: Float? = nil, isPlaying: Bool? = nil) {
         self.video = video
         self.currentTime = currentTime
         self.isPlaying = isPlaying

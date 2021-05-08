@@ -126,8 +126,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "sendMessage(text:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,22 +167,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C58C518A-1358-4D8C-991A-AAACEE1A9858"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "observeRoomDeleting()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E2B98AFA-7192-4416-8EFE-8D1174BE1BE9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -190,8 +174,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "exitRoom(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,25 +190,9 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "fetchRoom(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EF2C3AD4-32EE-4BBC-AACB-CDEE2F92D752"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "observeRoomUsers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -238,8 +206,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "fetchRoom(completion:)"
             landmarkType = "7">
             <Locations>
@@ -286,8 +254,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "registerEvents()"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,10 +270,10 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "RoomViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -318,9 +286,9 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "setCollectionViewWidth(cellCount:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -334,10 +302,10 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "RoomViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -350,8 +318,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,9 +334,9 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "playlistViewControllerShouldClose(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -382,8 +350,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "registerEvents()"
             landmarkType = "7">
          </BreakpointContent>
@@ -392,22 +360,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BAB80584-1DAB-4CC8-B20F-61A25BB3C739"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "fetchRoom(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3575CB7F-09C9-4132-9FBB-72C8936C8049"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -423,6 +375,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "3575CB7F-09C9-4132-9FBB-72C8936C8049"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "fetchRoom(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "B6CF272E-6149-4E19-AA60-4B275C178B39"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -430,8 +398,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "fetchTotalUserInfos()"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +414,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "fetchTotalUserInfos()"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,8 +430,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "fetchTotalUserInfos()"
             landmarkType = "7">
          </BreakpointContent>
@@ -478,8 +446,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "fetchTotalUserInfos()"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +462,8 @@
             filePath = "WatchTogether/Network/Firebase/FirebaseManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
             landmarkName = "observeRoomUsers(roomId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,9 +494,9 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "playerView(_:didChangeTo:)"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "playerViewDidBecomeReady(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -590,10 +558,10 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "playerView(_:didChangeTo:)"
-            landmarkType = "7">
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "RoomViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -606,10 +574,10 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "playerView(_:didChangeTo:)"
-            landmarkType = "7">
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -622,8 +590,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "manageNextVideo(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -638,13 +606,13 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "manageNextVideo(completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "678F1B02-B69D-484C-BBA1-D81C291A53EB - b6e1fd07c250e9da"
+                  uuid = "678F1B02-B69D-484C-BBA1-D81C291A53EB - b6e1fd07c250eddd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -654,12 +622,12 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "228"
-                  endingLineNumber = "228"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
                   offsetFromSymbolStart = "154">
                </Location>
                <Location
-                  uuid = "678F1B02-B69D-484C-BBA1-D81C291A53EB - b6e1fd07c250e9da"
+                  uuid = "678F1B02-B69D-484C-BBA1-D81C291A53EB - b6e1fd07c250eddd"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -669,8 +637,8 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "228"
-                  endingLineNumber = "228"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
                   offsetFromSymbolStart = "189">
                </Location>
             </Locations>
@@ -686,10 +654,10 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "playerView(_:didChangeTo:)"
-            landmarkType = "7">
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "RoomViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -702,13 +670,13 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "manageNextVideo(completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DBC1D6CF-8057-4A6C-BE9D-3DA6E23EE503 - b6e1fd07c250e99c"
+                  uuid = "DBC1D6CF-8057-4A6C-BE9D-3DA6E23EE503 - b6e1fd07c250ed9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -718,12 +686,12 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
                   offsetFromSymbolStart = "316">
                </Location>
                <Location
-                  uuid = "DBC1D6CF-8057-4A6C-BE9D-3DA6E23EE503 - 7a016c837e655a95"
+                  uuid = "DBC1D6CF-8057-4A6C-BE9D-3DA6E23EE503 - 7a016c837e655e96"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -733,8 +701,8 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
                   offsetFromSymbolStart = "225">
                </Location>
             </Locations>
@@ -750,13 +718,13 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "manageNextVideo(completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "85A82DA3-EF0B-4E08-80A2-C16B22D82A65 - b6e1fd07c250e9bf"
+                  uuid = "85A82DA3-EF0B-4E08-80A2-C16B22D82A65 - b6e1fd07c250edbe"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -766,12 +734,12 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
                   offsetFromSymbolStart = "492">
                </Location>
                <Location
-                  uuid = "85A82DA3-EF0B-4E08-80A2-C16B22D82A65 - 9f736d95f647f713"
+                  uuid = "85A82DA3-EF0B-4E08-80A2-C16B22D82A65 - 9f736d95f647f312"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -781,9 +749,9 @@
                   urlString = "file:///Users/eminozkalaycioglu/Desktop/WatchTogether/WatchTogether/Scenes/Room/RoomViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "229"
-                  endingLineNumber = "229"
-                  offsetFromSymbolStart = "228">
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "195">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -798,8 +766,8 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "manageNextVideo(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,9 +782,73 @@
             filePath = "WatchTogether/Scenes/Room/RoomViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "manageNextVideo(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4B2F12E-820B-43CE-BFA4-BAAF6275EC7B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E67B478-2F3B-48C0-9D9F-AFE6BA89EB6D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "registerEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46B1B284-F32D-4031-A278-8BB0EF81D8DC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "registerEvents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "721A0F03-40F4-47AD-9D81-67344173BB7A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WatchTogether/Scenes/Room/RoomViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "registerEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
