@@ -20,6 +20,8 @@ class RoomViewController: WTViewController {
         "rel": "0",
         "enablejsapi": "0"
     ]
+    private var startSecond: Float = 0
+
     
     @IBOutlet weak var playerView: YTPlayerView! {
         didSet {
@@ -118,21 +120,16 @@ class RoomViewController: WTViewController {
     override func registerEvents() {
         super.registerEvents()
         
-        self.viewModel.fetchRoom { [weak self] in
-//            DispatchQueue.main.async {
-//                print("emintest fetchedRoom: currentTime:", self?.viewModel.room?.content?.currentTime)
-//
-//                if let videoId = self?.viewModel.room?.content?.video?.videoId,
-//                   let currentTime = self?.viewModel.room?.content?.currentTime {
-//                    self?.loadVideoFrom(id: videoId, currentTime: currentTime)
-//                }
-//            }
-            
-        }
+        self.viewModel.fetchRoom()
+        
+        
         self.viewModel.observeMessages()
         self.viewModel.observeRoomUsers()
         self.viewModel.observeNewRoomUsers()
-        self.viewModel.observeContent()
+//        self.viewModel.observeContent()
+        self.viewModel.observeVideo()
+        self.viewModel.observeIsPlaying()
+        self.viewModel.observeCurrentTime()
         
         self.viewModel.onNewMessagesReceived = { [weak self] in
             DispatchQueue.main.async {
@@ -151,41 +148,64 @@ class RoomViewController: WTViewController {
             }
         }
         
-        self.viewModel.onContentChanged = { [weak self] content in
-            print("emintest contentChanged: currentTime:", content.currentTime)
-            guard let videoID = content.video?.videoId else { return }
-            if let lastVideoID = self?.lastVideoID {
-                if self?.lastVideoID != videoID {
-//                    self?.loadVideo(id: videoID)
-                    self?.loadVideoFrom(id: videoID, currentTime: content.currentTime ?? 0)
-                } else {
-                    if content.isPlaying == true {
-                        self?.playerView.playVideo()
-                    } else {
-                        self?.playerView.pauseVideo()
-                    }
-                    if let currentTime = content.currentTime {
-                        self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
-
-                    }
-                }
-            } else {
-                self?.loadVideo(id: videoID)
-            }
-//            if self?.lastVideoID != videoID {
-//                self?.loadVideo(id: videoID)
-////                self?.loadVideoFrom(id: videoID, currentTime: content.currentTime ?? 0)
-//            } else {
-//                if content.isPlaying == true {
-//                    self?.playerView.playVideo()
-//                } else {
-//                    self?.playerView.pauseVideo()
-//                }
-//                if let currentTime = content.currentTime {
-//                    self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
+//        self.viewModel.onContentChanged = { [weak self] content in
 //
+//            print("emintest contentChanged: currentTime:", content.currentTime)
+//            guard let videoID = content.video?.videoId else { return }
+//            if let lastVideoID = self?.lastVideoID {
+//                print("emintest lastvideoid var")
+//                if self?.lastVideoID != videoID {
+//                    print("emintest lastvideoid ile videoid aynı değil")
+//
+//                    self?.loadVideo(id: videoID)
+//                } else {
+//                    print("emintest lastvideoid ile videoid aynı")
+//
+//                    if content.isPlaying == true {
+//                        self?.playerView.playVideo()
+//                        print("emintest playing")
+//
+//                    } else {
+//                        self?.playerView.pauseVideo()
+//                    }
+//                    if let currentTime = content.currentTime {
+//                        self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
+//
+//                    }
 //                }
+//            } else {
+//                print("emintest lastvideoid yok current: \(content.currentTime)")
+//
+//                self?.loadWithCurrentTime(id: videoID, currentTime: content.currentTime ?? 0)
 //            }
+//        }
+        
+        self.viewModel.onVideoChanged = { [weak self] (video, currentTime) in
+            
+            guard let videoID = video.videoId else { return }
+//            print("emintest2 : onVideoChanged ")
+            self?.loadWithCurrentTime(id: video.videoId ?? "", currentTime: currentTime)
+
+        }
+        
+        self.viewModel.onCurrentTimeChanged = { [weak self] currentTime in
+            print("emintest2 : onCurrentTimeChanged ")
+            
+            self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
+
+        }
+        
+        self.viewModel.onIsPlayingChanged = { [weak self] isPlaying in
+            print("emintest2 : onIsPlayingChanged ")
+            
+            if isPlaying {
+                self?.playerView.playVideo()
+                print("emintest playing")
+
+            } else {
+                self?.playerView.pauseVideo()
+            }
+
         }
         
         self.viewModel.onFetchedUserInfos = { [weak self] in
@@ -206,6 +226,11 @@ class RoomViewController: WTViewController {
 
     }
     
+    func loadWithCurrentTime(id: String, currentTime: Float) {
+        self.startSecond = currentTime
+        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
+        self.lastVideoID = id
+    }
     
     var lastVideoID: String? = nil
     func loadVideo(id: String) {
@@ -213,10 +238,6 @@ class RoomViewController: WTViewController {
         self.lastVideoID = id
     }
     
-    func loadVideoFrom(id: String, currentTime: Float) {
-        self.playerView.loadVideo(byId: id, startSeconds: currentTime)
-        self.lastVideoID = id
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -247,16 +268,17 @@ class RoomViewController: WTViewController {
         self.playerView.playerState { (state, _) in
             switch state {
             case .playing:
+                print("tap action playing")
                 self.playerView.pauseVideo()
-                self.viewModel.setIsPlaying(false)
+                
                 self.playerView.currentTime { (currentTime, _) in
-                    self.viewModel.setCurrentTime(currentTime)
+                    self.viewModel.setPlayingAndCurrentTime(status: false, second: currentTime)
                 }
+                
             case .paused:
                 self.playerView.playVideo()
-                self.viewModel.setIsPlaying(true)
                 self.playerView.currentTime { (currentTime, _) in
-                    self.viewModel.setCurrentTime(currentTime)
+                    self.viewModel.setPlayingAndCurrentTime(status: true, second: currentTime)
                 }
             default: break
             }
@@ -281,8 +303,12 @@ extension RoomViewController: YTPlayerViewDelegate {
     }
     
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        playerView.playVideo()
-        self.viewModel.setIsPlaying(true)
+        self.playerView.playVideo()
+//        self.viewModel.setIsPlaying(true)
+        if self.startSecond != 0 {
+            self.playerView.seek(toSeconds: self.startSecond, allowSeekAhead: true)
+        }
+        self.startSecond = 0
     }
     
 }

@@ -27,6 +27,9 @@ final class RoomViewModel: BaseViewModel {
     var onJoinedNewUser: (() -> Void)?
     var onShouldStartVideo: ((String) -> Void)?
     var onContentChanged: ((Content) -> Void)?
+    var onVideoChanged: ((Video, Float) -> Void)?
+    var onIsPlayingChanged: ((Bool) -> Void)?
+    var onCurrentTimeChanged: ((Float) -> Void)?
 
     init(roomId: String,
          firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
@@ -178,6 +181,10 @@ final class RoomViewModel: BaseViewModel {
         self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in }
     }
     
+    func setPlayingAndCurrentTime(status: Bool, second: Float) {
+        guard self.currentUserIsOwner() else { return }
+        self.firebaseMgr.setPlayingAndCurrentTime(roomId: self.roomId, state: status, second: second)
+    }
     func setIsPlaying(_ status: Bool) {
         guard self.currentUserIsOwner() else { return }
 
@@ -251,13 +258,39 @@ extension RoomViewModel {
 extension RoomViewModel {
     
     func observeContent() {
+        print("emintest observeContent ")
         self.firebaseMgr.observeContent(roomId: self.roomId) { [weak self] (result) in
             switch result {
             case let .success(content):
                 self?.onContentChanged?(content)
             case .failure: break
-                
+
             }
+        }
+    }
+    
+    func observeVideo() {
+        self.firebaseMgr.observeContentVideo(roomId: self.roomId) { (video, currentTime) in
+        
+            self.onVideoChanged?(video, currentTime)
+        }
+    }
+    
+    func observeIsPlaying() {
+        self.firebaseMgr.observeContentIsPlaying(roomId: self.roomId) { (isPlaying) in
+            if let isPlaying = isPlaying {
+                self.onIsPlayingChanged?(isPlaying)
+            }
+        }
+        
+    }
+    
+    func observeCurrentTime() {
+        self.firebaseMgr.observeContentCurrentTime(roomId: self.roomId) { (currentTime) in
+            if let currentTime = currentTime {
+                self.onCurrentTimeChanged?(currentTime)
+            }
+            
         }
     }
     

@@ -65,7 +65,10 @@ class RoomsViewController: WTViewController {
             DispatchQueue.main.async {
                 guard let roomId = roomId else { return }
                 let vc = SF.makeRoomVC(roomId: roomId)
-                self?.navigationController?.pushViewController(vc, animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+
+                }
             }
         }
         

@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
 
         AppRouter.configureWithWindow(window, initalViewController: SF.makeSplashVC())
+        
+//        AppRouter.configureWithWindow(window, initalViewController: TestViewController())
 
         if #available(iOS 14.0, *) { } else {
             window.tintColor = R.color.accentColor()!

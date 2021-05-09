@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestViewController" customModule="WatchTogether" customModuleProvider="target">
             <connections>
+                <outlet property="playerView" destination="vYt-To-Ed6" id="iam-gY-aWP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,9 +27,21 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYt-To-Ed6" customClass="YTPlayerView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="400"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="2ty-Zf-iuL"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vYt-To-Ed6" secondAttribute="trailing" id="7aE-oA-lY0"/>
+                <constraint firstItem="vYt-To-Ed6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KUF-Sx-cBj"/>
+                <constraint firstItem="vYt-To-Ed6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="y7C-2O-HAP"/>
+            </constraints>
             <point key="canvasLocation" x="141" y="72"/>
         </view>
     </objects>

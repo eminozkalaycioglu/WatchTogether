@@ -34,6 +34,7 @@ protocol FirebaseManager {
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func setPlaying(roomId: String, state: Bool)
     func setCurrentTime(roomId: String, second: Float)
+    func setPlayingAndCurrentTime(roomId: String, state: Bool, second: Float)
     func observeMessages(roomId: String, completion: @escaping ((Message) -> Void))
     func observeRoomDeleting(completion: @escaping ((Room?) -> Void))
     func fetchRoomUserInfos(ids: [String], completion: @escaping ((Result<[WTUser], PresentableError>)->Void))
@@ -45,7 +46,9 @@ protocol FirebaseManager {
     func removeRoomObservers()
     func observeRoomUsers(roomId: String, completion: @escaping (() -> Void))
     func observeContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void))
-    func observeContentVideo(roomId: String, completion: @escaping (() -> Void))
+    func observeContentCurrentTime(roomId: String, completion: @escaping ((Float?) -> Void))
+    func observeContentIsPlaying(roomId: String, completion: @escaping ((Bool?) -> Void))
+    func observeContentVideo(roomId: String, completion: @escaping ((Video, Float) -> Void))
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
     
@@ -112,7 +115,7 @@ extension WTFirebaseManager {
         
         self.dbRef.child("Users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {
-                completion(.failure(.init(message: "Parse Error")))
+                completion(.failure(.init(message: " fetchUserInfo Parse Error")))
                 return
             }
             
@@ -274,7 +277,7 @@ extension WTFirebaseManager {
         self.dbRef.child("Rooms").child(roomId).observeSingleEvent(of: .value) { (snapshot) in
             
             guard let room = self.fetchRoomFrom(snapshot: snapshot) else {
-                completion(.failure(.init(message: "Parse Error")))
+                completion(.failure(.init(message: " joinRoom Parse Error")))
                 return
             }
             
@@ -319,10 +322,8 @@ extension WTFirebaseManager {
     func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         self.dbRef.child("Rooms").child(roomId).observeSingleEvent(of: .value) { (snapshot) in
             guard let room = self.fetchRoomFrom(snapshot: snapshot) else {
-                completion(.failure(.init(message: "Parse Error")))
                 return
             }
-            
             completion(.success(room))
 
         }
@@ -372,7 +373,8 @@ extension WTFirebaseManager {
         
         let dict: [String: Any] = [
             "currentTime": Float(0.0),
-            "isPlaying": false
+            "isPlaying": true,
+            "Video": video.toDict()
         ]
         
         self.dbRef.child("Rooms").child(roomId).child("Content").setValue(dict) { (firError, _) in
@@ -380,17 +382,19 @@ extension WTFirebaseManager {
                 completion(.failure(firError.presentableError))
                 return
             } else {
-                self.dbRef.child("Rooms").child(roomId).child("Content").child("Video").setValue(video.toDict()) { (videoError, _ )in
-                    if let videoError = videoError {
-                        completion(.failure(videoError.presentableError))
-                    } else {
-                        completion(.success(true))
-                    }
-                }
+                completion(.success(true))
             }
             
         }
         
+    }
+    
+    func setPlayingAndCurrentTime(roomId: String, state: Bool, second: Float) {
+        let dict: [String: Any] = [
+            "isPlaying": state,
+            "currentTime": second
+        ]
+        self.dbRef.child("Rooms").child(roomId).child("Content").updateChildValues(dict)
     }
     
     func setPlaying(roomId: String, state: Bool) {
@@ -496,11 +500,41 @@ extension WTFirebaseManager {
             self.getContentFrom(snapshot: snapshot, completion: completion)
         })
     }
-
-    func observeContentVideo(roomId: String, completion: @escaping (() -> Void)) {
+    
+    func observeContentVideo(roomId: String, completion: @escaping ((Video, Float) -> Void)) {
         
-        self.dbRef.child("Rooms").child(roomId).child("Content").child("Video").observe(.value, with: { (_) in
-            completion()
+        self.dbRef.child("Rooms").child(roomId).child("Content").child("Video").observe(.value, with: { (contentSnapshot) in
+            
+            self.dbRef.child("Rooms").child(roomId).child("Content").child("currentTime").observeSingleEvent(of: .value) { (currentTimeSnapshot) in
+                
+                let currentTime = currentTimeSnapshot.value as? Float
+                let videoDict = contentSnapshot.value as? [String: Any]
+                let video = Video(
+                    videoId: videoDict?["videoId"] as? String,
+                    title: videoDict?["title"] as? String,
+                    thumbnail: videoDict?["thumbnail"] as? String,
+                    channel: videoDict?["channel"] as? String,
+                    sendTime: videoDict?["sendTime"] as? String)
+                completion(video, currentTime ?? 0)
+                
+            }
+            
+            
+        })
+    }
+    
+    func observeContentIsPlaying(roomId: String, completion: @escaping ((Bool?) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").child("isPlaying").observe(.value, with: { (snapshot) in
+            
+            completion(snapshot.value as? Bool)
+        })
+    }
+    
+    func observeContentCurrentTime(roomId: String, completion: @escaping ((Float?) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").child("currentTime").observe(.value, with: { (snapshot) in
+            completion(snapshot.value as? Float)
         })
     }
 
@@ -603,7 +637,7 @@ extension WTFirebaseManager {
     func getContentFrom(snapshot: DataSnapshot, completion: @escaping ((Result<Content, PresentableError>) -> Void)) {
         let content = Content()
         guard let contentDict = snapshot.value as? [String: Any] else {
-            completion(.failure(.init(message: "Parse Error")))
+            completion(.failure(.init(message: "getContentFrom Parse Error")))
             return
         }
         
