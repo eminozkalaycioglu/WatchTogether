@@ -13,10 +13,25 @@ final class RoomsViewModel: BaseViewModel {
     private var firebaseMgr: FirebaseManager
     
     var onFetchedRooms: (() -> Void)?
+    var onChangedRoomType: (() -> Void)?
     var onJoinedRoom: ((String?) -> Void)?
 
-    var rooms: [Room] = []
-    
+    var rooms: [Room] {
+        switch self.roomType {
+        case .private:
+            return self.privateRooms
+        case .public:
+            return self.publicRooms
+        }
+    }
+    var roomType: RoomType = .public {
+        didSet {
+            self.onChangedRoomType?()
+        }
+    }
+    var publicRooms: [Room] = []
+    var privateRooms: [Room] = []
+
     init(sessionMgr: SessionManager = WTSessionManager.shared,
          firebaseMgr: FirebaseManager = WTFirebaseManager.shared) {
         self.sessionMgr = sessionMgr
@@ -32,7 +47,9 @@ final class RoomsViewModel: BaseViewModel {
         self.firebaseMgr.fetchRooms { (result) in
             switch result {
             case let .success(rooms):
-                self.rooms = rooms
+                let roomsWithContent = rooms.filter({ $0.content?.video?.videoId != nil})
+                self.privateRooms = roomsWithContent.filter({$0.password != nil})
+                self.publicRooms = roomsWithContent.filter({$0.password == nil})
                 self.onFetchedRooms?()
                 self.loadDidFinish()
             case let .failure(error):

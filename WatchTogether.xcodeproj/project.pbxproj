@@ -70,7 +70,10 @@
 		4870CBC6262F69F9006D0B62 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBC5262F69F9006D0B62 /* BaseButton.swift */; };
 		4870CBFF262F78A5006D0B62 /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */; };
 		4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */; };
+		487D86D026552AE6005E50AF /* RoomTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487D86CF26552AE6005E50AF /* RoomTypeSelectionView.swift */; };
+		487D86D226552AEE005E50AF /* RoomTypeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487D86D126552AEE005E50AF /* RoomTypeSelectionView.xib */; };
 		48867E182645E295003F7139 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48867E172645E295003F7139 /* DateFormatter+Extension.swift */; };
+		4892B46B265846F8009D8505 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4892B46A265846F8009D8505 /* GradientView.swift */; };
 		48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5A2620B0E200321ECF /* AppDelegate.swift */; };
 		48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5C2620B0E200321ECF /* SceneDelegate.swift */; };
 		48B59B642620B0E400321ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B632620B0E400321ECF /* Assets.xcassets */; };
@@ -81,6 +84,9 @@
 		48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B7D2620B3CF00321ECF /* String+Extension.swift */; };
 		48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B872620BDB500321ECF /* FirebaseManager.swift */; };
 		48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */; };
+		48DC821C26583F6F00340DB8 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DC821B26583F6F00340DB8 /* PlaylistViewModel.swift */; };
+		48DC82202658404900340DB8 /* PlaylistTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DC821E2658404900340DB8 /* PlaylistTVC.swift */; };
+		48DC82212658404900340DB8 /* PlaylistTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48DC821F2658404900340DB8 /* PlaylistTVC.xib */; };
 		48E07931263CA3E30095C976 /* ForeignMessageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E0792F263CA3E30095C976 /* ForeignMessageTVC.swift */; };
 		48E07932263CA3E30095C976 /* ForeignMessageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */; };
 		48EF832D262CA4800009F052 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EF832C262CA4800009F052 /* LoginViewModel.swift */; };
@@ -175,7 +181,10 @@
 		4870CBC5262F69F9006D0B62 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		4870CBFD262F78A5006D0B62 /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		4870CBFE262F78A5006D0B62 /* AvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarCollectionViewCell.xib; sourceTree = "<group>"; };
+		487D86CF26552AE6005E50AF /* RoomTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomTypeSelectionView.swift; sourceTree = "<group>"; };
+		487D86D126552AEE005E50AF /* RoomTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTypeSelectionView.xib; sourceTree = "<group>"; };
 		48867E172645E295003F7139 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		4892B46A265846F8009D8505 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		48B59B572620B0E200321ECF /* WatchTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B59B5A2620B0E200321ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B59B5C2620B0E200321ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +197,9 @@
 		48B59B7D2620B3CF00321ECF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		48B59B872620BDB500321ECF /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48DC821B26583F6F00340DB8 /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
+		48DC821E2658404900340DB8 /* PlaylistTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTVC.swift; sourceTree = "<group>"; };
+		48DC821F2658404900340DB8 /* PlaylistTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistTVC.xib; sourceTree = "<group>"; };
 		48E0792F263CA3E30095C976 /* ForeignMessageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignMessageTVC.swift; sourceTree = "<group>"; };
 		48E07930263CA3E30095C976 /* ForeignMessageTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForeignMessageTVC.xib; sourceTree = "<group>"; };
 		48EF832C262CA4800009F052 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -468,13 +480,24 @@
 		4870CB8B262F3901006D0B62 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				487D86CE26552AD1005E50AF /* RoomTypeSelectionView */,
 				4870CBA7262F394A006D0B62 /* WTTextField.swift */,
 				4870CBC2262F69D2006D0B62 /* WTButton.swift */,
 				48673B4726357F730015E035 /* WTCardStackView.swift */,
 				48FB00F4263F324D00343986 /* CircleButton.swift */,
 				48FB00F7263F326C00343986 /* MessageTextField.swift */,
+				4892B46A265846F8009D8505 /* GradientView.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		487D86CE26552AD1005E50AF /* RoomTypeSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				487D86CF26552AE6005E50AF /* RoomTypeSelectionView.swift */,
+				487D86D126552AEE005E50AF /* RoomTypeSelectionView.xib */,
+			);
+			path = RoomTypeSelectionView;
 			sourceTree = "<group>";
 		};
 		48B59B4E2620B0E200321ECF = {
@@ -573,6 +596,15 @@
 				48B59B872620BDB500321ECF /* FirebaseManager.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		48DC821D2658403700340DB8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				48DC821E2658404900340DB8 /* PlaylistTVC.swift */,
+				48DC821F2658404900340DB8 /* PlaylistTVC.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		48FB0012263D572000343986 /* Cell */ = {
@@ -677,8 +709,10 @@
 		48FB00EE263F2F3B00343986 /* PlaylistVC */ = {
 			isa = PBXGroup;
 			children = (
+				48DC821D2658403700340DB8 /* Cell */,
 				48FB00EF263F2F5D00343986 /* PlaylistViewController.swift */,
 				48FB00F0263F2F5D00343986 /* PlaylistViewController.xib */,
+				48DC821B26583F6F00340DB8 /* PlaylistViewModel.swift */,
 			);
 			path = PlaylistVC;
 			sourceTree = "<group>";
@@ -794,6 +828,7 @@
 				480C00FE262C914900140E4F /* Kanit-SemiBold.ttf in Resources */,
 				480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */,
 				48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */,
+				48DC82212658404900340DB8 /* PlaylistTVC.xib in Resources */,
 				48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */,
 				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
 				48FB0016263D573600343986 /* RoomTVC.xib in Resources */,
@@ -801,6 +836,7 @@
 				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
 				480C011D262C9D7E00140E4F /* SplashViewController.xib in Resources */,
 				48FB00FE263F331F00343986 /* SearchWebViewViewController.xib in Resources */,
+				487D86D226552AEE005E50AF /* RoomTypeSelectionView.xib in Resources */,
 				480C010A262C914900140E4F /* Kanit-Light.ttf in Resources */,
 				48673A8A26309D1C0015E035 /* RegisterViewController.xib in Resources */,
 				480C0107262C914900140E4F /* Kanit-SemiBoldItalic.ttf in Resources */,
@@ -912,6 +948,7 @@
 				48B59B772620B2A400321ECF /* TopViewControllerProvider.swift in Sources */,
 				48FB00E6263F2A9B00343986 /* DataMapper.swift in Sources */,
 				480C00E4262C90EB00140E4F /* R.generated.swift in Sources */,
+				487D86D026552AE6005E50AF /* RoomTypeSelectionView.swift in Sources */,
 				48673B72263616A10015E035 /* RoomViewController.swift in Sources */,
 				480C011C262C9D7E00140E4F /* SplashViewController.swift in Sources */,
 				48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */,
@@ -926,6 +963,7 @@
 				48FB00B7263F293500343986 /* VideoDetail.swift in Sources */,
 				48FB0079263EC5E700343986 /* AvatarCVC.swift in Sources */,
 				48FB00F8263F326C00343986 /* MessageTextField.swift in Sources */,
+				48DC821C26583F6F00340DB8 /* PlaylistViewModel.swift in Sources */,
 				48673B4526357BBC0015E035 /* ProfileViewModel.swift in Sources */,
 				48673B4826357F730015E035 /* WTCardStackView.swift in Sources */,
 				48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */,
@@ -933,6 +971,7 @@
 				48867E182645E295003F7139 /* DateFormatter+Extension.swift in Sources */,
 				48FB0015263D573600343986 /* RoomTVC.swift in Sources */,
 				48FB007F263EC64A00343986 /* MoreUserCVC.swift in Sources */,
+				4892B46B265846F8009D8505 /* GradientView.swift in Sources */,
 				48FB00B4263F1AB700343986 /* UsersViewModel.swift in Sources */,
 				48673B3A263318880015E035 /* UIImage+Extensions.swift in Sources */,
 				48673B4026357B9B0015E035 /* ProfileViewController.swift in Sources */,
@@ -941,6 +980,7 @@
 				48FB00EC263F2C9E00343986 /* YoutubeServices.swift in Sources */,
 				48673AAE2630A3330015E035 /* PickAvatarViewController.swift in Sources */,
 				48EF8330262CA5890009F052 /* RoomsViewModel.swift in Sources */,
+				48DC82202658404900340DB8 /* PlaylistTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

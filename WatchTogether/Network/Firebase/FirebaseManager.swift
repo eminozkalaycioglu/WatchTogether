@@ -24,6 +24,8 @@ protocol FirebaseManager {
     //MARK: - Room
     func createRoom(ownerUser: WTUser, roomName: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void))
+    func observeAutoSync(roomId: String, completion: @escaping (() -> Void))
+    func autoSync(roomId: String)
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void))
     func fetchRoom(roomId: String, completion: @escaping ((Result<Room, PresentableError>) -> Void))
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
@@ -32,6 +34,7 @@ protocol FirebaseManager {
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
+    func deleteVideoFromPlaylist(roomId: String, videoId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func setPlaying(roomId: String, state: Bool)
     func setCurrentTime(roomId: String, second: Float)
     func setPlayingAndCurrentTime(roomId: String, state: Bool, second: Float)
@@ -49,6 +52,7 @@ protocol FirebaseManager {
     func observeContentCurrentTime(roomId: String, completion: @escaping ((Float?) -> Void))
     func observeContentIsPlaying(roomId: String, completion: @escaping ((Bool?) -> Void))
     func observeContentVideo(roomId: String, completion: @escaping ((Video, Float) -> Void))
+    
     //MARK: - Utilities
     func fetchRoomFrom(snapshot: DataSnapshot) -> Room?
     
@@ -61,6 +65,10 @@ final class WTFirebaseManager: FirebaseManager {
     static let shared = WTFirebaseManager()
 
     internal var dbRef: DatabaseReference = Database.database().reference()
+    
+    func test() {
+        self.dbRef.child("Testa").setValue(["val" : Int.random(in: 0..<99999)])
+    }
     
 }
 
@@ -271,6 +279,16 @@ extension WTFirebaseManager {
             }
         }
     }
+    
+    func deleteVideoFromPlaylist(roomId: String, videoId: String, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
+        self.dbRef.child("Rooms").child(roomId).child("Playlist").child(videoId).removeValue { (firError, _) in
+            if let firError = firError {
+                completion(.failure(firError.presentableError))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
 
     func joinRoom(user: WTUser, roomId: String, password: String?, completion: @escaping ((Result<Room, PresentableError>) -> Void)) {
         
@@ -281,7 +299,7 @@ extension WTFirebaseManager {
                 return
             }
             
-            if let password = room.password, password != password {
+            if room.password != nil, password != room.password! {
                 completion(.failure(.init(message: "Wrong Password")))
             } else {
                 self.addUserToRoom(roomId: roomId, user: user) { (result) in
@@ -297,6 +315,16 @@ extension WTFirebaseManager {
             
         }
         
+    }
+
+    func autoSync(roomId: String) {
+        self.dbRef.child("Rooms").child(roomId).child("autoSync").setValue(Int.random(in:0..<999999))
+    }
+    
+    func observeAutoSync(roomId: String, completion: @escaping (() -> Void)) {
+        self.dbRef.child("Rooms").child(roomId).child("autoSync").observe(.value) { _ in
+            completion()
+        }
     }
     
     func fetchRooms(completion: @escaping ((Result<[Room], PresentableError>) -> Void)) {
@@ -557,7 +585,7 @@ extension WTFirebaseManager {
         let room: Room = Room()
         
         room.roomId = value["roomId"] as? String
-        room.password = value["passowrd"] as? String
+        room.password = value["password"] as? String
         room.roomName = value["roomName"] as? String
         room.ownerId = value["ownerId"] as? String
 

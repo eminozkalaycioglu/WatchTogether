@@ -9,7 +9,10 @@ import UIKit
 
 protocol PlaylistViewControllerDelegate: class {
     func playlistViewControllerShouldClose(_ controller: PlaylistViewController?)
-    func playlistViewControllerDidSelectVideo(_ controller: PlaylistViewController?, id: String)
+    func playlistViewControllerDidSelectVideoToAdd(_ controller: PlaylistViewController?, id: String)
+    func playlistViewControllerDidSelectVideoToPlay(_ controller: PlaylistViewController?, id: String)
+    func playlistViewControllerDidSelectVideoToDelete(_ controller: PlaylistViewController?, id: String)
+
 }
 
 class PlaylistViewController: WTViewController {
@@ -18,6 +21,7 @@ class PlaylistViewController: WTViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.register(cellType: PlaylistTVC.self)
         }
     }
     weak var delegate: PlaylistViewControllerDelegate?
@@ -46,13 +50,19 @@ class PlaylistViewController: WTViewController {
     @IBAction func addButtonTapAction(_ sender: Any) {
         let vc = SearchWebViewViewController()
         vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
     }
     
 }
 
 extension PlaylistViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = self.viewModel.playlist[indexPath.row]
+        if let videoId = data.videoId {
+            self.delegate?.playlistViewControllerDidSelectVideoToPlay(self, id: videoId)
+        }
+    }
 }
 
 extension PlaylistViewController: UITableViewDataSource {
@@ -61,19 +71,24 @@ extension PlaylistViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: PlaylistTVC.self)
         
         let data = self.viewModel.playlist[indexPath.row]
-        cell.textLabel?.text = data.title
-        cell.detailTextLabel?.text = data.channel
+        cell.configureCell(video: data)
+        
+        cell.onTappedDeleteButton = { [weak self] in
+            if let videoId = data.videoId {
+                self?.delegate?.playlistViewControllerDidSelectVideoToDelete(self, id: videoId)
+            }
+        }
         return cell
     }
 }
 
 extension PlaylistViewController: SearchWebViewViewControllerDelegate {
     func searchWebViewViewControllerDidSelectVideo(_ controller: SearchWebViewViewController?, id: String) {
-        controller?.navigationController?.popViewController(animated: true)
-        self.delegate?.playlistViewControllerDidSelectVideo(self, id: id)
+        controller?.dismiss(animated: true, completion: nil)
+        self.delegate?.playlistViewControllerDidSelectVideoToAdd(self, id: id)
     }
 }
 
@@ -137,60 +152,3 @@ extension PlaylistViewController {
         }
     }
 }
-
-class PlaylistViewModel: BaseViewModel {
-    private var firebaseMgr: FirebaseManager
-    private var roomId: String
-    
-    var onFetchedPlaylist: (() -> Void)?
-    var playlist: [Video] = []
-    
-    init(firebaseMgr: FirebaseManager = WTFirebaseManager.shared,
-         roomId: String) {
-        self.firebaseMgr = firebaseMgr
-        self.roomId = roomId
-    }
-    
-    func observePlaylist() {
-        self.firebaseMgr.observePlaylist(roomId: self.roomId) { [weak self] in
-            self?.getPlaylist()
-        }
-    }
-    
-    func getPlaylist() {
-        self.loadDidStart()
-        self.firebaseMgr.fetchPlaylist(roomId: roomId) { (result) in
-            switch result {
-            case let .success(playlist):
-                self.loadDidFinish()
-                self.playlist = playlist.sorted(by: { DateFormatter.wtDateFormatter.date(from: $0.sendTime ?? "") ?? Date() < DateFormatter.wtDateFormatter.date(from: $1.sendTime ?? "") ?? Date() })
-               
-                self.onFetchedPlaylist?()
-            case let .failure(error):
-                self.loadDidFinishWithError(error: error)
-            }
-        }
-    }
-}
-
-
-//YoutubeServices().getVideoDetail(id) { (result) in
-//            switch result {
-//            case let .success(videoDetail):
-//                let item = videoDetail.items.first
-//                let video = Video(
-//                    videoId: id,
-//                    title: item?.snippet.title,
-//                    thumbnail: item?.snippet.thumbnails.defaultField.url,
-//                    channel: item?.snippet.channelTitle,
-//                    duration: 0)
-//
-////                WTFirebaseManager.shared.addVideoToRoomPlaylist(roomId: "9E4F43BC-791C-4D64-9048-3104C9F7F7E2", video: video) { (_) in
-////
-////                }
-//            case .failure:
-//                break
-//            }
-//        }
-
-

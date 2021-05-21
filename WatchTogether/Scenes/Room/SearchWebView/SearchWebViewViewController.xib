@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14W-Vo-eM4">
-                    <rect key="frame" x="0.0" y="98" width="414" height="764"/>
+                    <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -29,11 +29,20 @@
                     </wkWebViewConfiguration>
                 </wkWebView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4e0-Ob-6Wx">
-                    <rect key="frame" x="20" y="60" width="13" height="22"/>
+                    <rect key="frame" x="20" y="60" width="118.5" height="32"/>
                     <color key="tintColor" name="AccentColor"/>
-                    <state key="normal" image="chevron.backward" catalog="system"/>
+                    <state key="normal" title="Önceki Sayfa" image="chevron.backward" catalog="system"/>
                     <connections>
                         <action selector="backPageButtonTapAction:" destination="-1" eventType="touchUpInside" id="vGw-pd-gX2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZh-QT-MqX">
+                    <rect key="frame" x="374" y="64" width="24" height="24"/>
+                    <color key="tintColor" name="AccentColor"/>
+                    <state key="normal" image="crossIcon"/>
+                    <connections>
+                        <action selector="backPageButtonTapAction:" destination="-1" eventType="touchUpInside" id="lde-P5-YRV"/>
+                        <action selector="dismissButtonTapAction:" destination="-1" eventType="touchUpInside" id="zek-Uk-CTh"/>
                     </connections>
                 </button>
             </subviews>
@@ -41,8 +50,11 @@
             <color key="backgroundColor" name="MainBlueColorDark"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="14W-Vo-eM4" secondAttribute="trailing" id="3Dj-2H-HMa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mZh-QT-MqX" secondAttribute="trailing" constant="16" id="9yd-m0-jbJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="14W-Vo-eM4" secondAttribute="bottom" id="G6V-5c-ZtI"/>
                 <constraint firstItem="4e0-Ob-6Wx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GPT-fl-KIF"/>
+                <constraint firstItem="mZh-QT-MqX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Ilx-LN-iJ4"/>
+                <constraint firstItem="14W-Vo-eM4" firstAttribute="top" secondItem="mZh-QT-MqX" secondAttribute="bottom" constant="20" id="OpT-yI-D5m"/>
                 <constraint firstItem="4e0-Ob-6Wx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="fDE-ks-Nvz"/>
                 <constraint firstItem="14W-Vo-eM4" firstAttribute="top" secondItem="4e0-Ob-6Wx" secondAttribute="bottom" constant="16" id="fGm-Ii-5NU"/>
                 <constraint firstItem="14W-Vo-eM4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="guc-8s-FJR"/>
@@ -52,6 +64,7 @@
     </objects>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="crossIcon" width="24" height="24"/>
         <namedColor name="AccentColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -163,6 +163,11 @@ PODS:
   - R.swift (5.3.1):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
+  - Reusable (4.1.1):
+    - Reusable/Storyboard (= 4.1.1)
+    - Reusable/View (= 4.1.1)
+  - Reusable/Storyboard (4.1.1)
+  - Reusable/View (4.1.1)
   - SVProgressHUD (2.2.5)
   - youtube-ios-player-helper (1.0.3)
 
@@ -180,6 +185,7 @@ DEPENDENCIES:
   - Moya (~> 14.0)
   - PopupDialog (~> 1.1)
   - R.swift
+  - Reusable
   - SVProgressHUD
   - youtube-ios-player-helper
 
@@ -214,6 +220,7 @@ SPEC REPOS:
     - PromisesObjC
     - R.swift
     - R.swift.Library
+    - Reusable
     - SVProgressHUD
     - youtube-ios-player-helper
 
@@ -247,9 +254,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   youtube-ios-player-helper: 0185c57db23c80d63d6ca11251d110abb8a4ca61
 
-PODFILE CHECKSUM: 5d1040309ddcba6e79376aaf25e382f93a4d68f5
+PODFILE CHECKSUM: e7b72aad78ddc41f77b844b738ceb4d0c269405a
 
 COCOAPODS: 1.10.1

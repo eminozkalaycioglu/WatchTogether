@@ -46,6 +46,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
 
-
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        var url: URL?
+        for i in URLContexts{
+            url = i.url
+        }
+        if let windowScene = scene as? UIWindowScene,
+           let roomId = url?.host {
+            let window = UIWindow(windowScene: windowScene)
+            
+            AppRouter.configureWithWindow(window, initalViewController: SF.makeRoomVC(roomId: roomId).embedInWTNavVc())
+        }
+        
+    }
 }
 

@@ -22,6 +22,12 @@ class RoomsViewController: WTViewController {
         }
     }
     
+    @IBOutlet weak var roomTypeSelectionView: RoomTypeSelectionView! {
+        didSet {
+            roomTypeSelectionView.commonInit()
+            roomTypeSelectionView.delegate = self
+        }
+    }
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = R.color.whiteAlpha075()!
@@ -61,14 +67,18 @@ class RoomsViewController: WTViewController {
             }
         }
         
+        self.viewModel.onChangedRoomType = { [weak self] in
+            DispatchQueue.main.async {
+                self?.roomsTableView.reloadData()
+            }
+        }
+        
         self.viewModel.onJoinedRoom = { [weak self] roomId in
             DispatchQueue.main.async {
                 guard let roomId = roomId else { return }
                 let vc = SF.makeRoomVC(roomId: roomId)
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                self?.navigationController?.pushViewController(vc, animated: true)
 
-                }
             }
         }
         
@@ -83,7 +93,6 @@ class RoomsViewController: WTViewController {
 extension RoomsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RoomTVC", for: indexPath) as! RoomTVC
-        
         let data = self.viewModel.rooms[indexPath.row]
         cell.configureCell(room: data)
         return cell
@@ -104,6 +113,14 @@ extension RoomsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.viewModel.joinRoom(index: indexPath.row)
+        
     }
 
+}
+
+extension RoomsViewController: RoomTypeSelectionViewDelegate {
+    func roomTypeSelectionViewDidSelect(_ view: RoomTypeSelectionView?, selection: RoomType) {
+        print("emintest: ", selection)
+        self.viewModel.roomType = selection
+    }
 }

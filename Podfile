@@ -17,6 +17,7 @@ target 'WatchTogether' do
   #Util Pods
   pod 'R.swift'
   pod 'IQKeyboardManagerSwift'
+  pod 'Reusable'
 
   # Networking & Authentication Pods
   pod 'Firebase'

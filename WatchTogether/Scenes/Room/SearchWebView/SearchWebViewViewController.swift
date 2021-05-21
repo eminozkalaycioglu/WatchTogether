@@ -17,7 +17,6 @@ class SearchWebViewViewController: WTViewController {
         didSet {
             webView.navigationDelegate = self
             webView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
-
         }
     }
     
@@ -32,8 +31,6 @@ class SearchWebViewViewController: WTViewController {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print("emintest:newkey : ", change?[.newKey])
-
         if let urlString = (change?[.newKey] as? URL)?.description,
            urlString.contains("watch?v=") {
             
@@ -48,19 +45,18 @@ class SearchWebViewViewController: WTViewController {
         if self.webView.canGoBack {
             self.webView.goBack()
         }
+    }    
+    @IBAction func dismissButtonTapAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 extension SearchWebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
-            print("link")
             decisionHandler(.cancel)
             return
         }
-        print("no link")
         decisionHandler(.allow)
     }
 }

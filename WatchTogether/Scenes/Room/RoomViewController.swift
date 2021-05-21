@@ -20,8 +20,10 @@ class RoomViewController: WTViewController {
         "rel": "0",
         "enablejsapi": "0"
     ]
+    
     private var startSecond: Float = 0
-
+    private var lastVideoID: String? = nil
+    private var shouldAutoSync: Bool = true
     
     @IBOutlet weak var playerView: YTPlayerView! {
         didSet {
@@ -69,15 +71,6 @@ class RoomViewController: WTViewController {
         navigation.item.titleView = nil
         navigation.bar.barTintColor = R.color.mainBlueColorDark()!
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.viewModel.addVideoToPlaylist(id: "mL2bHLXrjLQ")
-//            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-//                self.viewModel.addVideoToPlaylist(id: "-bu07lgylek")
-//            }
-//            
-//        }
-//        
         navigation.item.leftBarButtonItem = UIBarButtonItem(
             image: R.image.backIcon()!,
             style: .plain,
@@ -89,44 +82,14 @@ class RoomViewController: WTViewController {
                 
     }
     
-    @objc
-    private func onUsersCollectionViewTapAction() {
-        
-        UsersViewController.showOverCurrentContent(
-            context: self,
-            delegate: self,
-            users: self.viewModel.currentUsers,
-            roomId: self.viewModel.roomId,
-            userId: self.viewModel.getUserID(),
-            canDelete: self.viewModel.currentUserIsOwner())
-        
-    }
-    
-    @objc
-    private func onTapBack() {
-        let cancel = CancelButton(title: "Hayır", action: nil)
-        let ok = DefaultButton(title: "Evet") {
-            self.viewModel.exitRoom { [weak self] in
-                DispatchQueue.main.async {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                
-            }
-        }
-        WTAlert.show(self, title: "Uyarı", message: "Odadan Çıkmak İstiyor musunuz?", buttons: [cancel, ok])
-        
-    }
-    
     override func registerEvents() {
         super.registerEvents()
         
         self.viewModel.fetchRoom()
         
-        
         self.viewModel.observeMessages()
         self.viewModel.observeRoomUsers()
-        self.viewModel.observeNewRoomUsers()
-//        self.viewModel.observeContent()
+        self.viewModel.observeAutoSync()
         self.viewModel.observeVideo()
         self.viewModel.observeIsPlaying()
         self.viewModel.observeCurrentTime()
@@ -148,51 +111,14 @@ class RoomViewController: WTViewController {
             }
         }
         
-//        self.viewModel.onContentChanged = { [weak self] content in
-//
-//            print("emintest contentChanged: currentTime:", content.currentTime)
-//            guard let videoID = content.video?.videoId else { return }
-//            if let lastVideoID = self?.lastVideoID {
-//                print("emintest lastvideoid var")
-//                if self?.lastVideoID != videoID {
-//                    print("emintest lastvideoid ile videoid aynı değil")
-//
-//                    self?.loadVideo(id: videoID)
-//                } else {
-//                    print("emintest lastvideoid ile videoid aynı")
-//
-//                    if content.isPlaying == true {
-//                        self?.playerView.playVideo()
-//                        print("emintest playing")
-//
-//                    } else {
-//                        self?.playerView.pauseVideo()
-//                    }
-//                    if let currentTime = content.currentTime {
-//                        self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
-//
-//                    }
-//                }
-//            } else {
-//                print("emintest lastvideoid yok current: \(content.currentTime)")
-//
-//                self?.loadWithCurrentTime(id: videoID, currentTime: content.currentTime ?? 0)
-//            }
-//        }
-        
         self.viewModel.onVideoChanged = { [weak self] (video, currentTime) in
-            
             guard let videoID = video.videoId else { return }
-//            print("emintest2 : onVideoChanged ")
-            self?.loadWithCurrentTime(id: video.videoId ?? "", currentTime: currentTime)
-
+            self?.loadWithCurrentTime(id: videoID, currentTime: currentTime)
         }
         
         self.viewModel.onCurrentTimeChanged = { [weak self] currentTime in
             print("emintest2 : onCurrentTimeChanged ")
-            
             self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
-
         }
         
         self.viewModel.onIsPlayingChanged = { [weak self] isPlaying in
@@ -226,19 +152,6 @@ class RoomViewController: WTViewController {
 
     }
     
-    func loadWithCurrentTime(id: String, currentTime: Float) {
-        self.startSecond = currentTime
-        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
-        self.lastVideoID = id
-    }
-    
-    var lastVideoID: String? = nil
-    func loadVideo(id: String) {
-        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
-        self.lastVideoID = id
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.observeRoomDeleting()
@@ -263,14 +176,23 @@ class RoomViewController: WTViewController {
     @IBAction func playlistButtonTapAction(_ sender: Any) {
         PlaylistViewController.showOverCurrentContent(context: self, delegate: self, roomId: self.viewModel.roomId)
     }
+    @IBAction func shareButtonTapAction(_ sender: Any) {
+        
+        let shareURL = URL(string: "https://emnoztesttest.000webhostapp.com/?roomId=" + self.viewModel.roomId)!
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
     @IBAction func playPauseButtonTapAction(_ sender: Any) {
         self.playerView.playerState { (state, _) in
             switch state {
             case .playing:
-                print("tap action playing")
                 self.playerView.pauseVideo()
-                
                 self.playerView.currentTime { (currentTime, _) in
                     self.viewModel.setPlayingAndCurrentTime(status: false, second: currentTime)
                 }
@@ -284,6 +206,45 @@ class RoomViewController: WTViewController {
             }
         }
     }
+    
+    @objc
+    private func onUsersCollectionViewTapAction() {
+        
+        UsersViewController.showOverCurrentContent(
+            context: self,
+            delegate: self,
+            users: self.viewModel.currentUsers,
+            roomId: self.viewModel.roomId,
+            userId: self.viewModel.getUserID(),
+            canDelete: self.viewModel.currentUserIsOwner())
+        
+    }
+    
+    @objc
+    private func onTapBack() {
+        let cancel = CancelButton(title: "Hayır", action: nil)
+        let ok = DefaultButton(title: "Evet") {
+            self.viewModel.exitRoom { [weak self] in
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+            }
+        }
+        WTAlert.show(self, title: "Uyarı", message: "Odadan Çıkmak İstiyor musunuz?", buttons: [cancel, ok])
+        
+    }
+    
+    func loadWithCurrentTime(id: String, currentTime: Float) {
+        self.startSecond = currentTime
+        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
+        self.lastVideoID = id
+    }
+    
+    func loadVideo(id: String) {
+        self.playerView.load(withVideoId: id, playerVars: self.playerVars)
+        self.lastVideoID = id
+    }
 }
 
 extension RoomViewController: YTPlayerViewDelegate {
@@ -291,6 +252,10 @@ extension RoomViewController: YTPlayerViewDelegate {
         switch state {
         case .playing:
             self.playPauseButton.setTitle("Durdur", for: .normal)
+            if self.shouldAutoSync {
+                self.viewModel.autoSync()
+            }
+            self.shouldAutoSync = false
         case .paused:
             self.playPauseButton.setTitle("Başlat", for: .normal)
         case .ended:
@@ -301,14 +266,19 @@ extension RoomViewController: YTPlayerViewDelegate {
         default: break
         }
     }
-    
+        
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         self.playerView.playVideo()
-//        self.viewModel.setIsPlaying(true)
+
         if self.startSecond != 0 {
             self.playerView.seek(toSeconds: self.startSecond, allowSeekAhead: true)
         }
         self.startSecond = 0
+        
+//        if self.shouldAutoSync {
+//            self.viewModel.autoSync()
+//        }
+//        self.shouldAutoSync = false
     }
     
 }
@@ -388,8 +358,16 @@ extension RoomViewController: PlaylistViewControllerDelegate {
         PlaylistViewController.hide(context: self, playlistVC: controller)
     }
     
-    func playlistViewControllerDidSelectVideo(_ controller: PlaylistViewController?, id: String) {
+    func playlistViewControllerDidSelectVideoToAdd(_ controller: PlaylistViewController?, id: String) {
 //        PlaylistViewController.hide(context: self, playlistVC: controller)
         self.viewModel.addVideoToPlaylist(id: id)
+    }
+    
+    func playlistViewControllerDidSelectVideoToPlay(_ controller: PlaylistViewController?, id: String) {
+        self.viewModel.addContentToRoom(id: id)
+    }
+    
+    func playlistViewControllerDidSelectVideoToDelete(_ controller: PlaylistViewController?, id: String) {
+        self.viewModel.deleteVideoFromPlaylist(videoId: id)
     }
 }

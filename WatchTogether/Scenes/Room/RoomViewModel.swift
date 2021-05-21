@@ -69,7 +69,6 @@ final class RoomViewModel: BaseViewModel {
             ownerId: ownerId,
             sendTime: now)
         
-        self.loadDidStart()
         self.firebaseMgr.addMessageToRoom(roomId: self.roomId, message: message) { (result) in
             switch result {
             case .success:
@@ -145,13 +144,7 @@ final class RoomViewModel: BaseViewModel {
         self.youtubeService.getVideoDetail(id) { (result) in
             switch result {
             case let .success(videoDetail):
-                let item = videoDetail.items.first
-                let video = Video(
-                    videoId: id,
-                    title: item?.snippet.title,
-                    thumbnail: item?.snippet.thumbnails.defaultField.url,
-                    channel: item?.snippet.channelTitle,
-                    sendTime: DateFormatter.wtDateFormatter.string(from: Date()))
+                let video = videoDetail.toVideo
                 
                 self.firebaseMgr.addVideoToRoomPlaylist(roomId: self.roomId, video: video) { (result) in
                     switch result {
@@ -178,7 +171,38 @@ final class RoomViewModel: BaseViewModel {
     
     func addContentToRoom(video: Video) {
         guard self.currentUserIsOwner() else { return }
-        self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in }
+        self.loadDidStart()
+        self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in
+            self.loadDidFinish()
+        }
+    }
+    
+    func addContentToRoom(id: String) {
+        guard self.currentUserIsOwner() else { return }
+        self.loadDidStart()
+        self.youtubeService.getVideoDetail(id) { result in
+            switch result {
+            case let .success(videoDetail):
+                self.loadDidFinish()
+                self.addContentToRoom(video: videoDetail.toVideo)
+            case let .failure(error):
+                self.loadDidFinishWithError(error: error)
+                
+            }
+        }
+    }
+    
+    func deleteVideoFromPlaylist(videoId: String) {
+        guard self.currentUserIsOwner() else { return }
+        self.loadDidStart()
+        self.firebaseMgr.deleteVideoFromPlaylist(roomId: self.roomId, videoId: videoId) { result in
+            switch result {
+            case .success:
+                self.loadDidFinish()
+            case let .failure(error):
+                self.loadDidFinishWithError(error: error)
+            }
+        }
     }
     
     func setPlayingAndCurrentTime(status: Bool, second: Float) {
@@ -225,6 +249,10 @@ final class RoomViewModel: BaseViewModel {
         }
     }
     
+    func autoSync() {
+        guard !self.currentUserIsOwner() else { return }
+        self.firebaseMgr.autoSync(roomId: self.roomId)
+    }
     
 }
 
@@ -323,14 +351,14 @@ extension RoomViewModel {
         }
     }
     
-    func observeNewRoomUsers() {
-        self.firebaseMgr.observeNewRoomUsers(roomId: self.roomId) { [weak self] in
-            self?.onJoinedNewUser?()
-        }
-    }
-    
     func removeRoomObservers() {
         self.firebaseMgr.removeRoomObservers()
+    }
+    
+    func observeAutoSync() {
+        self.firebaseMgr.observeAutoSync(roomId: self.roomId) { [weak self] in
+            self?.onJoinedNewUser?()
+        }
     }
     
 }
