@@ -40,7 +40,26 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHB-O1-Vvp" userLabel="Block">
                     <rect key="frame" x="0.0" y="44" width="414" height="240"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fn5-JS-fdu">
+                            <rect key="frame" x="12" y="12" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="3Nn-GN-7k8"/>
+                                <constraint firstAttribute="height" constant="24" id="HKN-6f-mbT"/>
+                            </constraints>
+                            <state key="normal" image="backIcon">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="backButtonTapAction:" destination="-1" eventType="touchUpInside" id="lYu-Hr-eEv"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="fn5-JS-fdu" firstAttribute="leading" secondItem="ZHB-O1-Vvp" secondAttribute="leading" constant="12" id="wUw-TT-3s1"/>
+                        <constraint firstItem="fn5-JS-fdu" firstAttribute="top" secondItem="ZHB-O1-Vvp" secondAttribute="top" constant="12" id="xne-9Z-juK"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWg-dO-YMS" userLabel="Message">
                     <rect key="frame" x="0.0" y="802" width="414" height="60"/>
@@ -80,24 +99,49 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggO-RN-P1e" userLabel="SelfControl" customClass="GradientView" customModule="WatchTogether" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="234" width="414" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-Vg-N0V">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-Vg-N0V">
+                            <rect key="frame" x="192" y="0.0" width="30" height="50"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                            <state key="normal" title=" ">
+                            <state key="normal">
                                 <color key="titleColor" name="WhiteAlpha0,75"/>
                             </state>
                             <connections>
                                 <action selector="playPauseButtonTapAction:" destination="-1" eventType="touchUpInside" id="JGc-st-N9L"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMK-f6-6dR">
+                            <rect key="frame" x="0.0" y="0.0" width="192" height="50"/>
+                            <state key="normal" title="-15">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="seek15SecondsBack:" destination="-1" eventType="touchUpInside" id="SC8-XY-juU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaQ-Lf-maK">
+                            <rect key="frame" x="222" y="0.0" width="192" height="50"/>
+                            <state key="normal" title="+15">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="seek15SecondsForward:" destination="-1" eventType="touchUpInside" id="vfx-Ml-cbW"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="vMe-Vg-N0V" secondAttribute="bottom" id="5Zf-FA-2On"/>
-                        <constraint firstAttribute="trailing" secondItem="vMe-Vg-N0V" secondAttribute="trailing" id="8n1-0v-AD5"/>
+                        <constraint firstItem="vMe-Vg-N0V" firstAttribute="centerX" secondItem="ggO-RN-P1e" secondAttribute="centerX" id="AGK-mJ-7KU"/>
+                        <constraint firstItem="vMe-Vg-N0V" firstAttribute="leading" secondItem="BMK-f6-6dR" secondAttribute="trailing" id="Izh-al-S2V"/>
                         <constraint firstAttribute="height" constant="50" id="M2r-L1-yoN"/>
                         <constraint firstItem="vMe-Vg-N0V" firstAttribute="top" secondItem="ggO-RN-P1e" secondAttribute="top" id="PR7-2g-8DZ"/>
-                        <constraint firstItem="vMe-Vg-N0V" firstAttribute="leading" secondItem="ggO-RN-P1e" secondAttribute="leading" id="bqA-t7-MBM"/>
+                        <constraint firstItem="xaQ-Lf-maK" firstAttribute="top" secondItem="ggO-RN-P1e" secondAttribute="top" id="WHA-cC-uqZ"/>
+                        <constraint firstAttribute="bottom" secondItem="BMK-f6-6dR" secondAttribute="bottom" id="aox-yA-79x"/>
+                        <constraint firstItem="xaQ-Lf-maK" firstAttribute="leading" secondItem="vMe-Vg-N0V" secondAttribute="trailing" id="bOK-7L-773"/>
+                        <constraint firstItem="BMK-f6-6dR" firstAttribute="leading" secondItem="ggO-RN-P1e" secondAttribute="leading" id="eMP-gu-1Rp"/>
+                        <constraint firstItem="BMK-f6-6dR" firstAttribute="top" secondItem="ggO-RN-P1e" secondAttribute="top" id="fLI-J1-SKu"/>
+                        <constraint firstAttribute="trailing" secondItem="xaQ-Lf-maK" secondAttribute="trailing" id="ftZ-tv-Oab"/>
+                        <constraint firstAttribute="bottom" secondItem="xaQ-Lf-maK" secondAttribute="bottom" id="h7y-k1-z0y"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="NO"/>
@@ -193,6 +237,7 @@
         </view>
     </objects>
     <resources>
+        <image name="backIcon" width="24" height="24"/>
         <image name="playlistIcon" width="19" height="14"/>
         <image name="sendMessage" width="18" height="15"/>
         <image name="shareIcon" width="24" height="24"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,16 +37,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-OV-XY8">
-                            <rect key="frame" x="32" y="32" width="350" height="567"/>
+                            <rect key="frame" x="32" y="32" width="350" height="584"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kaydol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fs-jw-L9M">
-                                    <rect key="frame" x="0.0" y="0.0" width="350" height="42"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="54"/>
                                     <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="36"/>
                                     <color key="textColor" name="WhiteAlpha0,75"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cy-aq-dOe">
-                                    <rect key="frame" x="0.0" y="58" width="350" height="216"/>
+                                    <rect key="frame" x="0.0" y="70" width="350" height="216"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_11" translatesAutoresizingMaskIntoConstraints="NO" id="Lx7-0Z-Woa">
                                             <rect key="frame" x="75" y="0.0" width="200" height="200"/>
@@ -77,27 +77,27 @@
                                     </constraints>
                                 </view>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1fe-bM-5E5" customClass="MDCOutlinedTextField">
-                                    <rect key="frame" x="0.0" y="290" width="350" height="34"/>
+                                    <rect key="frame" x="0.0" y="302" width="350" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Un-xb-eZG" customClass="MDCOutlinedTextField">
-                                    <rect key="frame" x="0.0" y="340" width="350" height="34"/>
+                                    <rect key="frame" x="0.0" y="352" width="350" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vbs-pL-ZTx" customClass="MDCOutlinedTextField">
-                                    <rect key="frame" x="0.0" y="390" width="350" height="34"/>
+                                    <rect key="frame" x="0.0" y="402" width="350" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K0T-I9-azT" customClass="MDCOutlinedTextField">
-                                    <rect key="frame" x="0.0" y="440" width="350" height="34"/>
+                                    <rect key="frame" x="0.0" y="452" width="350" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="B6u-Bq-z4I">
-                                    <rect key="frame" x="0.0" y="490" width="350" height="77"/>
+                                    <rect key="frame" x="0.0" y="502" width="350" height="82"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuN-T7-Jrw" customClass="WTButton" customModule="WatchTogether" customModuleProvider="target">
                                             <rect key="frame" x="151.5" y="0.0" width="47" height="30"/>
@@ -107,16 +107,16 @@
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VMl-YD-NMQ">
-                                            <rect key="frame" x="37" y="46" width="276.5" height="31"/>
+                                            <rect key="frame" x="39" y="46" width="272.5" height="36"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zaten bir hesabınız var mı?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdA-0B-KGN">
-                                                    <rect key="frame" x="0.0" y="6" width="192.5" height="19"/>
+                                                    <rect key="frame" x="0.0" y="6" width="189.5" height="24"/>
                                                     <fontDescription key="fontDescription" name="Kanit-Light" family="Kanit" pointSize="16"/>
                                                     <color key="textColor" name="WhiteAlpha0,75"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPA-Wu-bu4">
-                                                    <rect key="frame" x="198.5" y="0.0" width="78" height="31"/>
+                                                    <rect key="frame" x="195.5" y="0.0" width="77" height="36"/>
                                                     <fontDescription key="fontDescription" name="Kanit-Regular" family="Kanit" pointSize="16"/>
                                                     <state key="normal" title="Oturum Aç">
                                                         <color key="titleColor" name="RegisterGreenColor"/>

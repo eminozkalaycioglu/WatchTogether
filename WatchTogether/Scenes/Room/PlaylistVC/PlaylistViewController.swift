@@ -28,6 +28,8 @@ class PlaylistViewController: WTViewController {
     
     var viewModel: PlaylistViewModel!
     
+    var canOpenWebView: Bool = false
+    
     override func setup() {
         super.setup()
         self.viewModel.getPlaylist()
@@ -48,10 +50,12 @@ class PlaylistViewController: WTViewController {
         self.delegate?.playlistViewControllerShouldClose(self)
     }
     @IBAction func addButtonTapAction(_ sender: Any) {
-        let vc = SearchWebViewViewController()
-        vc.delegate = self
-        vc.modalPresentationStyle = .overCurrentContext
-        self.present(vc, animated: true, completion: nil)
+        if self.canOpenWebView {
+            let vc = SearchWebViewViewController()
+            vc.delegate = self
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
 }
@@ -93,14 +97,14 @@ extension PlaylistViewController: SearchWebViewViewControllerDelegate {
 }
 
 extension PlaylistViewController {
-    static func showOverCurrentContent(context: UIViewController, delegate: PlaylistViewControllerDelegate, roomId: String) {
+    static func showOverCurrentContent(context: UIViewController, delegate: PlaylistViewControllerDelegate, roomId: String, canOpenWebView: Bool) {
         
         let grayview = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         grayview.tag = 364636
         grayview.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         context.view.addSubview(grayview)
         
-        let vc = SF.makePlaylistVC(roomId: roomId)
+        let vc = SF.makePlaylistVC(roomId: roomId, canOpenWebView: canOpenWebView)
         vc.delegate = delegate
         
         let navHeight = context.navigationController?.navigationBar.frame.height ?? 0
@@ -108,7 +112,7 @@ extension PlaylistViewController {
         
         let height: CGFloat = (screenHeight - navHeight) * 0.5
         
-        vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.8, height: min(400, height))
+        vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.9, height: min(400, height))
         
         vc.view.center.x = context.view.center.x
         
@@ -146,7 +150,7 @@ extension PlaylistViewController {
         }
         
         for child in context.children {
-            if child.view.tag == 3646 {
+            if child.view.tag == 364636 {
                 child.removeFromParent()
             }
         }

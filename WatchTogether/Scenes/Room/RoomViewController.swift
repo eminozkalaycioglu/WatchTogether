@@ -68,18 +68,9 @@ class RoomViewController: WTViewController {
     override func setup() {
         super.setup()
         self.registerLoadableViewModel(viewModel: self.viewModel)
-        navigation.item.titleView = nil
-        navigation.bar.barTintColor = R.color.mainBlueColorDark()!
-        
-        navigation.item.leftBarButtonItem = UIBarButtonItem(
-            image: R.image.backIcon()!,
-            style: .plain,
-            target: self,
-            action: #selector(self.onTapBack))
-        
+        navigation.bar.isHidden = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onUsersCollectionViewTapAction))
         self.usersCollectionView.addGestureRecognizer(gesture)
-                
     }
     
     override func registerEvents() {
@@ -163,10 +154,6 @@ class RoomViewController: WTViewController {
     }
     
     @IBAction func testbuttontap(_ sender: Any) {
-        self.playerView.currentTime { (fl, _) in
-            WTAlert.show(self, title: "Current", message: fl.description, buttons: nil)
-
-        }
         guard let messageText = self.testField.text,
               messageText.count > 0 else { return }
         self.viewModel.sendMessage(text: messageText)
@@ -174,8 +161,14 @@ class RoomViewController: WTViewController {
     }
     
     @IBAction func playlistButtonTapAction(_ sender: Any) {
-        PlaylistViewController.showOverCurrentContent(context: self, delegate: self, roomId: self.viewModel.roomId)
+        PlaylistViewController.showOverCurrentContent(
+            context: self,
+            delegate: self,
+            roomId: self.viewModel.roomId,
+            canOpenWebView: self.viewModel.currentUserIsOwner())
+        
     }
+    
     @IBAction func shareButtonTapAction(_ sender: Any) {
         
         let shareURL = URL(string: "https://emnoztesttest.000webhostapp.com/?roomId=" + self.viewModel.roomId)!
@@ -207,6 +200,40 @@ class RoomViewController: WTViewController {
         }
     }
     
+    @IBAction func backButtonTapAction(_ sender: Any) {
+        let cancel = CancelButton(title: "Hayır", action: nil)
+        let ok = DefaultButton(title: "Evet") {
+            self.viewModel.exitRoom { [weak self] in
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+        WTAlert.show(self, title: "Uyarı", message: "Odadan Çıkmak İstiyor musunuz?", buttons: [cancel, ok])
+    }
+    
+    @IBAction func seek15SecondsBack(_ sender: Any) {
+        self.playerView.currentTime { currentTime, _ in
+            self.playerView.duration { duration, _ in
+                if Double(currentTime) - 15 > 0 {
+                    self.playerView.seek(toSeconds: currentTime - 15, allowSeekAhead: true)
+                    self.viewModel.setCurrentTime(currentTime - 15)
+                }
+            }
+        }
+    }
+    
+    @IBAction func seek15SecondsForward(_ sender: Any) {
+        self.playerView.currentTime { currentTime, _ in
+            self.playerView.duration { duration, _ in
+                if Double(currentTime) + 15 < duration {
+                    self.playerView.seek(toSeconds: currentTime + 15, allowSeekAhead: true)
+                    self.viewModel.setCurrentTime(currentTime + 15)
+                }
+            }
+        }
+    }
+    
     @objc
     private func onUsersCollectionViewTapAction() {
         
@@ -217,21 +244,6 @@ class RoomViewController: WTViewController {
             roomId: self.viewModel.roomId,
             userId: self.viewModel.getUserID(),
             canDelete: self.viewModel.currentUserIsOwner())
-        
-    }
-    
-    @objc
-    private func onTapBack() {
-        let cancel = CancelButton(title: "Hayır", action: nil)
-        let ok = DefaultButton(title: "Evet") {
-            self.viewModel.exitRoom { [weak self] in
-                DispatchQueue.main.async {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                
-            }
-        }
-        WTAlert.show(self, title: "Uyarı", message: "Odadan Çıkmak İstiyor musunuz?", buttons: [cancel, ok])
         
     }
     
@@ -275,10 +287,6 @@ extension RoomViewController: YTPlayerViewDelegate {
         }
         self.startSecond = 0
         
-//        if self.shouldAutoSync {
-//            self.viewModel.autoSync()
-//        }
-//        self.shouldAutoSync = false
     }
     
 }

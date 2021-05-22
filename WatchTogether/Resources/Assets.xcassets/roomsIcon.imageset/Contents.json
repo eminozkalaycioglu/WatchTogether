@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "roomsIcon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

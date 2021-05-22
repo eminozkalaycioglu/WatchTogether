@@ -58,11 +58,11 @@ final class RoomsViewModel: BaseViewModel {
         }
     }
     
-    func joinRoom(index: Int) {
+    func joinRoom(index: Int, password: String?) {
         guard let roomId = self.rooms[index].roomId,
               let user = self.getUser() else { return }
         self.loadDidStart()
-        self.firebaseMgr.joinRoom(user: user, roomId: roomId, password: nil) { (result) in
+        self.firebaseMgr.joinRoom(user: user, roomId: roomId, password: password) { (result) in
             switch result {
             case let .success(room):
                 self.loadDidFinish()

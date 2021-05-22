@@ -21,13 +21,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ysy-nk-Yme">
-                    <rect key="frame" x="20" y="58" width="374" height="822"/>
+                    <rect key="frame" x="15" y="58" width="384" height="822"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiC-mq-iJx">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="384" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="265-fo-Blb" customClass="CircleButton" customModule="WatchTogether" customModuleProvider="target">
-                                    <rect key="frame" x="167" y="5" width="40" height="40"/>
+                                    <rect key="frame" x="172" y="5" width="40" height="40"/>
                                     <color key="backgroundColor" name="CardBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="2w1-K7-VcY"/>
@@ -39,7 +39,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wot-wW-3wU">
-                                    <rect key="frame" x="350" y="0.0" width="24" height="24"/>
+                                    <rect key="frame" x="360" y="0.0" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="Hg2-ZN-CmR"/>
                                         <constraint firstAttribute="width" constant="24" id="YcL-v3-72a"/>
@@ -60,7 +60,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="78" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="95e-5j-dmu">
-                            <rect key="frame" x="0.0" y="60" width="374" height="762"/>
+                            <rect key="frame" x="0.0" y="60" width="384" height="762"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
@@ -69,10 +69,10 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="MainBlueColorDark"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysy-nk-Yme" secondAttribute="trailing" constant="20" id="3ep-LP-Rzq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysy-nk-Yme" secondAttribute="trailing" constant="15" id="3ep-LP-Rzq"/>
                 <constraint firstItem="ysy-nk-Yme" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="14" id="6hp-d1-yJy"/>
                 <constraint firstAttribute="bottom" secondItem="ysy-nk-Yme" secondAttribute="bottom" constant="16" id="8CX-0T-qcc"/>
-                <constraint firstItem="ysy-nk-Yme" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="aBC-4r-ByM"/>
+                <constraint firstItem="ysy-nk-Yme" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="aBC-4r-ByM"/>
             </constraints>
             <point key="canvasLocation" x="141" y="76"/>
         </view>

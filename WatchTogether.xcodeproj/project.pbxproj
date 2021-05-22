@@ -45,6 +45,8 @@
 		480C0129262CA2CD00140E4F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C0128262CA2CD00140E4F /* MainTabBarController.swift */; };
 		480C012E262CA30D00140E4F /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C012C262CA30D00140E4F /* RoomsViewController.swift */; };
 		480C012F262CA30D00140E4F /* RoomsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 480C012D262CA30D00140E4F /* RoomsViewController.xib */; };
+		4836C16326594C5B00C3593A /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836C16126594C5B00C3593A /* EnterPasswordViewController.swift */; };
+		4836C16426594C5B00C3593A /* EnterPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4836C16226594C5B00C3593A /* EnterPasswordViewController.xib */; };
 		484A2A412620E233006C14BB /* WTSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484A2A402620E233006C14BB /* WTSessionManager.swift */; };
 		48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48673A8726309D1C0015E035 /* RegisterViewController.swift */; };
 		48673A8A26309D1C0015E035 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48673A8826309D1C0015E035 /* RegisterViewController.xib */; };
@@ -156,6 +158,8 @@
 		480C0128262CA2CD00140E4F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		480C012C262CA30D00140E4F /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		480C012D262CA30D00140E4F /* RoomsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsViewController.xib; sourceTree = "<group>"; };
+		4836C16126594C5B00C3593A /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
+		4836C16226594C5B00C3593A /* EnterPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterPasswordViewController.xib; sourceTree = "<group>"; };
 		484A2A402620E233006C14BB /* WTSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTSessionManager.swift; sourceTree = "<group>"; };
 		48673A8726309D1C0015E035 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		48673A8826309D1C0015E035 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -387,12 +391,22 @@
 		480C0131262CA31100140E4F /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
+				4836C16026594C3D00C3593A /* EnterPasswordVC */,
 				48FB0012263D572000343986 /* Cell */,
 				480C012C262CA30D00140E4F /* RoomsViewController.swift */,
 				480C012D262CA30D00140E4F /* RoomsViewController.xib */,
 				48EF832F262CA5890009F052 /* RoomsViewModel.swift */,
 			);
 			path = Rooms;
+			sourceTree = "<group>";
+		};
+		4836C16026594C3D00C3593A /* EnterPasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				4836C16126594C5B00C3593A /* EnterPasswordViewController.swift */,
+				4836C16226594C5B00C3593A /* EnterPasswordViewController.xib */,
+			);
+			path = EnterPasswordVC;
 			sourceTree = "<group>";
 		};
 		48673AAB2630A31F0015E035 /* PickAvatar */ = {
@@ -843,6 +857,7 @@
 				480C0101262C914900140E4F /* Kanit-Italic.ttf in Resources */,
 				48E07932263CA3E30095C976 /* ForeignMessageTVC.xib in Resources */,
 				48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */,
+				4836C16426594C5B00C3593A /* EnterPasswordViewController.xib in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
 				4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */,
 				48FB0080263EC64A00343986 /* MoreUserCVC.xib in Resources */,
@@ -954,6 +969,7 @@
 				48673A8926309D1C0015E035 /* RegisterViewController.swift in Sources */,
 				480C0120262C9DB400140E4F /* SplashViewModel.swift in Sources */,
 				4870CBC3262F69D2006D0B62 /* WTButton.swift in Sources */,
+				4836C16326594C5B00C3593A /* EnterPasswordViewController.swift in Sources */,
 				48673B36263317DD0015E035 /* AppConstants.swift in Sources */,
 				48FB00F5263F324D00343986 /* CircleButton.swift in Sources */,
 				48075CB626242A92001B62A1 /* RegisterRequestModel.swift in Sources */,

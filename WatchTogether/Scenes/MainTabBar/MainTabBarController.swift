@@ -19,39 +19,23 @@ class MainTabBarController: UITabBarController {
     
     private func setVCs() {
         
-        WTFirebaseManager.shared.fetchRoomUserInfos(ids: ["4IjTvoG9BBV4NThDP1FGYo70bcq1", "CmJUCdCOIIhre2xaeM6HYsydV4g2"]) { (result) in
-            switch result {
-            case let .success(users):
-                print("emintest: ", users.map({$0.email}))
-            case let .failure(error):
-                print("emintest: ", error.message)
-            }
-        }
-//        WTFirebaseManager.shared.fetchRooms { (result) in
-//            switch result {
-//            case .success(let room):
-//                print("emintest: ",room.map({$0.users}))
-//            default: break
-//            }
-//        }
-        
         let roomsVC = SF.makeRoomsVC().embedInWTNavVc()
         roomsVC.tabBarItem = UITabBarItem(title: "Odalar",
-                                          image: R.image.emailIcon()!,
-                                          selectedImage: R.image.emailIcon()!)
+                                          image: R.image.roomsIcon()!,
+                                          selectedImage: R.image.roomsIcon()!)
         
         
         let profileVC = SF.makeProfileVC().embedInWTNavVc()
         profileVC.tabBarItem = UITabBarItem(title: "Profil",
-                                          image: R.image.passwordIcon()!,
-                                          selectedImage: R.image.passwordIcon()!)
+                                          image: R.image.profileIcon()!,
+                                          selectedImage: R.image.profileIcon()!)
         
         let createRoomVC = SF.makeCreateRoomVC().embedInWTNavVc()
-        createRoomVC.tabBarItem = UITabBarItem(title: "Profil",
-                                          image: R.image.passwordIcon()!,
-                                          selectedImage: R.image.passwordIcon()!)
+        createRoomVC.tabBarItem = UITabBarItem(title: "Oda Oluştur",
+                                          image: R.image.createRoomIcon()!,
+                                          selectedImage: R.image.createRoomIcon()!)
         
-        self.setViewControllers([roomsVC, profileVC, createRoomVC], animated: true)
+        self.setViewControllers([roomsVC, createRoomVC, profileVC], animated: true)
     }
 
 }

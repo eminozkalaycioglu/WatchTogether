@@ -112,7 +112,13 @@ extension RoomsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.viewModel.joinRoom(index: indexPath.row)
+        switch self.viewModel.roomType {
+        case .private:
+            EnterPasswordViewController.showOverCurrentContent(context: self, delegate: self, selectedIndex: indexPath.row)
+        case .public:
+            self.viewModel.joinRoom(index: indexPath.row, password: nil)
+
+        }
         
     }
 
@@ -123,4 +129,16 @@ extension RoomsViewController: RoomTypeSelectionViewDelegate {
         print("emintest: ", selection)
         self.viewModel.roomType = selection
     }
+}
+
+extension RoomsViewController: EnterPasswordViewDelegate {
+    func enterPasswordViewControllerDidEnterPassword(_ controller: EnterPasswordViewController?, password: String, selectedIndex: Int) {
+        self.viewModel.joinRoom(index: selectedIndex, password: password)
+    }
+    
+    func enterPasswordViewControllerShouldClose(_ controller: EnterPasswordViewController?) {
+        EnterPasswordViewController.hide(context: self, passwordVC: controller)
+    }
+    
+    
 }

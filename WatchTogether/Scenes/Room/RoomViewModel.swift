@@ -42,11 +42,9 @@ final class RoomViewModel: BaseViewModel {
     }
     
     func fetchRoom(completion: (() -> Void)? = nil) {
-        self.loadDidStart()
         self.firebaseMgr.fetchRoom(roomId: self.roomId) { (result) in
             switch result {
             case let.success(room):
-                self.loadDidFinish()
                 if room.roomId != nil {
                     self.room = room
                     completion?()
@@ -88,7 +86,6 @@ final class RoomViewModel: BaseViewModel {
             self.onShouldBackToTabBar?()
         }
                 
-        self.loadDidStart()
         self.firebaseMgr.fetchRoomUserInfos(ids: userIDs) { (result) in
             switch result {
             case let .success(currentUsers):
@@ -96,7 +93,6 @@ final class RoomViewModel: BaseViewModel {
                 self.firebaseMgr.fetchRoomUserInfos(ids: oldUserIDs) { (result) in
                     switch result {
                     case let .success(oldUsers):
-                        self.loadDidFinish()
                         self.totalUsers = currentUsers + oldUsers
                         self.onFetchedUserInfos?()
                     case let .failure(error):
@@ -171,19 +167,15 @@ final class RoomViewModel: BaseViewModel {
     
     func addContentToRoom(video: Video) {
         guard self.currentUserIsOwner() else { return }
-        self.loadDidStart()
         self.firebaseMgr.addContentToRoom(roomId: self.roomId, video: video) { (_) in
-            self.loadDidFinish()
         }
     }
     
     func addContentToRoom(id: String) {
         guard self.currentUserIsOwner() else { return }
-        self.loadDidStart()
         self.youtubeService.getVideoDetail(id) { result in
             switch result {
             case let .success(videoDetail):
-                self.loadDidFinish()
                 self.addContentToRoom(video: videoDetail.toVideo)
             case let .failure(error):
                 self.loadDidFinishWithError(error: error)

@@ -54,6 +54,12 @@ final class SceneFactory {
         return viewController
     }
     
+    public static func makeEnterPasswordVC(index: Int) -> EnterPasswordViewController {
+        let viewController = EnterPasswordViewController()
+        viewController.selectedIndex = index
+        return viewController
+    }
+    
     public static func makeRoomVC(roomId: String) -> RoomViewController {
         let viewController = RoomViewController()
         let viewModel = RoomViewModel(roomId: roomId)
@@ -75,10 +81,11 @@ final class SceneFactory {
         return viewController
     }
     
-    public static func makePlaylistVC(roomId: String) -> PlaylistViewController {
+    public static func makePlaylistVC(roomId: String, canOpenWebView: Bool) -> PlaylistViewController {
         let viewController = PlaylistViewController()
         let viewModel = PlaylistViewModel(roomId: roomId)
         viewController.viewModel = viewModel
+        viewController.canOpenWebView = canOpenWebView
         return viewController
     }
     
