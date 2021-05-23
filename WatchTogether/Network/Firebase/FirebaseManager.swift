@@ -322,8 +322,10 @@ extension WTFirebaseManager {
     }
     
     func observeAutoSync(roomId: String, completion: @escaping (() -> Void)) {
-        self.dbRef.child("Rooms").child(roomId).child("autoSync").observe(.value) { _ in
-            completion()
+        self.dbRef.child("Rooms").child(roomId).child("autoSync").observe(.value) { snapshot in
+            if snapshot.value != nil {
+                completion()
+            }
         }
     }
     
