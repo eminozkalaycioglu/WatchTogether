@@ -113,14 +113,14 @@ struct R: Rswift.Validatable {
     static let textFieldTextColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "TextFieldTextColor")
     /// Color `UserCountGreen`.
     static let userCountGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "UserCountGreen")
-    /// Color `UserCountOrange`.
-    static let userCountOrange = Rswift.ColorResource(bundle: R.hostingBundle, name: "UserCountOrange")
     /// Color `UserCountRed`.
     static let userCountRed = Rswift.ColorResource(bundle: R.hostingBundle, name: "UserCountRed")
     /// Color `UserCountTurquoise`.
     static let userCountTurquoise = Rswift.ColorResource(bundle: R.hostingBundle, name: "UserCountTurquoise")
     /// Color `WhiteAlpha0,75`.
     static let whiteAlpha075 = Rswift.ColorResource(bundle: R.hostingBundle, name: "WhiteAlpha0,75")
+    /// Color `userCountOrange`.
+    static let userCountOrange = Rswift.ColorResource(bundle: R.hostingBundle, name: "userCountOrange")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -222,15 +222,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "UserCountOrange", bundle: ..., traitCollection: ...)`
-    @available(tvOS 11.0, *)
-    @available(iOS 11.0, *)
-    static func userCountOrange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
-      return UIKit.UIColor(resource: R.color.userCountOrange, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "UserCountRed", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -254,6 +245,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func whiteAlpha075(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.whiteAlpha075, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "userCountOrange", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func userCountOrange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.userCountOrange, compatibleWith: traitCollection)
     }
     #endif
 
@@ -346,14 +346,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "UserCountOrange", bundle: ..., traitCollection: ...)`
-    @available(watchOSApplicationExtension 4.0, *)
-    static func userCountOrange(_: Void = ()) -> UIKit.UIColor? {
-      return UIKit.UIColor(named: R.color.userCountOrange.name)
-    }
-    #endif
-
-    #if os(watchOS)
     /// `UIColor(named: "UserCountRed", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func userCountRed(_: Void = ()) -> UIKit.UIColor? {
@@ -374,6 +366,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func whiteAlpha075(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.whiteAlpha075.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "userCountOrange", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func userCountOrange(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.userCountOrange.name)
     }
     #endif
 
@@ -533,7 +533,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 59 images.
+  /// This `R.image` struct is generated, and contains static references to 60 images.
   struct image {
     /// Image `Logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "Logo")
@@ -637,6 +637,8 @@ struct R: Rswift.Validatable {
     static let emailIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "emailIcon")
     /// Image `hideIcon`.
     static let hideIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "hideIcon")
+    /// Image `kkybncIcon`.
+    static let kkybncIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "kkybncIcon")
     /// Image `passwordIcon`.
     static let passwordIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "passwordIcon")
     /// Image `personIcon`.
@@ -1008,6 +1010,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "hideIcon", bundle: ..., traitCollection: ...)`
     static func hideIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.hideIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "kkybncIcon", bundle: ..., traitCollection: ...)`
+    static func kkybncIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.kkybncIcon, compatibleWith: traitCollection)
     }
     #endif
 

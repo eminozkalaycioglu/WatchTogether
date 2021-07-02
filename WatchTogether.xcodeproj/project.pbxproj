@@ -76,6 +76,7 @@
 		487D86D226552AEE005E50AF /* RoomTypeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487D86D126552AEE005E50AF /* RoomTypeSelectionView.xib */; };
 		48867E182645E295003F7139 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48867E172645E295003F7139 /* DateFormatter+Extension.swift */; };
 		4892B46B265846F8009D8505 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4892B46A265846F8009D8505 /* GradientView.swift */; };
+		48AD68CB268F0C0C00ADE5A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48AD68CA268F0C0C00ADE5A3 /* GoogleService-Info.plist */; };
 		48B59B5B2620B0E200321ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5A2620B0E200321ECF /* AppDelegate.swift */; };
 		48B59B5D2620B0E200321ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B5C2620B0E200321ECF /* SceneDelegate.swift */; };
 		48B59B642620B0E400321ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B632620B0E400321ECF /* Assets.xcassets */; };
@@ -85,7 +86,6 @@
 		48B59B7A2620B36F00321ECF /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B792620B36F00321ECF /* SceneFactory.swift */; };
 		48B59B7E2620B3CF00321ECF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B7D2620B3CF00321ECF /* String+Extension.swift */; };
 		48B59B882620BDB500321ECF /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B59B872620BDB500321ECF /* FirebaseManager.swift */; };
-		48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */; };
 		48DC821C26583F6F00340DB8 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DC821B26583F6F00340DB8 /* PlaylistViewModel.swift */; };
 		48DC82202658404900340DB8 /* PlaylistTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DC821E2658404900340DB8 /* PlaylistTVC.swift */; };
 		48DC82212658404900340DB8 /* PlaylistTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48DC821F2658404900340DB8 /* PlaylistTVC.xib */; };
@@ -189,6 +189,7 @@
 		487D86D126552AEE005E50AF /* RoomTypeSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomTypeSelectionView.xib; sourceTree = "<group>"; };
 		48867E172645E295003F7139 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		4892B46A265846F8009D8505 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		48AD68CA268F0C0C00ADE5A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		48B59B572620B0E200321ECF /* WatchTogether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTogether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B59B5A2620B0E200321ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48B59B5C2620B0E200321ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +201,6 @@
 		48B59B792620B36F00321ECF /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		48B59B7D2620B3CF00321ECF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		48B59B872620BDB500321ECF /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		48DC821B26583F6F00340DB8 /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		48DC821E2658404900340DB8 /* PlaylistTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTVC.swift; sourceTree = "<group>"; };
 		48DC821F2658404900340DB8 /* PlaylistTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistTVC.xib; sourceTree = "<group>"; };
@@ -589,7 +589,7 @@
 				480C00E6262C913D00140E4F /* Font */,
 				48B59B652620B0E400321ECF /* LaunchScreen.storyboard */,
 				48B59B632620B0E400321ECF /* Assets.xcassets */,
-				48B59B9C2620BF1800321ECF /* GoogleService-Info.plist */,
+				48AD68CA268F0C0C00ADE5A3 /* GoogleService-Info.plist */,
 				48B59B682620B0E400321ECF /* Info.plist */,
 				48673B35263317DD0015E035 /* AppConstants.swift */,
 			);
@@ -844,7 +844,6 @@
 				48673B6A2635F5560015E035 /* CreateRoomViewController.xib in Resources */,
 				48DC82212658404900340DB8 /* PlaylistTVC.xib in Resources */,
 				48673B4126357B9B0015E035 /* ProfileViewController.xib in Resources */,
-				48B59B9D2620BF1800321ECF /* GoogleService-Info.plist in Resources */,
 				48FB0016263D573600343986 /* RoomTVC.xib in Resources */,
 				480C0106262C914900140E4F /* Kanit-Bold.ttf in Resources */,
 				480C0109262C914900140E4F /* Kanit-BlackItalic.ttf in Resources */,
@@ -859,6 +858,7 @@
 				48673AAF2630A3330015E035 /* PickAvatarViewController.xib in Resources */,
 				4836C16426594C5B00C3593A /* EnterPasswordViewController.xib in Resources */,
 				48B59B642620B0E400321ECF /* Assets.xcassets in Resources */,
+				48AD68CB268F0C0C00ADE5A3 /* GoogleService-Info.plist in Resources */,
 				4870CC00262F78A5006D0B62 /* AvatarCollectionViewCell.xib in Resources */,
 				48FB0080263EC64A00343986 /* MoreUserCVC.xib in Resources */,
 			);
@@ -1136,16 +1136,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 795RDC95Z2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = DUARKS4RRC;
 				INFOPLIST_FILE = "$(SRCROOT)/WatchTogether/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.WatchTogether;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emin.WatchTogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = watchtogether_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1157,16 +1159,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 795RDC95Z2;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = DUARKS4RRC;
 				INFOPLIST_FILE = "$(SRCROOT)/WatchTogether/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.WatchTogether;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emin.WatchTogether;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = watchtogether_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
