@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         WTAlert.setApperance()
         IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.toolbarTintColor = R.color.mainBlueColorDark()!
+        IQKeyboardManager.shared.toolbarTintColor = R.color.registerGreenColor()!
         
         #if DEBUG && targetEnvironment(simulator)
         Bagel.start()

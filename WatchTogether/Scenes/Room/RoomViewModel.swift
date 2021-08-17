@@ -56,6 +56,13 @@ final class RoomViewModel: BaseViewModel {
         }
     }
     
+    func fetchIsPlaying(completion: @escaping ((Bool) -> Void)) {
+        self.firebaseMgr.fetchIsPlaying(roomId: self.roomId) { isPlaying in
+            print("emintest* \(isPlaying)")
+            completion(isPlaying ?? false)
+        }
+    }
+    
     func sendMessage(text: String) {
         guard let ownerId = self.sessionMgr.user?.userId else { return }
         

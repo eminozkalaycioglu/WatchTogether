@@ -25,11 +25,26 @@ class RoomViewController: WTViewController {
     private var lastVideoID: String? = nil
     private var shouldAutoSync: Bool = true
     
+    private lazy var hideControlTask: DispatchWorkItem = {
+        self.createHideControlTask
+    }()
+    
+    private var createHideControlTask: DispatchWorkItem {
+        DispatchWorkItem {
+            UIView.animate(withDuration: 0.5) { [weak self] in
+                self?.controlView.alpha = 0
+            } completion: { [weak self] _ in
+                self?.controlView.isHidden = true
+            }
+        }
+    }
+    
     @IBOutlet weak var playerView: YTPlayerView! {
         didSet {
             playerView.delegate = self
         }
     }
+    @IBOutlet weak var exceptFromPlayerStackView: UIStackView!
     
     @IBOutlet weak var usersCollectionView: UICollectionView! {
         didSet {
@@ -64,6 +79,7 @@ class RoomViewController: WTViewController {
     @IBOutlet weak var testField: MessageTextField!
     @IBOutlet weak var controlView: GradientView!
     @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var blockView: UIView!
     
     override func setup() {
         super.setup()
@@ -71,8 +87,31 @@ class RoomViewController: WTViewController {
         navigation.bar.isHidden = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onUsersCollectionViewTapAction))
         self.usersCollectionView.addGestureRecognizer(gesture)
+        
+        let blockGesture = UITapGestureRecognizer(target: self, action: #selector(self.blockViewTapAction))
+        self.blockView.addGestureRecognizer(blockGesture)
+        
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if UIDevice.current.orientation.isLandscape {
+            self.exceptFromPlayerStackView.isHidden = true
+        } else {
+            self.exceptFromPlayerStackView.isHidden = false
+        }
+        
+        if self.viewModel.currentUserIsOwner() {
+            self.playerView.currentTime { currentTime, error in
+                self.viewModel.setCurrentTime(currentTime)
+            }
+        } else {
+            self.shouldAutoSync = true
+        }
+        
+    }
+
     override func registerEvents() {
         super.registerEvents()
         
@@ -109,6 +148,15 @@ class RoomViewController: WTViewController {
         
         self.viewModel.onCurrentTimeChanged = { [weak self] currentTime in
             print("emintest2 : onCurrentTimeChanged ")
+            
+            self?.viewModel.fetchIsPlaying(completion: { isPlaying in
+                if isPlaying {
+                    self?.playerView.playVideo()
+                } else {
+                    self?.playerView.pauseVideo()
+                }
+            })
+            
             self?.playerView.seek(toSeconds: currentTime, allowSeekAhead: true)
         }
         
@@ -129,7 +177,6 @@ class RoomViewController: WTViewController {
             DispatchQueue.main.async {
                 self?.testTable.reloadData()
                 self?.usersCollectionView.reloadData()
-                self?.controlView.isHidden = !(self?.viewModel.currentUserIsOwner() ?? false)
             }
         }
         
@@ -158,6 +205,7 @@ class RoomViewController: WTViewController {
               messageText.count > 0 else { return }
         self.viewModel.sendMessage(text: messageText)
         self.testField.text?.removeAll()
+        self.testField.resignFirstResponder()
     }
     
     @IBAction func playlistButtonTapAction(_ sender: Any) {
@@ -247,6 +295,21 @@ class RoomViewController: WTViewController {
         
     }
     
+    
+    @objc
+    private func blockViewTapAction() {
+        guard self.viewModel.currentUserIsOwner() else { return }
+        
+        self.hideControlTask.cancel()
+        self.hideControlTask = self.createHideControlTask
+        
+        self.controlView.alpha = 1
+        self.controlView.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: self.hideControlTask)
+        
+    }
+    
     func loadWithCurrentTime(id: String, currentTime: Float) {
         self.startSecond = currentTime
         self.playerView.load(withVideoId: id, playerVars: self.playerVars)
@@ -263,6 +326,7 @@ extension RoomViewController: YTPlayerViewDelegate {
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
         switch state {
         case .playing:
+            print("emintest ! playing")
             self.playPauseButton.setTitle("Durdur", for: .normal)
             if self.shouldAutoSync {
                 self.viewModel.autoSync()

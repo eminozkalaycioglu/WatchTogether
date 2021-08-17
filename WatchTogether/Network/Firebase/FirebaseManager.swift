@@ -31,6 +31,7 @@ protocol FirebaseManager {
     func addVideoToRoomPlaylist(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func fetchPlaylist(roomId: String, completion: @escaping ((Result<[Video], PresentableError>) -> Void))
     func fetchContent(roomId: String, completion: @escaping ((Result<Content, PresentableError>) -> Void))
+    func fetchIsPlaying(roomId: String, completion: @escaping ((Bool?) -> Void))
     func addUserToRoom(roomId: String, user: WTUser, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addMessageToRoom(roomId: String, message: Message, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void))
@@ -398,6 +399,14 @@ extension WTFirebaseManager {
             self.getContentFrom(snapshot: snapshot, completion: completion)
         }
     }
+    
+    func fetchIsPlaying(roomId: String, completion: @escaping ((Bool?) -> Void)) {
+        
+        self.dbRef.child("Rooms").child(roomId).child("Content").child("isPlaying").observe(.value, with: { (snapshot) in
+            completion(snapshot.value as? Bool)
+        })
+    }
+    
 
     func addContentToRoom(roomId: String, video: Video, completion: @escaping ((Result<Bool, PresentableError>) -> Void)) {
         
